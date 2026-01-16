@@ -1,6 +1,6 @@
 {
   "name": "hytale-f2p-launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hytale F2P Launcher",
   "main": "main.js",
   "scripts": {
