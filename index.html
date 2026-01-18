@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hytale F2P Launcher - Your Gateway to Adventure</title>
+    <meta name="description"
+        content="A modern, cross-platform launcher for Hytale with automatic updates and multi-client support. Download now for Windows, Linux, and macOS.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="Hytale F2P Logo">
+                <span>Hytale F2P</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+                <a href="#changelog">Changelog</a>
+                <a href="https://github.com/amiayweb/Hytale-F2P" target="_blank" class="github-link"><i
+                        class="fab fa-github"></i> GitHub</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">v2.0.1 Available Now</span>
+                <h1>Adventure Awaits <br>in <span class="highlight">Hytale</span></h1>
+                <p>A modern, cross-platform launcher with automatic updates, mod management, and multiplayer support.
+                    Experience the world of Hytale freely.</p>
+                <div class="cta-buttons">
+                    <a href="#download" class="btn btn-primary"><i class="fas fa-download"></i> Download Launcher</a>
+                    <a href="https://discord.gg/MHkEjepMQ7" target="_blank" class="btn btn-secondary"><i
+                            class="fab fa-discord"></i> Join Discord</a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="download-count">Loading...</span>
+                        <span class="stat-label"><i class="fas fa-download"></i> Downloads</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="star-count">Loading...</span>
+                        <span class="stat-label"><i class="fas fa-star"></i> Stars</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.imgur.com/9iDuzST.png" alt="Launcher Interface Preview" class="floating-image">
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span class="highlight">Hytale F2P</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Auto Updates</h3>
+                    <p>Smart version checking ensures you're always on the latest version of the game and launcher.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-desktop"></i></div>
+                    <h3>Cross-Platform</h3>
+                    <p>Play seamlessly on Windows, Linux (X11/Wayland), and macOS with optimized performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-cubes"></i></div>
+                    <h3>Mod Support</h3>
+                    <p>Built-in mod manager to easily install and manage your favorite community creations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-users"></i></div>
+                    <h3>Multiplayer</h3>
+                    <p>Connect with friends using the automatic multiplayer client installation and setup.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Data Safe</h3>
+                    <p>Intelligent UserData backup and preservation during updates so you never lose progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fas fa-comments"></i></div>
+                    <h3>Community Chat</h3>
+                    <p>Integrated global chat system to connect with other players directly from the launcher.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">Get Started Today</h2>
+            <p class="section-subtitle">Choose your platform and begin your journey.</p>
+
+            <div class="download-cards">
+                <div class="download-card windows">
+                    <i class="fab fa-windows"></i>
+                    <h3>Windows</h3>
+                    <p>Requires Windows 10/11</p>
+                    <a href="#" id="win-download" class="btn btn-outline">Download .exe</a>
+                </div>
+                <div class="download-card linux">
+                    <i class="fab fa-linux"></i>
+                    <h3>Linux</h3>
+                    <p>AppImage & Deb available</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                        <a href="#" id="linux-deb-download" class="btn btn-outline full-width">Download .deb</a>
+                        <a href="#" id="linux-appimage-download" class="btn btn-outline full-width">Download
+                            .AppImage</a>
+                    </div>
+                </div>
+                <div class="download-card mac">
+                    <i class="fab fa-apple"></i>
+                    <h3>macOS</h3>
+                    <p>Intel & Apple Silicon</p>
+                    <a href="#" id="mac-download" class="btn btn-outline full-width">Download options</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="changelog" class="changelog">
+        <div class="container">
+            <h2 class="section-title">Latest Updates</h2>
+            <div class="changelog-container" id="changelog-content">
+                <!-- Content will be loaded dynamically via JS -->
+                <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Loading patch notes...</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="Hytale F2P">
+                    <p>A community-driven project.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <a href="https://github.com/amiayweb/Hytale-F2P">GitHub Repository</a>
+                    <a href="https://github.com/amiayweb/Hytale-F2P/issues">Report an Issue</a>
+                    <a href="https://discord.gg/8WmN7GQa">Discord Server</a>
+                </div>
+
+                <div class="footer-legal">
+                    <h3>Disclaimer</h3>
+                    <p>This launcher is an independent fan project and is not affiliated with, endorsed by, or
+                        associated with Hypixel Studios or Hytale.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hytale F2P. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
