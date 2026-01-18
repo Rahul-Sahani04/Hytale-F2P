@@ -5,6 +5,7 @@
 ![Version](https://img.shields.io/badge/Version-2.0.0-green?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Educational-blue?style=for-the-badge)
+[![Join Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/MHkEjepMQ7)
 
 **A modern, cross-platform offline launcher for Hytale with automatic updates and multiplayer support (windows users & non-premium only)**
 
