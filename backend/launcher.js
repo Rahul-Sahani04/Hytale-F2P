@@ -20,14 +20,16 @@ const {
   getUuidForUser,
   isFirstLaunch,
   markAsLaunched,
-  CONFIG_FILE,
   // UUID Management
   getCurrentUuid,
   getAllUuidMappings,
   setUuidForUser,
   generateNewUuid,
   deleteUuidForUser,
-  resetCurrentUserUuid
+  resetCurrentUserUuid,
+  // GPU Preference
+  saveGpuPreference,
+  loadGpuPreference
 } = require('./core/config');
 
 const { getResolvedAppDir, getModsPath } = require('./core/paths');
@@ -78,6 +80,9 @@ const {
   handleFirstLaunchCheck
 } = require('./services/firstLaunch');
 
+// Utils
+const { detectGpu } = require('./utils/platformUtils');
+
 // Re-export all functions to maintain backward compatibility
 module.exports = {
   // Game launch functions
@@ -112,7 +117,12 @@ module.exports = {
   // Discord RPC functions
   saveDiscordRPC,
   loadDiscordRPC,
-
+  
+  // GPU Preference functions
+  saveGpuPreference,
+  loadGpuPreference,
+  detectGpu,
+  
   // Version functions
   getInstalledClientVersion,
   getLatestClientVersion,
