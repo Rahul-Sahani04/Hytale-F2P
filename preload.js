@@ -71,6 +71,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
 
   getLogDirectory: () => ipcRenderer.invoke('get-log-directory'),
+  openLogsFolder: () => ipcRenderer.invoke('open-logs-folder'),
   getRecentLogs: (maxLines) => ipcRenderer.invoke('get-recent-logs', maxLines),
 
   // UUID Management methods

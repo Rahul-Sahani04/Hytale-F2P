@@ -872,13 +872,35 @@ ipcMain.handle('get-recent-logs', async (event, maxLines = 100) => {
     const content = fs.readFileSync(latestLogFile, 'utf8');
     const lines = content.split('\n');
 
-    return lines.slice(-maxLines).join('\n');
+    let result = lines.slice(-maxLines).join('\n');
+
+    if (lines.length > maxLines) {
+      const truncatedMsg = `\n--- ⚠️ LOG TRUNCATED: Showing last ${maxLines} lines of ${lines.length}. Open Logs Folder for full history ---\n\n`;
+      return result + truncatedMsg;
+    }
+
+    return result;
   } catch (error) {
     console.error('Error reading logs:', error);
     return null;
   }
 });
 
+
+
+ipcMain.handle('open-logs-folder', async () => {
+  try {
+    const logDir = logger.getLogDirectory();
+    if (logDir && fs.existsSync(logDir)) {
+      await shell.openPath(logDir);
+      return { success: true };
+    }
+    return { success: false, error: 'Logs directory not found' };
+  } catch (error) {
+    console.error('Error opening logs folder:', error);
+    return { success: false, error: error.message };
+  }
+});
 
 // Profile Management IPC
 ipcMain.handle('profile-create', async (event, name) => {

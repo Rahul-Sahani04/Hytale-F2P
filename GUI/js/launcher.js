@@ -574,4 +574,57 @@ window.launch = launch;
 window.uninstallGame = uninstallGame;
 window.repairGame = repairGame;
 
+window.openLogs = async () => {
+  if (window.LauncherUI) {
+    window.LauncherUI.showPage('logs-page');
+    window.LauncherUI.setActiveNav('logs');
+  }
+  await refreshLogs();
+};
+
+window.openLogsFolder = async () => {
+  try {
+    if (window.electronAPI && window.electronAPI.openLogsFolder) {
+      await window.electronAPI.openLogsFolder();
+    }
+  } catch (error) {
+    console.error('Failed to open logs folder:', error);
+  }
+};
+
+window.refreshLogs = async () => {
+  const terminal = document.getElementById('logsTerminal');
+  if (!terminal) return;
+
+  try {
+    if (window.electronAPI && window.electronAPI.getRecentLogs) {
+      // Fetch up to MAX_LOG_LINES lines
+      const logs = await window.electronAPI.getRecentLogs(MAX_LOG_LINES);
+      if (logs) {
+        // Formatting for colors could be done here if needed
+        terminal.textContent = logs;
+        terminal.scrollTop = terminal.scrollHeight;
+      } else {
+        terminal.textContent = 'No logs available.';
+      }
+    }
+  } catch (error) {
+    terminal.textContent = 'Error loading logs: ' + error.message;
+  }
+};
+
+window.copyLogs = () => {
+  const terminal = document.getElementById('logsTerminal');
+  if (terminal) {
+    navigator.clipboard.writeText(terminal.textContent)
+      .then(() => alert('Logs copied to clipboard!'))
+      .catch(err => console.error('Failed to copy logs:', err));
+  }
+};
+
+window.repairGame = repairGame;
+
+// Constants
+const MAX_LOG_LINES = 500;
+
 document.addEventListener('DOMContentLoaded', setupLauncher);

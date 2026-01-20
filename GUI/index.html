@@ -55,6 +55,10 @@
                     <i class="fas fa-user"></i>
                     <span class="nav-tooltip">Skins</span>
                 </div>
+                <div class="nav-item" data-page="logs" id="openLogsBtn" onclick="openLogs()">
+                    <i class="fas fa-terminal"></i>
+                    <span class="nav-tooltip">Logs</span>
+                </div>
             </div>
 
 
@@ -507,6 +511,31 @@
                             <i class="fas fa-user text-6xl mb-4 text-purple-500"></i>
                             <h2>Skins</h2>
                             <p>Skin customization coming soon...</p>
+                        </div>
+                    </div>
+
+                    <div id="logs-page" class="page">
+                        <div class="logs-container">
+                            <div class="logs-header">
+                                <h2 class="logs-title">
+                                    <i class="fas fa-terminal"></i>
+                                    SYSTEM LOGS
+                                </h2>
+                                <div class="logs-actions">
+                                    <button class="logs-action-btn" onclick="copyLogs()">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                    <button class="logs-action-btn" onclick="refreshLogs()">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                    <button class="logs-action-btn" onclick="openLogsFolder()">
+                                        <i class="fas fa-folder-open"></i> Open Folder
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="logsTerminal" class="logs-terminal">
+                                <div class="text-gray-500 text-center mt-10">Loading logs...</div>
+                            </div>
                         </div>
                     </div>
                 </div>
