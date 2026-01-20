@@ -97,7 +97,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      devTools: false,
+      // devTools: false,
       webSecurity: true
     }
   });
@@ -123,9 +123,9 @@ function createWindow() {
   //mainWindow.webContents.openDevTools();
 
 
-  mainWindow.webContents.on('devtools-opened', () => {
-    mainWindow.webContents.closeDevTools();
-  });
+  // mainWindow.webContents.on('devtools-opened', () => {
+  //   mainWindow.webContents.closeDevTools();
+  // });
 
   mainWindow.webContents.on('before-input-event', (event, input) => {
     if (input.control && input.shift && input.key.toLowerCase() === 'i') {
@@ -311,7 +311,7 @@ ipcMain.handle('launch-game', async (event, playerName, javaPath, installPath, g
     };
 
     const result = await launchGameWithVersionCheck(playerName, progressCallback, javaPath, installPath, gpuPreference);
-    
+
     return result;
   } catch (error) {
     console.error('Launch error:', error);

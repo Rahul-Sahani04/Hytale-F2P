@@ -384,124 +384,128 @@
                                         </div>
 
 
-                                    <div class="settings-input-group">
-                                        <label class="settings-input-label">GPU Preference</label>
-                                        <div class="segmented-control">
-                                            <input type="radio" id="gpu-auto" name="gpuPreference" value="auto" checked>
-                                            <label for="gpu-auto">Auto</label>
-                                            <input type="radio" id="gpu-integrated" name="gpuPreference" value="integrated">
-                                            <label for="gpu-integrated">Integrated</label>
-                                            <input type="radio" id="gpu-dedicated" name="gpuPreference" value="dedicated">
-                                            <label for="gpu-dedicated">Dedicated</label>
-                                        </div>
-                                        <p class="settings-hint">
-                                            <i class="fas fa-info-circle"></i>
-                                            Select your preferred GPU (Linux: affects DRI_PRIME)
-                                        </p>
-                                        <div id="gpu-detection-info" class="gpu-detection-info"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h3 class="settings-section-title">
-                                        <i class="fab fa-discord"></i>
-                                        Discord Integration
-                                    </h3>
-                                    
-                                    <div class="settings-option">
-                                        <label class="settings-checkbox">
-                                            <input type="checkbox" id="discordRPCCheck" checked />
-                                            <span class="checkmark"></span>
-                                            <div class="checkbox-content">
-                                                <div class="checkbox-title">Enable Discord Rich Presence</div>
-                                                <div class="checkbox-description">Show your launcher activity on Discord</div>
-                                            </div>
-                                        </label>
-
-                                    </div>
-                                </div>
-
-                                <div class="settings-section">
-                                    <h3 class="settings-section-title">
-                                        <i class="fas fa-fingerprint"></i>
-                                        Player UUID Management
-                                    </h3>
-
-                                    <div class="settings-option">
                                         <div class="settings-input-group">
-                                            <label class="settings-input-label">Current UUID</label>
-                                            <div class="uuid-display-container">
-                                                <input type="text" id="currentUuid" class="settings-input uuid-input"
-                                                    readonly placeholder="Loading UUID..." />
-                                                <button id="copyUuidBtn" class="uuid-btn copy-btn" title="Copy UUID">
-                                                    <i class="fas fa-copy"></i>
-                                                </button>
-                                                <button id="regenerateUuidBtn" class="uuid-btn regenerate-btn"
-                                                    title="Generate New UUID">
-                                                    <i class="fas fa-sync-alt"></i>
-                                                </button>
+                                            <label class="settings-input-label">GPU Preference</label>
+                                            <div class="segmented-control">
+                                                <input type="radio" id="gpu-auto" name="gpuPreference" value="auto"
+                                                    checked>
+                                                <label for="gpu-auto">Auto</label>
+                                                <input type="radio" id="gpu-integrated" name="gpuPreference"
+                                                    value="integrated">
+                                                <label for="gpu-integrated">Integrated</label>
+                                                <input type="radio" id="gpu-dedicated" name="gpuPreference"
+                                                    value="dedicated">
+                                                <label for="gpu-dedicated">Dedicated</label>
                                             </div>
                                             <p class="settings-hint">
                                                 <i class="fas fa-info-circle"></i>
-                                                Your unique player identifier for this username
+                                                Select your preferred GPU (Linux: affects DRI_PRIME)
                                             </p>
+                                            <div id="gpu-detection-info" class="gpu-detection-info"></div>
                                         </div>
                                     </div>
 
-                                    <div class="settings-option">
-                                        <div class="settings-button-group">
-                                            <button id="manageUuidsBtn" class="settings-action-btn">
-                                                <i class="fas fa-list"></i>
-                                                <div class="btn-content">
-                                                    <div class="btn-title">Manage All UUIDs</div>
-                                                    <div class="btn-description">View and manage all player UUIDs</div>
+                                    <div class="settings-section">
+                                        <h3 class="settings-section-title">
+                                            <i class="fab fa-discord"></i>
+                                            Discord Integration
+                                        </h3>
+
+                                        <div class="settings-option">
+                                            <label class="settings-checkbox">
+                                                <input type="checkbox" id="discordRPCCheck" checked />
+                                                <span class="checkmark"></span>
+                                                <div class="checkbox-content">
+                                                    <div class="checkbox-title">Enable Discord Rich Presence</div>
+                                                    <div class="checkbox-description">Show your launcher activity on
+                                                        Discord</div>
                                                 </div>
-                                            </button>
+                                            </label>
+
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="settings-section">
-                                    <h3 class="settings-section-title">
-                                        <i class="fas fa-coffee"></i>
-                                        Java Runtime
-                                    </h3>
-                                    
-                                    <div class="settings-option">
-                                        <label class="settings-checkbox">
-                                            <input type="checkbox" id="customJavaCheck" />
-                                            <span class="checkmark"></span>
-                                            <div class="checkbox-content">
-                                                <div class="checkbox-title">Use Custom Java Path</div>
-                                                <div class="checkbox-description">Override the bundled Java runtime with your own installation</div>
+                                    <div class="settings-section">
+                                        <h3 class="settings-section-title">
+                                            <i class="fas fa-fingerprint"></i>
+                                            Player UUID Management
+                                        </h3>
+
+                                        <div class="settings-option">
+                                            <div class="settings-input-group">
+                                                <label class="settings-input-label">Current UUID</label>
+                                                <div class="uuid-display-container">
+                                                    <input type="text" id="currentUuid"
+                                                        class="settings-input uuid-input" readonly
+                                                        placeholder="Loading UUID..." />
+                                                    <button id="copyUuidBtn" class="uuid-btn copy-btn"
+                                                        title="Copy UUID">
+                                                        <i class="fas fa-copy"></i>
+                                                    </button>
+                                                    <button id="regenerateUuidBtn" class="uuid-btn regenerate-btn"
+                                                        title="Generate New UUID">
+                                                        <i class="fas fa-sync-alt"></i>
+                                                    </button>
+                                                </div>
+                                                <p class="settings-hint">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    Your unique player identifier for this username
+                                                </p>
                                             </div>
-                                        </label>
-                                    </div>
-                                    
-                                    <div id="customJavaOptions" class="custom-java-options" style="display: none;">
-                                        <div class="settings-input-group">
-                                            <label class="settings-input-label">Java Executable Path</label>
-                                            <div class="settings-input-with-button">
-                                                <input 
-                                                    type="text" 
-                                                    id="customJavaPath" 
-                                                    class="settings-input" 
-                                                    placeholder="Select Java path..."
-                                                    readonly
-                                                />
-                                                <button id="browseJavaBtn" class="settings-browse-btn">
-                                                    <i class="fas fa-folder-open"></i>
-                                                    Browse
+                                        </div>
+
+                                        <div class="settings-option">
+                                            <div class="settings-button-group">
+                                                <button id="manageUuidsBtn" class="settings-action-btn">
+                                                    <i class="fas fa-list"></i>
+                                                    <div class="btn-content">
+                                                        <div class="btn-title">Manage All UUIDs</div>
+                                                        <div class="btn-description">View and manage all player UUIDs
+                                                        </div>
+                                                    </div>
                                                 </button>
                                             </div>
-                                            <p class="settings-hint">
-                                                <i class="fas fa-info-circle"></i>
-                                                Select the Java installation folder (supports Windows, Mac, Linux)
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
 
+                                    <div class="settings-section">
+                                        <h3 class="settings-section-title">
+                                            <i class="fas fa-coffee"></i>
+                                            Java Runtime
+                                        </h3>
+
+                                        <div class="settings-option">
+                                            <label class="settings-checkbox">
+                                                <input type="checkbox" id="customJavaCheck" />
+                                                <span class="checkmark"></span>
+                                                <div class="checkbox-content">
+                                                    <div class="checkbox-title">Use Custom Java Path</div>
+                                                    <div class="checkbox-description">Override the bundled Java runtime
+                                                        with your own installation</div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div id="customJavaOptions" class="custom-java-options" style="display: none;">
+                                            <div class="settings-input-group">
+                                                <label class="settings-input-label">Java Executable Path</label>
+                                                <div class="settings-input-with-button">
+                                                    <input type="text" id="customJavaPath" class="settings-input"
+                                                        placeholder="Select Java path..." readonly />
+                                                    <button id="browseJavaBtn" class="settings-browse-btn">
+                                                        <i class="fas fa-folder-open"></i>
+                                                        Browse
+                                                    </button>
+                                                </div>
+                                                <p class="settings-hint">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    Select the Java installation folder (supports Windows, Mac, Linux)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -539,7 +543,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
     </div>
 
