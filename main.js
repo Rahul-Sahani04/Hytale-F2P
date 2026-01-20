@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { launchGame, launchGameWithVersionCheck, installGame, saveUsername, loadUsername, saveChatUsername, loadChatUsername, saveChatColor, loadChatColor, saveJavaPath, loadJavaPath, saveInstallPath, loadInstallPath, saveDiscordRPC, loadDiscordRPC, isGameInstalled, uninstallGame, getHytaleNews, handleFirstLaunchCheck, proposeGameUpdate, markAsLaunched } = require('./backend/launcher');
+const { launchGame, launchGameWithVersionCheck, installGame, saveUsername, loadUsername, saveChatUsername, loadChatUsername, saveChatColor, loadChatColor, saveJavaPath, loadJavaPath, saveInstallPath, loadInstallPath, saveDiscordRPC, loadDiscordRPC, isGameInstalled, uninstallGame, repairGame, getHytaleNews, handleFirstLaunchCheck, proposeGameUpdate, markAsLaunched } = require('./backend/launcher');
 const UpdateManager = require('./backend/updateManager');
 const logger = require('./backend/logger');
 const profileManager = require('./backend/managers/profileManager');
@@ -456,9 +456,31 @@ ipcMain.handle('is-game-installed', async () => {
 ipcMain.handle('uninstall-game', async () => {
   try {
     await uninstallGame();
-    return { success: true };
   } catch (error) {
     console.error('Uninstall error:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('repair-game', async () => {
+  try {
+    const progressCallback = (message, percent, speed, downloaded, total) => {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        const data = {
+          message: message || null,
+          percent: percent !== null && percent !== undefined ? Math.min(100, Math.max(0, percent)) : null,
+          speed: speed !== null && speed !== undefined ? speed : null,
+          downloaded: downloaded !== null && downloaded !== undefined ? downloaded : null,
+          total: total !== null && total !== undefined ? total : null
+        };
+        mainWindow.webContents.send('progress-update', data);
+      }
+    };
+
+    const result = await repairGame(progressCallback);
+    return result;
+  } catch (error) {
+    console.error('Repair error:', error);
     return { success: false, error: error.message };
   }
 });

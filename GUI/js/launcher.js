@@ -31,14 +31,6 @@ export function setupLauncher() {
       }
     });
   }
-  if (window.electronAPI && window.electronAPI.onProgressUpdate) {
-    window.electronAPI.onProgressUpdate((data) => {
-      if (!isDownloading) return;
-      if (window.LauncherUI) {
-        window.LauncherUI.updateProgress(data);
-      }
-    });
-  }
 
   // Initial Profile Load
   loadProfiles();
@@ -436,6 +428,49 @@ async function performUninstall() {
   }
 }
 
+export async function repairGame() {
+  showCustomConfirm(
+    'Are you sure you want to repair Hytale? This will reinstall the game files but keep your data (saves, screenshots, etc.).',
+    'Repair Game',
+    async () => {
+      await performRepair();
+    },
+    null,
+    'Repair',
+    'Cancel'
+  );
+}
+
+async function performRepair() {
+  if (window.LauncherUI) window.LauncherUI.showProgress();
+  if (window.LauncherUI) window.LauncherUI.updateProgress({ message: 'Repairing game...' });
+  isDownloading = true;
+
+  try {
+    if (window.electronAPI && window.electronAPI.repairGame) {
+      const result = await window.electronAPI.repairGame();
+
+      if (result.success) {
+        if (window.LauncherUI) {
+          window.LauncherUI.updateProgress({ message: 'Game repaired successfully!' });
+          setTimeout(() => {
+            window.LauncherUI.hideProgress();
+          }, 2000);
+        }
+      } else {
+        throw new Error(result.error || 'Repair failed');
+      }
+    }
+  } catch (error) {
+    if (window.LauncherUI) {
+      window.LauncherUI.updateProgress({ message: `Repair failed: ${error.message}` });
+      setTimeout(() => window.LauncherUI.hideProgress(), 3000);
+    }
+  } finally {
+    isDownloading = false;
+  }
+}
+
 function resetPlayButton() {
   isDownloading = false;
   if (playBtn) {
@@ -528,5 +563,6 @@ async function loadCustomJavaPath() {
 
 window.launch = launch;
 window.uninstallGame = uninstallGame;
+window.repairGame = repairGame;
 
 document.addEventListener('DOMContentLoaded', setupLauncher);

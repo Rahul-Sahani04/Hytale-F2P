@@ -21,6 +21,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   browseJavaPath: () => ipcRenderer.invoke('browse-java-path'),
   isGameInstalled: () => ipcRenderer.invoke('is-game-installed'),
   uninstallGame: () => ipcRenderer.invoke('uninstall-game'),
+  repairGame: () => ipcRenderer.invoke('repair-game'),
   getHytaleNews: () => ipcRenderer.invoke('get-hytale-news'),
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
   openExternalLink: (url) => ipcRenderer.invoke('openExternalLink', url),
