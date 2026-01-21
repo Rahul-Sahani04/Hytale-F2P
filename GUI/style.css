@@ -3269,7 +3269,8 @@ transition: all 0.3s ease;
 
 
 
-.mods-modal {
+.mods-modal,
+.themes-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -3284,7 +3285,8 @@ transition: all 0.3s ease;
     animation: fadeIn 0.3s ease;
 }
 
-.mods-modal.active {
+.mods-modal.active,
+.themes-modal.active {
     display: flex;
 }
 
@@ -3298,7 +3300,8 @@ transition: all 0.3s ease;
     }
 }
 
-.mods-modal-content {
+.mods-modal-content,
+.themes-modal-content {
     background: rgba(10, 10, 10, 0.95);
     border: 1px solid rgba(147, 51, 234, 0.3);
     border-radius: 16px;
@@ -3323,7 +3326,8 @@ transition: all 0.3s ease;
     }
 }
 
-.mods-modal-header {
+.mods-modal-header,
+.themes-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -3331,7 +3335,8 @@ transition: all 0.3s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.mods-modal-title {
+.mods-modal-title,
+.themes-modal-title {
     font-size: 1.5rem;
     font-weight: 700;
     font-family: 'Space Grotesk', sans-serif;
@@ -3340,7 +3345,8 @@ transition: all 0.3s ease;
     align-items: center;
 }
 
-.mods-modal-close {
+.mods-modal-close,
+.themes-modal-close {
     width: 36px;
     height: 36px;
     display: flex;
@@ -3354,37 +3360,44 @@ transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
-.mods-modal-close:hover {
+.mods-modal-close:hover,
+.themes-modal-close:hover {
     background: rgba(255, 0, 0, 0.2);
     border-color: rgba(255, 0, 0, 0.3);
     color: rgb(239, 68, 68);
 }
 
-.mods-modal-body {
+.mods-modal-body,
+.themes-modal-body {
     padding: 2rem;
     overflow-y: auto;
     flex: 1;
 }
 
-.mods-modal-body::-webkit-scrollbar {
+.mods-modal-body::-webkit-scrollbar,
+.themes-modal-body::-webkit-scrollbar {
     width: 8px;
 }
 
-.mods-modal-body::-webkit-scrollbar-track {
+.mods-modal-body::-webkit-scrollbar-track,
+.themes-modal-body::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
-.mods-modal-body::-webkit-scrollbar-thumb {
+.mods-modal-body::-webkit-scrollbar-thumb,
+.themes-modal-body::-webkit-scrollbar-thumb {
     background: rgba(147, 51, 234, 0.3);
     border-radius: 4px;
 }
 
-.mods-modal-body::-webkit-scrollbar-thumb:hover {
+.mods-modal-body::-webkit-scrollbar-thumb:hover,
+.themes-modal-body::-webkit-scrollbar-thumb:hover {
     background: rgba(147, 51, 234, 0.5);
 }
 
-.mods-modal-actions {
+.mods-modal-actions,
+.themes-modal-actions {
     margin-bottom: 1.5rem;
 }
 

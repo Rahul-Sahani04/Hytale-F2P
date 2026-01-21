@@ -257,6 +257,21 @@ function applyThemeToDOM(theme) {
     }
 }
 
+// Modal Functions
+function openThemesModal() {
+    const modal = document.getElementById('themesModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeThemesModal() {
+    const modal = document.getElementById('themesModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     // Small delay to ensure electronAPI is ready if needed, though mostly redundant
@@ -266,3 +281,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Export 
 window.initThemes = initThemes;
 window.applyTheme = applyTheme;
+window.openThemesModal = openThemesModal;
+window.closeThemesModal = closeThemesModal;
