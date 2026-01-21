@@ -1,4 +1,11 @@
 dist/*
 node_modules/*
-package-lock.json
 bun.lock
+
+# Build artifacts
+src/
+pkg/
+
+# Package files
+*.tar.zst
+*.zst
