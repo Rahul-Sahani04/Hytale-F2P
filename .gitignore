@@ -9,3 +9,4 @@ pkg/
 # Package files
 *.tar.zst
 *.zst
+bun.lockb
