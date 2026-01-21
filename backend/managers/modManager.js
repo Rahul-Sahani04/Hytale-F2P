@@ -6,6 +6,8 @@ const { getModsPath } = require('../core/paths');
 const { saveModsToConfig, loadModsFromConfig } = require('../core/config');
 const profileManager = require('./profileManager');
 
+const API_KEY = '$2a$10$bqk254NMZOWVTzLVJCcxEOmhcyUujKxA5xk.kQCN9q0KNYFJd5b32';
+
 function generateModId(filename) {
   return crypto.createHash('md5').update(filename).digest('hex').substring(0, 8);
 }
@@ -91,9 +93,9 @@ async function downloadMod(modInfo) {
     let downloadUrl = modInfo.downloadUrl;
 
     if (!downloadUrl && modInfo.fileId && modInfo.modId) {
-      const response = await axios.get(`https://api.curseforge.com/v1/mods/${modInfo.modId}/files/${modInfo.fileId}`, {
+      const response = await axios.get(`https://api.curseforge.com/v1/mods/${modInfo.modId || modInfo.curseForgeId}/files/${modInfo.fileId || modInfo.curseForgeFileId}`, {
         headers: {
-          'x-api-key': modInfo.apiKey,
+          'x-api-key': modInfo.apiKey || API_KEY,
           'Accept': 'application/json'
         }
       });
@@ -282,15 +284,94 @@ async function syncModsForCurrentProfile() {
       fs.mkdirSync(disabledModsPath, { recursive: true });
     }
 
+    // AUTO-REPAIR: Check for missing mods and re-download them
+    // This ensures isolation works: if a profile says I have Mod X, I should have Mod X.
+    const profileModsSnapshot = activeProfile.mods || [];
+    for (const mod of profileModsSnapshot) {
+      // Skip manual mods or disabled mods that we don't care to restore? 
+      // User said "installed but not physically present". Likely means enabled ones.
+      // But even disabled ones should be present in DisabledMods? Let's restore enabled ones first.
+      if (mod.enabled && !mod.manual) {
+        const inEnabled = fs.existsSync(path.join(modsPath, mod.fileName));
+        const inDisabled = fs.existsSync(path.join(disabledModsPath, mod.fileName));
+
+        if (!inEnabled && !inDisabled) {
+          if (mod.curseForgeId && (mod.curseForgeFileId || mod.fileId)) {
+            console.log(`[ModManager] Auto-repair: Re-downloading missing mod "${mod.name}"...`);
+            try {
+              await downloadMod({
+                ...mod,
+                modId: mod.curseForgeId,
+                fileId: mod.curseForgeFileId || mod.fileId,
+                apiKey: API_KEY
+              });
+              console.log(`[ModManager] Auto-repair: "${mod.name}" restored.`);
+            } catch (err) {
+              console.error(`[ModManager] Auto-repair failed for "${mod.name}": ${err.message}`);
+            }
+          } else {
+            console.warn(`[ModManager] Missing mod "${mod.name}" cannot be auto-restored (No CurseForge ID).`);
+          }
+        }
+      }
+    }
+
     // Get all physical files from both folders
     const enabledFiles = fs.existsSync(modsPath) ? fs.readdirSync(modsPath).filter(f => f.endsWith('.jar') || f.endsWith('.zip')) : [];
     const disabledFiles = fs.existsSync(disabledModsPath) ? fs.readdirSync(disabledModsPath).filter(f => f.endsWith('.jar') || f.endsWith('.zip')) : [];
 
+    // AUTO-IMPORT: Check for manual drops in mods/ folder
+    let profileMods = activeProfile.mods || [];
+    let profileUpdated = false;
+
+    // We need to know if a file belongs to ANY other profile to distinguish "Leftover" from "New Drop"
+    const allProfiles = profileManager.getProfiles();
+    const globalKnownFiles = new Set();
+    allProfiles.forEach(p => {
+      if (p.id !== activeProfile.id && p.mods) {
+        p.mods.forEach(m => globalKnownFiles.add(m.fileName));
+      }
+    });
+
+    for (const file of enabledFiles) {
+      const isKnownInActive = profileMods.some(m => m.fileName === file);
+
+      if (!isKnownInActive) {
+        // It's in the folder but not in our profile.
+        // Is it a leftover from another profile?
+        if (globalKnownFiles.has(file)) {
+          // It belongs to someone else. Treat as leftover.
+          // Do nothing here; standard sync loop will move it to DisabledMods.
+          console.log(`[ModManager] Found leftover mod from another profile: ${file}. Will move to Disabled.`);
+        } else {
+          // It is UNKNOWN to everyone. It is a Manual Drop.
+          console.log(`[ModManager] Auto-importing manual mod: ${file}`);
+          const newMod = {
+            id: generateModId(file),
+            name: extractModName(file),
+            version: 'Unknown',
+            description: 'Manually installed',
+            author: 'Local',
+            enabled: true,
+            fileName: file,
+            fileSize: 0,
+            dateInstalled: new Date().toISOString(),
+            manual: true
+          };
+          profileMods.push(newMod);
+          profileUpdated = true;
+        }
+      }
+    }
+
+    if (profileUpdated) {
+      profileManager.updateProfile(activeProfile.id, { mods: profileMods });
+      // Re-fetch to be safe
+      const updatedProfile = profileManager.getActiveProfile();
+      profileMods = updatedProfile ? (updatedProfile.mods || []) : profileMods;
+    }
+
     const allFiles = new Set([...enabledFiles, ...disabledFiles]);
-
-    // Profile.mods contains the list of ALL mods for that profile, with their enabled state.
-
-    const profileMods = activeProfile.mods || [];
 
     for (const fileName of allFiles) {
       const modConfig = profileMods.find(m => m.fileName === fileName);
