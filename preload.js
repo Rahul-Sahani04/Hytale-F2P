@@ -49,7 +49,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onUpdatePopup: (callback) => {
     ipcRenderer.on('show-update-popup', (event, data) => callback(data));
   },
-  
+
   getGpuInfo: () => ipcRenderer.invoke('get-gpu-info'),
   saveGpuPreference: (gpuPreference) => ipcRenderer.invoke('save-gpu-preference', gpuPreference),
   loadGpuPreference: () => ipcRenderer.invoke('load-gpu-preference'),
@@ -90,5 +90,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
     activate: (id) => ipcRenderer.invoke('profile-activate', id),
     delete: (id) => ipcRenderer.invoke('profile-delete', id),
     update: (id, updates) => ipcRenderer.invoke('profile-update', id, updates)
-  }
+  },
+
+  // Themes API
+  getThemes: () => ipcRenderer.invoke('themes:list'),
+  getTheme: (id) => ipcRenderer.invoke('themes:get', id),
+  getActiveTheme: () => ipcRenderer.invoke('themes:active'),
+  applyTheme: (id) => ipcRenderer.invoke('themes:apply', id)
 });

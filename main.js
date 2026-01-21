@@ -5,6 +5,7 @@ const { launchGame, launchGameWithVersionCheck, installGame, saveUsername, loadU
 const UpdateManager = require('./backend/updateManager');
 const logger = require('./backend/logger');
 const profileManager = require('./backend/managers/profileManager');
+const themeManager = require('./backend/managers/themeManager');
 
 logger.interceptConsole();
 
@@ -97,7 +98,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      devTools: false,
+      // devTools: false,
       webSecurity: true
     }
   });
@@ -121,9 +122,9 @@ function createWindow() {
     }
   }, 3000);
 
-  mainWindow.webContents.on('devtools-opened', () => {
-    mainWindow.webContents.closeDevTools();
-  });
+  // mainWindow.webContents.on('devtools-opened', () => {
+  //   mainWindow.webContents.closeDevTools();
+  // });
 
   mainWindow.webContents.on('before-input-event', (event, input) => {
     if (input.control && input.shift && input.key.toLowerCase() === 'i') {
@@ -176,6 +177,9 @@ app.whenReady().then(async () => {
 
   // Initialize Profile Manager (runs migration if needed)
   profileManager.init();
+
+  // Initialize Theme Manager
+  themeManager.init();
 
   createWindow();
 
@@ -799,17 +803,30 @@ ipcMain.handle('get-current-uuid', async () => {
 
 ipcMain.handle('get-all-uuid-mappings', async () => {
   try {
-    const mappings = getAllUuidMappings();
-    return Object.entries(mappings).map(([username, uuid]) => ({
-      username,
-      uuid,
-      isCurrent: username === require('./backend/launcher').loadUsername()
-    }));
+    return getAllUuidMappings();
   } catch (error) {
     console.error('Error getting UUID mappings:', error);
-    return [];
+    return {};
   }
 });
+
+// Theme Management IPC
+ipcMain.handle('themes:list', () => {
+  return themeManager.getAllThemes();
+});
+
+ipcMain.handle('themes:get', (event, id) => {
+  return themeManager.getTheme(id);
+});
+
+ipcMain.handle('themes:active', () => {
+  return themeManager.getActiveTheme();
+});
+
+ipcMain.handle('themes:apply', (event, id) => {
+  return themeManager.saveUserPreference(id);
+});
+
 
 ipcMain.handle('set-uuid-for-user', async (event, username, uuid) => {
   try {

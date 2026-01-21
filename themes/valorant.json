@@ -1,0 +1,44 @@
+{
+    "id": "valorant",
+    "name": "Valorant",
+    "description": "Sharp, tactical, and clean red/black aesthetic",
+    "author": "System",
+    "preview": "themes/previews/valorant.jpg",
+    "backgroundImage": "GUI/BackgroundWallpapers/valorant.jpg",
+    "colors": {
+        "primary": "#FF4655",
+        "secondary": "#0F1923",
+        "accent": "#ECE8E1",
+        "background": "#0D141C",
+        "surface": "#1C252E",
+        "text": "#ECE8E1",
+        "textSecondary": "#768079",
+        "border": "#36413E",
+        "success": "#17E5B3",
+        "error": "#FF4655",
+        "warning": "#FFD166"
+    },
+    "fonts": {
+        "primary": "'VALORANT', sans-serif",
+        "secondary": "'JetBrains Mono', monospace"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "0 0 0 1px rgba(255, 70, 85, 0.5)",
+        "backdropFilter": "blur(5px)"
+    },
+    "playButton": {
+        "background": "linear-gradient(135deg, transparent 50%, rgba(255, 70, 85, 0.1) 100%)",
+        "backgroundColor": "transparent",
+        "textColor": "#FF4655",
+        "border": "1px solid #FF4655",
+        "borderRadius": "0px",
+        "boxShadow": "inset 0 0 0 0 #FF4655",
+        "boxShadow": "inset 0 0 0 0 #FF4655",
+        "transform": "skew(-15deg)",
+        "hoverBackground": "linear-gradient(135deg, rgba(255, 70, 85, 0.1) 0%, rgba(255, 70, 85, 0.2) 100%)",
+        "hoverTransform": "translateY(-2px) skew(-15deg)",
+        "hoverBoxShadow": "inset 0 0 0 1px #FF4655",
+        "textTransform": "uppercase"
+    }
+}

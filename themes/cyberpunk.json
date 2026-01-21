@@ -1,0 +1,45 @@
+{
+    "id": "cyberpunk",
+    "name": "Cyberpunk 2077",
+    "description": "High contrast, neon yellow and blue glitch aesthetic",
+    "author": "System",
+    "preview": "themes/previews/cyberpunk.jpg",
+    "backgroundImage": "GUI/BackgroundWallpapers/cyberpunk.jpg",
+    "colors": {
+        "primary": "#FCEE09",
+        "secondary": "#00F0FF",
+        "accent": "#FF003C",
+        "background": "#050505",
+        "surface": "#1A1A1A",
+        "text": "#FCEE09",
+        "textSecondary": "#00F0FF",
+        "border": "#FCEE09",
+        "success": "#39FF14",
+        "error": "#FF003C",
+        "warning": "#FCEE09"
+    },
+    "fonts": {
+        "primary": "'Cyberpunk Is Not Dead', sans-serif",
+        "secondary": "'JetBrains Mono', monospace"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "3px 3px 0px rgba(252, 238, 9, 0.7)",
+        "backdropFilter": "none"
+    },
+    "playButton": {
+        "background": "linear-gradient(90deg, #FCEE09, #F2D809)",
+        "backgroundColor": "#FCEE09",
+        "textColor": "#000000",
+        "border": "none",
+        "borderRadius": "0px",
+        "boxShadow": "4px 4px 0px #00F0FF",
+        "boxShadow": "4px 4px 0px #00F0FF",
+        "transform": "scale(1)",
+        "hoverBackground": "#FFFFFF",
+        "hoverTransform": "translate(-4px, -4px)",
+        "hoverBoxShadow": "6px 6px 0px #00F0FF",
+        "clipPath": "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+        "textTransform": "uppercase"
+    }
+}

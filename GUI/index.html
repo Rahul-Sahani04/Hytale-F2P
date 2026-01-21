@@ -11,12 +11,18 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Custom Theme Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/cyberpunk-is-not-dead" rel="stylesheet">
 </head>
 
 <body class="bg-black text-white overflow-hidden font-sans select-none" tabindex="-1">
     <div class="absolute inset-0 z-0">
-        <img src="https://i.imgur.com/Visrk66.png" alt="Background" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-black/60"></div>
+        <img id="app-background" src="https://i.imgur.com/Visrk66.png" alt="Background"
+            class="w-full h-full object-cover" />
+
         <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=" 0 0 256 256"
             xmlns="http://www.w3.org/2000/svg" %3E%3Cfilter id="noiseFilter" %3E%3CfeTurbulence type="fractalNoise"
             baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" /%3E%3C/filter%3E%3Crect width="100%25"
@@ -283,6 +289,28 @@
                             </div>
 
                             <div class="settings-content">
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-palette"></i>
+                                        Appearance
+                                    </h3>
+                                    <div class="themes-grid" id="themesGrid">
+                                        <!-- Themes will be injected here -->
+                                        <div class="theme-card">
+                                            <div class="theme-preview">
+                                                <div class="theme-preview-placeholder">
+                                                    <i class="fas fa-spinner fa-spin"></i>
+                                                </div>
+                                            </div>
+                                            <div class="theme-info">
+                                                <div class="theme-header">
+                                                    <h3 class="theme-name">Loading...</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="settings-section">
                                     <h3 class="settings-section-title">
                                         <i class="fas fa-coffee"></i>
@@ -726,6 +754,7 @@
         </div>
     </div>
 
+    <script src="js/themes.js"></script>
     <script type="module" src="js/update.js"></script>
 </body>
 
