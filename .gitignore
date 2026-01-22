@@ -10,3 +10,4 @@ pkg/
 *.tar.zst
 *.zst
 bun.lockb
+.env

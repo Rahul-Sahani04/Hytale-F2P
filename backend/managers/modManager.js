@@ -6,7 +6,7 @@ const { getModsPath } = require('../core/paths');
 const { saveModsToConfig, loadModsFromConfig } = require('../core/config');
 const profileManager = require('./profileManager');
 
-const API_KEY = '$2a$10$bqk254NMZOWVTzLVJCcxEOmhcyUujKxA5xk.kQCN9q0KNYFJd5b32';
+const API_KEY = process.env.CURSEFORGE_API_KEY;
 
 function generateModId(filename) {
   return crypto.createHash('md5').update(filename).digest('hex').substring(0, 8);
