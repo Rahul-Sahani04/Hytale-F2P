@@ -3,3 +3,6 @@ node_modules/*
 package-lock.json
 bun.lock
 Themes.md
+.env
+themes/previews/.DS_Store
+.DS_Store

@@ -3,7 +3,7 @@
     "name": "Minecraft",
     "description": "Vibrant Creeper-green aesthetic on a modern dark background",
     "author": "System",
-    "preview": "themes/previews/minecraft.jpg",
+    "preview": "themes/previews/minecraft.png",
     "backgroundImage": "GUI/BackgroundWallpapers/minecraft.jpg",
     "colors": {
         "primary": "#48B44A",

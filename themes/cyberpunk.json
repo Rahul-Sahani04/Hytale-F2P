@@ -3,7 +3,7 @@
     "name": "Cyberpunk 2077",
     "description": "High contrast, neon yellow and blue glitch aesthetic",
     "author": "System",
-    "preview": "themes/previews/cyberpunk.jpg",
+    "preview": "themes/previews/cyberpunk.png",
     "backgroundImage": "GUI/BackgroundWallpapers/cyberpunk.jpg",
     "colors": {
         "primary": "#FCEE09",

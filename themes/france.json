@@ -1,0 +1,49 @@
+{
+    "id": "france",
+    "name": "France",
+    "description": "Elegant Parisian aesthetic with soft lights and romance",
+    "author": "System",
+    "preview": "GUI/BackgroundWallpapers/france.jpg",
+    "backgroundImage": "GUI/BackgroundWallpapers/france.jpg",
+    "colors": {
+        "primary": "#0055A4",
+        "secondary": "#EF4135",
+        "accent": "#FFFFFF",
+        "background": "#1a1a1a",
+        "surface": "rgba(255, 255, 255, 0.1)",
+        "text": "#FFFFFF",
+        "textSecondary": "#CCCCCC",
+        "border": "rgba(255, 255, 255, 0.2)",
+        "success": "#28a745",
+        "error": "#dc3545",
+        "warning": "#ffc107"
+    },
+    "fonts": {
+        "primary": "'Playfair Display', serif",
+        "secondary": "'Lato', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "8px",
+        "boxShadow": "0 4px 15px rgba(0, 0, 0, 0.3)",
+        "backdropFilter": "blur(10px)"
+    },
+    "sidebar": {
+        "background": "rgba(255, 255, 255, 0.08)",
+        "backdropFilter": "blur(20px)",
+        "borderRight": "1px solid rgba(255, 255, 255, 0.15)",
+        "itemColor": "rgba(255, 255, 255, 0.8)",
+        "itemBorderRadius": "50%"
+    },
+    "playButton": {
+        "background": "linear-gradient(135deg, #0055A4 0%, #003366 100%)",
+        "backgroundColor": "#0055A4",
+        "textColor": "#FFFFFF",
+        "border": "2px solid rgba(255,255,255,0.3)",
+        "borderRadius": "8px",
+        "boxShadow": "0 4px 6px rgba(0,0,0,0.3)",
+        "transform": "scale(1)",
+        "hoverBackground": "linear-gradient(135deg, #EF4135 0%, #B00000 100%)",
+        "hoverTransform": "scale(1.05)",
+        "textTransform": "uppercase"
+    }
+}

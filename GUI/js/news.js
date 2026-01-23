@@ -37,7 +37,7 @@ export async function loadNews() {
 function displayHomeNews(news) {
   const newsGrid = document.getElementById('newsGrid');
   if (!newsGrid) return;
-  
+
   newsGrid.innerHTML = news.map(article => `
     <div class="news-item news-card" onclick="openNewsDetails(${article.id})">
       <div class="news-image" style="background-image: url('${article.image}');"></div>
@@ -56,7 +56,7 @@ function displayHomeNews(news) {
 function displayFullNews(news) {
   const allNewsGrid = document.getElementById('allNewsGrid');
   if (!allNewsGrid) return;
-  
+
   allNewsGrid.innerHTML = news.map(article => `
     <div class="news-item news-card" onclick="openNewsDetails(${article.id})">
       <div class="news-image" style="background-image: url('${article.image}');"></div>
@@ -101,12 +101,12 @@ function openNewsArticle(url) {
 
 function formatDate(dateString) {
   if (!dateString) return 'RECENTLY';
-  
+
   const date = new Date(dateString);
   const now = new Date();
   const diffTime = Math.abs(now - date);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
+
   if (diffDays === 1) return '1 DAY AGO';
   if (diffDays < 7) return `${diffDays} DAYS AGO`;
   if (diffDays < 30) return `${Math.ceil(diffDays / 7)} WEEKS AGO`;

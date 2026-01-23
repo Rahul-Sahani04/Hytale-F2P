@@ -117,12 +117,12 @@ module.exports = {
   // Discord RPC functions
   saveDiscordRPC,
   loadDiscordRPC,
-  
+
   // GPU Preference functions
   saveGpuPreference,
   loadGpuPreference,
   detectGpu,
-  
+
   // Version functions
   getInstalledClientVersion,
   getLatestClientVersion,

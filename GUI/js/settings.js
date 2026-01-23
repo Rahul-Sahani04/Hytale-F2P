@@ -242,7 +242,7 @@ function setupSettingsElements() {
 
 function toggleCustomJava() {
   if (!customJavaOptions) return;
-  
+
   if (customJavaCheck && customJavaCheck.checked) {
     customJavaOptions.style.display = 'block';
   } else {
@@ -305,12 +305,12 @@ async function saveDiscordRPC() {
     if (window.electronAPI && window.electronAPI.saveDiscordRPC && discordRPCCheck) {
       const enabled = discordRPCCheck.checked;
       console.log('Saving Discord RPC setting:', enabled);
-      
+
       const result = await window.electronAPI.saveDiscordRPC(enabled);
-      
+
       if (result && result.success) {
         console.log('Discord RPC setting saved successfully:', enabled);
-        
+
         // Feedback visuel pour l'utilisateur
         if (enabled) {
           showNotification('Discord Rich Presence enabled', 'success');
@@ -343,9 +343,9 @@ async function loadDiscordRPC() {
 async function savePlayerName() {
   try {
     if (!window.electronAPI || !settingsPlayerName) return;
-    
+
     const playerName = settingsPlayerName.value.trim();
-    
+
     if (!playerName) {
       showNotification('Please enter a valid player name', 'error');
       return;
@@ -353,7 +353,7 @@ async function savePlayerName() {
 
     await window.electronAPI.saveUsername(playerName);
     showNotification('Player name saved successfully', 'success');
-    
+
   } catch (error) {
     console.error('Error saving player name:', error);
     showNotification('Failed to save player name', 'error');
@@ -363,7 +363,7 @@ async function savePlayerName() {
 async function loadPlayerName() {
   try {
     if (!window.electronAPI || !settingsPlayerName) return;
-    
+
     const savedName = await window.electronAPI.loadUsername();
     if (savedName) {
       settingsPlayerName.value = savedName;
@@ -545,7 +545,7 @@ async function performRegenerateUuid() {
       if (currentUuidDisplay) currentUuidDisplay.value = result.uuid;
       if (modalCurrentUuid) modalCurrentUuid.value = result.uuid;
       showNotification('New UUID generated successfully!', 'success');
-      
+
       if (uuidModal && uuidModal.style.display !== 'none') {
         await loadAllUuids();
       }
@@ -582,7 +582,7 @@ function closeUuidModal() {
 async function loadAllUuids() {
   try {
     if (!uuidList) return;
-    
+
     uuidList.innerHTML = `
       <div class="uuid-loading">
         <i class="fas fa-spinner fa-spin"></i>
@@ -592,7 +592,7 @@ async function loadAllUuids() {
 
     if (window.electronAPI && window.electronAPI.getAllUuidMappings) {
       const mappings = await window.electronAPI.getAllUuidMappings();
-      
+
       if (mappings.length === 0) {
         uuidList.innerHTML = `
           <div class="uuid-loading">
@@ -604,11 +604,11 @@ async function loadAllUuids() {
       }
 
       uuidList.innerHTML = '';
-      
+
       for (const mapping of mappings) {
         const item = document.createElement('div');
         item.className = `uuid-list-item${mapping.isCurrent ? ' current' : ''}`;
-        
+
         item.innerHTML = `
           <div class="uuid-item-info">
             <div class="uuid-item-username">${escapeHtml(mapping.username)}</div>
@@ -624,7 +624,7 @@ async function loadAllUuids() {
             </button>` : ''}
           </div>
         `;
-        
+
         uuidList.appendChild(item);
       }
     }
@@ -664,7 +664,7 @@ async function setCustomUuid() {
     }
 
     const uuid = customUuidInput.value.trim();
-    
+
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(uuid)) {
       showNotification('Invalid UUID format', 'error');
@@ -687,31 +687,31 @@ async function setCustomUuid() {
   }
 }
 
-  async function performSetCustomUuid(uuid) {
-    try {
-      if (window.electronAPI && window.electronAPI.setUuidForUser) {
-        const username = getCurrentPlayerName();
-        const result = await window.electronAPI.setUuidForUser(username, uuid);
-        
-        if (result.success) {
-          if (currentUuidDisplay) currentUuidDisplay.value = uuid;
-          if (modalCurrentUuid) modalCurrentUuid.value = uuid;
-          if (customUuidInput) customUuidInput.value = '';
-          
-          showNotification('Custom UUID set successfully!', 'success');
-          
-          await loadAllUuids();
-        } else {
-          throw new Error(result.error || 'Failed to set custom UUID');
-        }
-      }
-    } catch (error) {
-      console.error('Error setting custom UUID:', error);
-      showNotification(`Failed to set custom UUID: ${error.message}`, 'error');
-    }
-  }
+async function performSetCustomUuid(uuid) {
+  try {
+    if (window.electronAPI && window.electronAPI.setUuidForUser) {
+      const username = getCurrentPlayerName();
+      const result = await window.electronAPI.setUuidForUser(username, uuid);
 
-window.copyUuid = async function(uuid) {
+      if (result.success) {
+        if (currentUuidDisplay) currentUuidDisplay.value = uuid;
+        if (modalCurrentUuid) modalCurrentUuid.value = uuid;
+        if (customUuidInput) customUuidInput.value = '';
+
+        showNotification('Custom UUID set successfully!', 'success');
+
+        await loadAllUuids();
+      } else {
+        throw new Error(result.error || 'Failed to set custom UUID');
+      }
+    }
+  } catch (error) {
+    console.error('Error setting custom UUID:', error);
+    showNotification(`Failed to set custom UUID: ${error.message}`, 'error');
+  }
+}
+
+window.copyUuid = async function (uuid) {
   try {
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(uuid);
@@ -723,7 +723,7 @@ window.copyUuid = async function(uuid) {
   }
 };
 
-window.deleteUuid = async function(username) {
+window.deleteUuid = async function (username) {
   try {
     showCustomConfirm(
       `Are you sure you want to delete the UUID for "${username}"? This action cannot be undone.`,
@@ -744,19 +744,19 @@ window.deleteUuid = async function(username) {
 async function performDeleteUuid(username) {
   try {
     if (window.electronAPI && window.electronAPI.deleteUuidForUser) {
-        const result = await window.electronAPI.deleteUuidForUser(username);
-        
-        if (result.success) {
-          showNotification('UUID deleted successfully!', 'success');
-          await loadAllUuids();
-        } else {
-          throw new Error(result.error || 'Failed to delete UUID');
-        }
+      const result = await window.electronAPI.deleteUuidForUser(username);
+
+      if (result.success) {
+        showNotification('UUID deleted successfully!', 'success');
+        await loadAllUuids();
+      } else {
+        throw new Error(result.error || 'Failed to delete UUID');
       }
-    } catch (error) {
-      console.error('Error deleting UUID:', error);
-      showNotification(`Failed to delete UUID: ${error.message}`, 'error');
     }
+  } catch (error) {
+    console.error('Error deleting UUID:', error);
+    showNotification(`Failed to delete UUID: ${error.message}`, 'error');
+  }
 }
 
 function escapeHtml(text) {

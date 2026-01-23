@@ -289,11 +289,6 @@ input {
     color: var(--color-text-secondary);
 }
 
-font-size: 1.2rem;
-margin-bottom: 0.25rem;
-transition: all 0.3s ease;
-}
-
 .nav-item:hover i {
     transform: scale(1.1);
 }
@@ -687,6 +682,138 @@ transition: all 0.3s ease;
     width: 4px;
     background: var(--color-secondary);
     box-shadow: 0 0 10px var(--color-secondary);
+}
+
+/* France Theme Overrides */
+[data-theme="france"] .sidebar {
+    background: rgba(255, 255, 255, 0.05);
+    /* Very glassy */
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="france"] .nav-item {
+    border-radius: 50%;
+    /* Circle icons */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+[data-theme="france"] .nav-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1) rotate(5deg);
+}
+
+[data-theme="france"] .nav-item.active {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="france"] .nav-item.active::before {
+    display: none;
+    /* No side bar, full circle highlight */
+}
+
+/* Terraria Theme Overrides */
+[data-theme="terraria"] .sidebar {
+    background: #1a1512;
+    border-right: 4px solid #3E9B48;
+    image-rendering: pixelated;
+}
+
+[data-theme="terraria"] .nav-item {
+    border-radius: 0;
+    border: 2px solid transparent;
+    transition: none;
+    /* Instant hover for retro feel */
+}
+
+[data-theme="terraria"] .nav-item:hover {
+    background: rgba(62, 155, 72, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="terraria"] .nav-item.active {
+    background: #3E9B48;
+    color: white;
+    border: 2px solid #1E5B28;
+    box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="terraria"] .nav-item.active::before {
+    display: none;
+}
+
+/* Japan Theme Overrides */
+[data-theme="japan"] .sidebar {
+    background: linear-gradient(180deg, rgba(255, 183, 197, 0.1), rgba(255, 255, 255, 0.05));
+    border-right: 1px solid rgba(255, 183, 197, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+[data-theme="japan"] .nav-item {
+    border-radius: 20px;
+    /* Soft rounding */
+    margin: 4px 0;
+    height: 48px;
+    width: 48px;
+}
+
+[data-theme="japan"] .nav-item:hover {
+    background: rgba(255, 183, 197, 0.2);
+    color: #FFB7C5;
+}
+
+[data-theme="japan"] .nav-item.active {
+    background: transparent;
+    color: #FFB7C5;
+}
+
+[data-theme="japan"] .nav-item.active::before {
+    left: 50%;
+    bottom: -5px;
+    top: auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FFB7C5;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px #FFB7C5;
+}
+
+/* CSGO Theme Overrides */
+[data-theme="csgo"] .sidebar {
+    background: linear-gradient(180deg, #1b2028, #0b0f13);
+    border-right: 2px solid #DE9B35;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+    /* Tactical cut */
+}
+
+[data-theme="csgo"] .nav-item {
+    border-radius: 2px;
+    transform: skew(-10deg);
+    border-left: 2px solid transparent;
+}
+
+[data-theme="csgo"] .nav-item i {
+    transform: skew(10deg);
+    /* Counter skew icon */
+}
+
+[data-theme="csgo"] .nav-item:hover {
+    background: rgba(222, 155, 53, 0.1);
+    border-left-color: rgba(222, 155, 53, 0.5);
+}
+
+[data-theme="csgo"] .nav-item.active {
+    background: linear-gradient(90deg, rgba(222, 155, 53, 0.2), transparent);
+    border-left-color: #DE9B35;
+}
+
+[data-theme="csgo"] .nav-item.active::before {
+    display: none;
+    /* Using border-left instead */
 }
 
 @keyframes glitch {

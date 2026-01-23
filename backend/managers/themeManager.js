@@ -15,6 +15,7 @@ class ThemeManager {
             id: 'default',
             name: 'Default',
             description: 'The original Hytale F2P experience',
+            preview: 'themes/previews/default.png',
             colors: {
                 primary: '#9333ea',
                 secondary: '#3b82f6',

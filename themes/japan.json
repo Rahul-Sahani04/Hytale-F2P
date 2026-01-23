@@ -1,0 +1,49 @@
+{
+    "id": "japan",
+    "name": "Japan",
+    "description": "Cherry blossoms and serene landscapes",
+    "author": "System",
+    "preview": "GUI/BackgroundWallpapers/japan.jpg",
+    "backgroundImage": "GUI/BackgroundWallpapers/japan.jpg",
+    "colors": {
+        "primary": "#FFB7C5",
+        "secondary": "#D32F2F",
+        "accent": "#FFFFFF",
+        "background": "#2c2c2c",
+        "surface": "rgba(255, 255, 255, 0.15)",
+        "text": "#FFFFFF",
+        "textSecondary": "#FFD1DC",
+        "border": "rgba(255, 183, 197, 0.4)",
+        "success": "#66BB6A",
+        "error": "#EF5350",
+        "warning": "#FFA726"
+    },
+    "fonts": {
+        "primary": "'Noto Serif JP', serif",
+        "secondary": "'Open Sans', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "16px",
+        "boxShadow": "0 8px 24px rgba(255, 183, 197, 0.2)",
+        "backdropFilter": "blur(12px)"
+    },
+    "sidebar": {
+        "background": "rgba(255, 183, 197, 0.1)",
+        "backdropFilter": "blur(15px)",
+        "borderRight": "1px solid rgba(255, 183, 197, 0.3)",
+        "itemColor": "#FFD1DC",
+        "itemBorderRadius": "12px"
+    },
+    "playButton": {
+        "background": "linear-gradient(to right, #FFB7C5, #FF80AB)",
+        "backgroundColor": "#FFB7C5",
+        "textColor": "#fff",
+        "border": "none",
+        "borderRadius": "24px",
+        "boxShadow": "0 4px 12px rgba(255, 128, 171, 0.4)",
+        "transform": "scale(1)",
+        "hoverBackground": "linear-gradient(to right, #FF80AB, #FF4081)",
+        "hoverTransform": "translateY(-2px)",
+        "textTransform": "uppercase"
+    }
+}

@@ -33,6 +33,16 @@ function renderThemes(themes, activeId) {
         // Use placeholder for preview
         let previewHtml = `<div class="theme-preview-placeholder" style="background: ${theme.colors.primary}; color: ${theme.colors.text}; font-family: '${theme.fonts ? theme.fonts.primary : 'sans-serif'}'">${theme.name[0]}</div>`;
 
+        // Use Preview Images if available
+        if (theme.preview) {
+            let previewPath = theme.preview;
+            // Fix path relative to GUI folder
+            if (previewPath.startsWith('themes/')) {
+                previewPath = '../' + previewPath;
+            }
+            previewHtml = `<img src="${previewPath}" alt="${theme.name} Preview" class="theme-preview-image">`;
+        }
+
         // Color dots
         const colorsHtml = `
             <div class="theme-colors-preview">
@@ -100,6 +110,8 @@ const defaultVariables = {
     '--font-secondary': "'JetBrains Mono', monospace"
 };
 
+const defaultPreview = "themes/previews/default.png";
+
 function applyThemeToDOM(theme) {
     const root = document.documentElement;
     const bgImageEl = document.getElementById('app-background');
@@ -133,6 +145,32 @@ function applyThemeToDOM(theme) {
         return null;
     };
 
+    // Helper to reset Sidebar
+    const resetSidebar = () => {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            // Reset base styles
+            sidebar.style.background = '';
+            sidebar.style.borderColor = '';
+            sidebar.style.borderRight = '';
+            sidebar.style.borderRadius = '';
+            sidebar.style.backdropFilter = '';
+            sidebar.style.boxShadow = '';
+        }
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.style.background = '';
+            item.style.color = '';
+            item.style.borderRadius = '';
+            item.style.border = '';
+
+            // Remove any custom active styles helper class if we added one (not doing that, just inline)
+            // Note: complex pseudo-elements (::before) cannot be styled inline easily without CSS variables or hacks.
+            // We will rely on CSS variables for active states where possible or just base styles.
+        });
+    };
+
     if (isDefault) {
         // RESET TO DEFAULT
         // 1. Remove ID override from body
@@ -151,6 +189,9 @@ function applyThemeToDOM(theme) {
 
         // 4. Reset Play Button
         resetPlayButton();
+
+        // 5. Reset Sidebar
+        resetSidebar();
 
         return; // Stop here for default
     }
@@ -253,6 +294,31 @@ function applyThemeToDOM(theme) {
             span.style.display = 'inline-block';
         } else if (span) {
             span.style.transform = 'none';
+        }
+    }
+
+    // Sidebar Styling
+    resetSidebar();
+    if (theme.sidebar) {
+        const sidebar = document.querySelector('.sidebar');
+        const sb = theme.sidebar;
+
+        if (sidebar) {
+            if (sb.background) sidebar.style.background = sb.background;
+            if (sb.borderColor) sidebar.style.borderColor = sb.borderColor;
+            if (sb.borderRight) sidebar.style.borderRight = sb.borderRight;
+            if (sb.borderRadius) sidebar.style.borderRadius = sb.borderRadius;
+            if (sb.backdropFilter) sidebar.style.backdropFilter = sb.backdropFilter;
+            if (sb.boxShadow) sidebar.style.boxShadow = sb.boxShadow;
+        }
+
+        // Apply to Nav Items
+        if (sb.itemColor || sb.itemBorderRadius) {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                if (sb.itemColor) item.style.color = sb.itemColor;
+                if (sb.itemBorderRadius) item.style.borderRadius = sb.itemBorderRadius;
+            });
         }
     }
 }

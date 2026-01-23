@@ -3,7 +3,7 @@
     "name": "Valorant",
     "description": "Sharp, tactical, and clean red/black aesthetic",
     "author": "System",
-    "preview": "themes/previews/valorant.jpg",
+    "preview": "themes/previews/valorant.png",
     "backgroundImage": "GUI/BackgroundWallpapers/valorant.jpg",
     "colors": {
         "primary": "#FF4655",
