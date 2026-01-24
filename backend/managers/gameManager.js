@@ -107,7 +107,17 @@ async function applyPWR(pwrFile, progressCallback, gameDir = GAME_DIR, toolsDir 
           
           // Check for EOF error (corrupted PWR file)
           if (stderr && stderr.includes('unexpected EOF')) {
-            reject(new Error(`Corrupted PWR file detected. Please delete the cache and reinstall: ${pwrFile}`));
+            // Delete corrupted PWR file
+            console.log('Corrupted PWR file detected, deleting:', pwrFile);
+            try {
+              if (fs.existsSync(pwrFile)) {
+                fs.unlinkSync(pwrFile);
+                console.log('Corrupted PWR file deleted. Please try again to re-download.');
+              }
+            } catch (delErr) {
+              console.error('Failed to delete corrupted PWR file:', delErr);
+            }
+            reject(new Error(`Corrupted PWR file detected and deleted. Please try launching the game again.`));
           } else {
             reject(new Error(`Patch installation failed: ${error.message}${stderr ? '\n' + stderr : ''}`));
           }

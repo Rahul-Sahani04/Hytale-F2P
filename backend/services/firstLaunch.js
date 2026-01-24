@@ -56,14 +56,8 @@ async function handleFirstLaunchCheck(progressCallback) {
   try {
     const config = loadConfig();
     
-    // Initialize version_branch and version_client if not set
-    const currentBranch = loadVersionBranch();
+    // Initialize version_client if not set (but don't force version_branch)
     const currentVersion = loadVersionClient();
-    
-    if (!currentBranch) {
-      console.log('Initializing version_branch to "release"');
-      saveVersionBranch('release');
-    }
     
     if (currentVersion === undefined || currentVersion === null) {
       console.log('Initializing version_client to null (will trigger installation)');
