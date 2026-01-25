@@ -1,24 +1,27 @@
 # Maintainer: Terromur <terromuroz@proton.me>
 pkgname=Hytale-F2P-git
 _pkgname=Hytale-F2P
-pkgver=2.0.2a.r106.gf40d010
+pkgver=2.0.12.r150.gb62ffc1
 pkgrel=1
-pkgdesc="HyLauncher - unofficial Hytale Launcher for free to play gamers"
+pkgdesc="Hytale-F2P - unofficial Hytale Launcher for free to play with multiplayer support"
 arch=('x86_64')
 url="https://github.com/amiayweb/Hytale-F2P"
 license=('custom')
-makedepends=('npm')
+makedepends=('npm' 'git' 'rpm-tools' 'libxcrypt-compat')
 source=("git+$url.git" "Hytale-F2P.desktop")
-sha256sums=('SKIP' '8c78a6931fade2b0501122980dc238e042b9f6f0292b5ca74c391d7b3c1543c0')
+sha256sums=('SKIP' '46488fada4775d9976d7b7b62f8d1f1f8d9a9a9d8f8aa9af4f2e2153019f6a30')
 
 pkgver() {
   cd "$_pkgname"
-  printf "2.0.2a.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  version=$(git describe --abbrev=0 --tags --match "v[0-9]*")
+  commits=$(git rev-list --count HEAD)
+  hash=$(git rev-parse --short HEAD)
+  printf "%s.r%s.g%s" "${version#v}" "$commits" "$hash"
 }
 
 build() {
    cd "$_pkgname"
-   npm install
+   npm ci
    npm run build:linux
 }
 
@@ -26,5 +29,5 @@ package() {
   mkdir -p "$pkgdir/opt/$_pkgname"
   cp -r "$_pkgname/dist/linux-unpacked/"* "$pkgdir/opt/$_pkgname"
   install -Dm644 "$_pkgname.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
-  install -Dm644 "$_pkgname/icon.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_pkgname.png"
+  install -Dm644 "$_pkgname/GUI/icon.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/$_pkgname.png"
 }

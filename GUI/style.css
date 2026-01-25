@@ -209,7 +209,7 @@ input {
     backdrop-filter: var(--theme-backdrop);
     border-right: 1px solid var(--color-border);
     position: relative;
-    z-index: 20;
+    z-index: 45;
 }
 
 .sidebar-logo {
@@ -291,6 +291,12 @@ input {
 
 .nav-item:hover i {
     transform: scale(1.1);
+}
+
+/* Allow logs navigation during installation */
+.logs-nav-item {
+    z-index: 100;
+    position: relative;
 }
 
 .nav-tooltip {
@@ -392,6 +398,63 @@ input {
 .players-counter:hover {
     background: rgba(0, 0, 0, 0.6);
     border-color: rgba(147, 51, 234, 0.3);
+}
+
+.version-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.version-display i {
+    color: #9333ea;
+    font-size: 0.875rem;
+}
+
+.version-display:hover {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(147, 51, 234, 0.3);
+    color: #ffffff;
+}
+
+.version-display-bottom {
+    position: fixed;
+    bottom: 3rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    z-index: 45;
+    transition: all 0.3s ease;
+}
+
+.version-display-bottom i {
+    color: #9333ea;
+    font-size: 0.875rem;
+}
+
+.version-display-bottom:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(147, 51, 234, 0.3);
+    color: #ffffff;
 }
 
 
@@ -558,10 +621,10 @@ input {
 }
 
 .control-btn {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer !important;
     transition: all 0.3s ease;
     display: flex !important;
@@ -570,16 +633,27 @@ input {
     position: relative;
     z-index: 100000 !important;
     pointer-events: auto !important;
+    backdrop-filter: blur(10px);
 }
 
 .control-btn i {
-    font-size: 0.5rem;
-    opacity: 0;
+    font-size: 0.75rem;
+    opacity: 0.7;
     transition: opacity 0.3s ease;
+    color: white;
 }
 
 .control-btn:hover i {
     opacity: 1;
+}
+
+.maximize {
+    background: rgba(34, 197, 94, 0.2);
+}
+
+.maximize:hover {
+    background: rgba(34, 197, 94, 0.4);
+    border-color: rgba(34, 197, 94, 0.5);
 }
 
 .minimize {
@@ -587,7 +661,8 @@ input {
 }
 
 .minimize:hover {
-    background: #fbbf24;
+    background: rgba(251, 191, 36, 0.4);
+    border-color: rgba(251, 191, 36, 0.5);
 }
 
 .close {
@@ -595,7 +670,8 @@ input {
 }
 
 .close:hover {
-    background: #ef4444;
+    background: rgba(239, 68, 68, 0.4);
+    border-color: rgba(239, 68, 68, 0.5);
 }
 
 
@@ -615,7 +691,7 @@ input {
 }
 
 .title-accent {
-    color: var(--color-primary);
+    color: #bf84f7;
     text-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
     /* Keep shadow dynamic? */
 }
@@ -995,6 +1071,57 @@ input {
     box-shadow: none;
 }
 
+/* Radio buttons for install page */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(147, 51, 234, 0.5);
+}
+
+.radio-label .custom-radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-label .custom-radio:checked~.radio-text {
+    color: #9333ea;
+}
+
+.radio-label:has(.custom-radio:checked) {
+    background: rgba(147, 51, 234, 0.15);
+    border-color: #9333ea;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
+}
+
+.radio-text {
+    display: flex;
+    align-items: center;
+    color: #d1d5db;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.radio-text i {
+    margin-right: 0.5rem;
+}
+
 .launcher-container {
     flex: 1;
     display: flex;
@@ -1337,15 +1464,22 @@ input {
 
 
 .news-grid-horizontal {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: minmax(200px, 1fr);
     gap: 1rem;
-    overflow-x: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-bottom: 1rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(147, 51, 234, 0.3) transparent;
+    flex: 1;
+    min-height: 0;
+    align-content: start;
 }
 
 .news-grid-horizontal::-webkit-scrollbar {
+    width: 6px;
     height: 6px;
 }
 
@@ -1363,9 +1497,11 @@ input {
 }
 
 .news-grid-horizontal .news-item {
-    min-width: 300px;
-    max-width: 300px;
-    height: 200px;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
     flex-shrink: 0;
 }
 
@@ -1404,6 +1540,12 @@ input {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Style spécifique pour LATEST NEWS (Play tab) */
+.news-grid-horizontal .news-card {
+    aspect-ratio: unset;
+    height: 100%;
 }
 
 .news-card:hover {
@@ -1909,44 +2051,55 @@ input {
 
 .progress-overlay {
     position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(30px);
-    border: 2px solid rgba(147, 51, 234, 0.3);
-    border-radius: 16px;
-    padding: 2rem;
-    z-index: 50;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    border-radius: 12px;
+    padding: 1.25rem;
+    z-index: 60;
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(147, 51, 234, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(147, 51, 234, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     animation: progressGlow 3s ease-in-out infinite alternate;
+    cursor: move;
+    user-select: none;
+}
+
+.progress-overlay.dragging {
+    cursor: grabbing;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(147, 51, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 @keyframes progressGlow {
     0% {
         box-shadow:
-            0 8px 32px rgba(0, 0, 0, 0.6),
-            0 0 40px rgba(147, 51, 234, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            0 4px 16px rgba(0, 0, 0, 0.5),
+            0 0 30px rgba(147, 51, 234, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
         border-color: rgba(147, 51, 234, 0.3);
     }
 
     100% {
         box-shadow:
-            0 8px 32px rgba(0, 0, 0, 0.6),
-            0 0 60px rgba(147, 51, 234, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        border-color: rgba(147, 51, 234, 0.5);
+            0 4px 16px rgba(0, 0, 0, 0.5),
+            0 0 40px rgba(147, 51, 234, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        border-color: rgba(147, 51, 234, 0.4);
     }
 }
 
 .progress-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.75rem;
 }
 
 .progress-info {
@@ -1957,7 +2110,7 @@ input {
 
 .progress-info span {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
 }
 
 #progressText {
@@ -1981,8 +2134,8 @@ input {
 #progressPercent {
     color: #9333ea;
     font-weight: 700;
-    font-size: 2rem;
-    text-shadow: 0 0 20px rgba(147, 51, 234, 0.8);
+    font-size: 1.25rem;
+    text-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
     animation: percentGlow 1.5s ease-in-out infinite;
 }
 
@@ -2001,15 +2154,15 @@ input {
 }
 
 .progress-bar-container {
-    height: 16px;
+    height: 10px;
     background: linear-gradient(90deg, #1f2937, #374151);
-    border: 2px solid rgba(147, 51, 234, 0.2);
-    border-radius: 12px;
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: 8px;
     overflow: hidden;
     position: relative;
     box-shadow:
         inset 0 2px 4px rgba(0, 0, 0, 0.5),
-        0 0 20px rgba(147, 51, 234, 0.1);
+        0 0 15px rgba(147, 51, 234, 0.1);
 }
 
 .progress-bar-container::before {
@@ -2036,6 +2189,250 @@ input {
     }
 }
 
+/* Progress Error and Retry Styles */
+.progress-error-container {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(239, 68, 68, 0.3);
+    animation: errorSlideIn 0.3s ease-out;
+}
+
+@keyframes errorSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.progress-error-message {
+    color: #f87171;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+    line-height: 1.4;
+}
+
+.progress-retry-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.progress-retry-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.progress-retry-info {
+    color: #fbbf24;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    flex: 1;
+}
+
+.progress-retry-btn {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.progress-retry-btn:hover {
+    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+.progress-retry-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
+}
+
+.progress-retry-btn:disabled {
+    background: linear-gradient(135deg, #4b5563, #6b7280);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+/* Progress overlay error state */
+.progress-overlay.error-state {
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(239, 68, 68, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.progress-overlay.error-state #progressBarFill {
+    background: linear-gradient(90deg, #dc2626, #ef4444);
+    animation: errorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Error type specific styling */
+.progress-error-container.error-network {
+    border-top-color: rgba(59, 130, 246, 0.5);
+}
+
+.progress-error-container.error-network .progress-error-message {
+    color: #60a5fa;
+    text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+}
+
+.progress-error-container.error-stall {
+    border-top-color: rgba(245, 158, 11, 0.5);
+}
+
+.progress-error-container.error-stall .progress-error-message {
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+}
+
+.progress-error-container.error-file {
+    border-top-color: rgba(239, 68, 68, 0.5);
+}
+
+.progress-error-container.error-file .progress-error-message {
+    color: #f87171;
+    text-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+}
+
+.progress-error-container.error-permission {
+    border-top-color: rgba(168, 85, 247, 0.5);
+}
+
+.progress-error-container.error-permission .progress-error-message {
+    color: #a855f7;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.progress-error-container.error-server {
+    border-top-color: rgba(236, 72, 153, 0.5);
+}
+
+.progress-error-container.error-server .progress-error-message {
+    color: #ec4899;
+    text-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
+}
+
+.progress-error-container.error-corruption {
+    border-top-color: rgba(220, 38, 38, 0.8);
+}
+
+.progress-error-container.error-corruption .progress-error-message {
+    color: #dc2626;
+    text-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+    font-weight: 600;
+}
+
+.progress-error-container.error-butler {
+    border-top-color: rgba(245, 158, 11, 0.5);
+}
+
+.progress-error-container.error-butler .progress-error-message {
+    color: #f59e0b;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.progress-error-container.error-space {
+    border-top-color: rgba(168, 85, 247, 0.5);
+}
+
+.progress-error-container.error-space .progress-error-message {
+    color: #a855f7;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.progress-error-container.error-conflict {
+    border-top-color: rgba(6, 182, 212, 0.5);
+}
+
+.progress-error-container.error-conflict .progress-error-message {
+    color: #06b6d4;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+}
+
+/* Connection quality indicators */
+.progress-details {
+    transition: all 0.3s ease;
+}
+
+.progress-details #progressSize {
+    transition: color 0.5s ease;
+}
+
+/* Enhanced retry button states */
+.progress-retry-btn.retrying {
+    background: linear-gradient(135deg, #059669, #10b981);
+    animation: retryingPulse 1s ease-in-out infinite;
+}
+
+@keyframes retryingPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
+    }
+}
+
+/* Network status indicator (optional future enhancement) */
+.network-status {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.network-status.poor {
+    background: #f87171;
+    box-shadow: 0 0 6px rgba(248, 113, 113, 0.6);
+}
+
+.network-status.fair {
+    background: #fbbf24;
+    box-shadow: 0 0 6px rgba(251, 191, 36, 0.6);
+}
+
 .progress-bar-fill {
     height: 100%;
     background: linear-gradient(90deg,
@@ -2045,15 +2442,15 @@ input {
             #06b6d4 75%,
             #10b981 100%);
     background-size: 200% 100%;
-    border-radius: 10px;
+    border-radius: 6px;
     width: 0%;
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     animation: progressFlow 3s linear infinite;
     box-shadow:
-        0 0 30px rgba(147, 51, 234, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        0 0 20px rgba(147, 51, 234, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 @keyframes progressFlow {
@@ -2101,6 +2498,7 @@ input {
     text-shadow: 0 0 5px rgba(156, 163, 175, 0.3);
 }
 
+/* Installation effects */
 
 .mods-manager {
     display: flex;
@@ -4455,6 +4853,17 @@ input {
     cursor: not-allowed;
 }
 
+/* Language selector styling */
+select.settings-input {
+    cursor: pointer;
+}
+
+select.settings-input option {
+    background: #1a1a1a;
+    color: white;
+    padding: 0.5rem;
+}
+
 .settings-button-group {
     margin-bottom: 1rem;
 }
@@ -4820,6 +5229,27 @@ input {
     box-shadow:
         0 2px 8px rgba(107, 114, 128, 0.3),
         0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+.update-download-btn-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+.update-download-btn-secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-1px) !important;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+.update-download-btn-secondary:active:not(:disabled) {
+    transform: translateY(0) !important;
 }
 
 
@@ -5996,4 +6426,169 @@ input {
     to {
         opacity: 1;
     }
+}
+
+/* Launcher Update Modal Styles */
+.update-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    animation: fadeIn 0.3s ease;
+}
+
+.update-modal {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid rgba(147, 51, 234, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.update-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    color: #9333ea;
+}
+
+.update-header i {
+    font-size: 2rem;
+}
+
+.update-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.update-content {
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+
+.update-version {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #9333ea;
+    margin-bottom: 0.5rem;
+}
+
+.current-version {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.release-notes {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid #9333ea;
+    padding: 1rem;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.update-progress {
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    height: 20px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #9333ea 0%, #7c3aed 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.progress-text {
+    color: #aaa;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 0;
+}
+
+.update-note {
+    background: rgba(147, 51, 234, 0.1);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.update-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.update-actions button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.update-actions .btn-primary {
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+    color: white;
+}
+
+.update-actions .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
+}
+
+.update-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.update-actions .btn-secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.update-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

@@ -4,7 +4,7 @@ const os = require('os');
 
 
 // Default auth domain - can be overridden by env var or config
-const DEFAULT_AUTH_DOMAIN = 'sanasol.ws';
+const DEFAULT_AUTH_DOMAIN = 'auth.sanasol.ws';
 
 // Get auth domain from env, config, or default
 function getAuthDomain() {
@@ -26,9 +26,10 @@ function getAuthDomain() {
 }
 
 // Get full auth server URL
+// Domain already includes subdomain (auth.sanasol.ws), so use directly
 function getAuthServerUrl() {
   const domain = getAuthDomain();
-  return `https://sessions.${domain}`;
+  return `https://${domain}`;
 }
 
 // Save auth domain to config
@@ -145,6 +146,24 @@ function saveDiscordRPC(enabled) {
 function loadDiscordRPC() {
   const config = loadConfig();
   return config.discordRPC !== undefined ? config.discordRPC : true;
+}
+
+function saveLanguage(language) {
+  saveConfig({ language: language || 'en' });
+}
+
+function loadLanguage() {
+  const config = loadConfig();
+  return config.language || 'en';
+}
+
+function saveCloseLauncherOnStart(enabled) {
+  saveConfig({ closeLauncherOnStart: !!enabled });
+}
+
+function loadCloseLauncherOnStart() {
+  const config = loadConfig();
+  return config.closeLauncherOnStart !== undefined ? config.closeLauncherOnStart : false;
 }
 
 function saveModsToConfig(mods) {
@@ -286,6 +305,30 @@ function loadGpuPreference() {
   return config.gpuPreference || 'auto';
 }
 
+function saveVersionClient(versionClient) {
+  saveConfig({ version_client: versionClient });
+}
+
+function loadVersionClient() {
+  const config = loadConfig();
+  return config.version_client !== undefined ? config.version_client : null;
+}
+
+function saveVersionBranch(versionBranch) {
+  const branch = versionBranch || 'release';
+  if (branch !== 'release' && branch !== 'pre-release') {
+    console.warn(`Invalid branch "${branch}", defaulting to "release"`);
+    saveConfig({ version_branch: 'release' });
+  } else {
+    saveConfig({ version_branch: branch });
+  }
+}
+
+function loadVersionBranch() {
+  const config = loadConfig();
+  return config.version_branch || 'release';
+}
+
 module.exports = {
   loadConfig,
   saveConfig,
@@ -302,6 +345,8 @@ module.exports = {
   loadInstallPath,
   saveDiscordRPC,
   loadDiscordRPC,
+  saveLanguage,
+  loadLanguage,
   saveModsToConfig,
   loadModsFromConfig,
   isFirstLaunch,
@@ -320,5 +365,13 @@ module.exports = {
   resetCurrentUserUuid,
   // GPU Preference exports
   saveGpuPreference,
-  loadGpuPreference
+  loadGpuPreference,
+  // Close Launcher export
+  saveCloseLauncherOnStart,
+  loadCloseLauncherOnStart,
+  // Version Management exports
+  saveVersionClient,
+  loadVersionClient,
+  saveVersionBranch,
+  loadVersionBranch
 };

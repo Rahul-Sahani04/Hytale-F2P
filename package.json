@@ -1,6 +1,6 @@
 {
-  "name": "hytale-f2p-launcherv2",
-  "version": "2.0.2a",
+  "name": "hytale-f2p-launcher",
+  "version": "2.1.0",
   "description": "A modern, cross-platform launcher for Hytale with automatic updates and multi-client support",
   "homepage": "https://github.com/amiayweb/Hytale-F2P",
   "main": "main.js",
@@ -24,6 +24,17 @@
     "mod-manager",
     "chat"
   ],
+  "maintainers": [
+    {
+      "name": "Terromur",
+      "url": "https://github.com/Terromur"
+    },
+    {
+      "name": "Fari Gading",
+      "email": "fazrigading@gmail.com",
+      "url": "https://github.com/fazrigading"
+    }
+  ],
   "author": {
     "name": "AMIAY",
     "email": "support@amiay.dev"
@@ -37,6 +48,9 @@
     "adm-zip": "^0.5.10",
     "axios": "^1.6.0",
     "discord-rpc": "^4.0.1",
+    "dotenv": "^17.2.3",
+    "electron-updater": "^6.7.3",
+    "fs-extra": "^11.3.3",
     "tar": "^6.2.1",
     "uuid": "^9.0.1"
   },
@@ -45,7 +59,8 @@
   },
   "build": {
     "appId": "com.hytalef2p.launcher",
-    "productName": "Hytale F2P",
+    "productName": "Hytale F2P Launcher",
+    "artifactName": "${name}_${version}_${arch}.${ext}",
     "directories": {
       "output": "dist"
     },
@@ -54,30 +69,69 @@
       "preload.js",
       "backend/**/*",
       "GUI/**/*",
-      "package.json"
+      "package.json",
+      ".env"
     ],
     "win": {
       "target": [
-        { "target": "nsis", "arch": ["x64"]},
-        { "target": "portable", "arch": ["x64"]}
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ],
       "icon": "icon.ico"
     },
     "linux": {
       "target": [
-        { "target": "AppImage", "arch": ["x64"] },
-        { "target": "deb", "arch": ["x64"] },
-        { "target": "rpm", "arch": ["x64"] }, 
-        { "target": "pacman", "arch": ["x64"] },
-        { "target": "snap", "arch": ["x64"] }
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "pacman",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ],
       "icon": "build/icon.png",
       "category": "Game"
     },
     "mac": {
       "target": [
-        { "target": "dmg", "arch": ["universal"] },
-        { "target": "zip", "arch": ["universal"]}
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
       ],
       "icon": "build/icon.icns",
       "category": "public.app-category.games"
@@ -87,10 +141,11 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "amiayweb",
+      "repo": "Hytale-F2P"
     }
   }
 }
-
-
-
-

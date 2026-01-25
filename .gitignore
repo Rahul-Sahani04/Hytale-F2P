@@ -1,9 +1,22 @@
-dist/*
-node_modules/*
-package-lock.json
-bun.lock
-Themes.md
+# General / Node
+node_modules/
+dist/
 .env
-themes/previews/.DS_Store
+
+# Arch Linux / makepkg: Ignore folders created when running 'makepkg' locally
+/src/
+/pkg/
+
+# Built packages: {revents committing large binaries
+*.pkg.tar.zst
+*.pkg.tar.xz
+
+# Source downloads used by PKGBUILD
+*.src.tar.gz
+
+# Project Specific: Downloaded patcher (from hytale-auth-server)
+backend/patcher/
+
+# macOS Specific
 .DS_Store
-THEME_DESIGN_BRIEF.md
+*.zst.DS_Store

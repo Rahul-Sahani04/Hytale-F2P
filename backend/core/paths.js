@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { loadVersionBranch } = require('./config');
 
 function getAppDir() {
   const home = os.homedir();
@@ -48,8 +49,20 @@ function expandHome(inputPath) {
 const APP_DIR = DEFAULT_APP_DIR;
 const CACHE_DIR = path.join(APP_DIR, 'cache');
 const TOOLS_DIR = path.join(APP_DIR, 'butler');
-const GAME_DIR = path.join(APP_DIR, 'release', 'package', 'game', 'latest');
-const JRE_DIR = path.join(APP_DIR, 'release', 'package', 'jre', 'latest');
+
+// Dynamic GAME_DIR and JRE_DIR based on version_branch from config
+function getGameDir() {
+  const branch = loadVersionBranch();
+  return path.join(APP_DIR, branch, 'package', 'game', 'latest');
+}
+
+function getJreDir() {
+  const branch = loadVersionBranch();
+  return path.join(APP_DIR, branch, 'package', 'jre', 'latest');
+}
+
+const GAME_DIR = getGameDir();
+const JRE_DIR = getJreDir();
 const PLAYER_ID_FILE = path.join(APP_DIR, 'player_id.json');
 
 function getClientCandidates(gameLatest) {
@@ -156,24 +169,59 @@ async function getModsPath(customInstallPath = null) {
       installPath = getAppDir();
     }
 
-    const gameLatest = path.join(installPath, 'release', 'package', 'game', 'latest');
+    const branch = loadVersionBranch();
+    const gameLatest = path.join(installPath, branch, 'package', 'game', 'latest');
 
     const userDataPath = findUserDataPath(gameLatest);
 
     const modsPath = path.join(userDataPath, 'Mods');
     const disabledModsPath = path.join(userDataPath, 'DisabledMods');
+    const profilesPath = path.join(userDataPath, 'Profiles');
 
     if (!fs.existsSync(modsPath)) {
+      // Ensure the Mods directory exists
       fs.mkdirSync(modsPath, { recursive: true });
     }
     if (!fs.existsSync(disabledModsPath)) {
       fs.mkdirSync(disabledModsPath, { recursive: true });
+    }
+    if (!fs.existsSync(profilesPath)) {
+      fs.mkdirSync(profilesPath, { recursive: true });
     }
 
     return modsPath;
   } catch (error) {
     console.error('Error getting mods path:', error);
     throw error;
+  }
+}
+
+function getProfilesDir(customInstallPath = null) {
+  try {
+    // get UserData path
+    let installPath = customInstallPath;
+    if (!installPath) {
+        const configFile = path.join(DEFAULT_APP_DIR, 'config.json');
+        if (fs.existsSync(configFile)) {
+            const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+            installPath = config.installPath || '';
+        }
+    }
+    if (!installPath) installPath = getAppDir();
+    
+    const branch = loadVersionBranch();
+    const gameLatest = path.join(installPath, branch, 'package', 'game', 'latest');
+    const userDataPath = findUserDataPath(gameLatest);
+    const profilesDir = path.join(userDataPath, 'Profiles');
+    
+    if (!fs.existsSync(profilesDir)) {
+        fs.mkdirSync(profilesDir, { recursive: true });
+    }
+    
+    return profilesDir;
+  } catch (err) {
+      console.error('Error getting profiles dir:', err);
+      return null;
   }
 }
 
@@ -186,10 +234,13 @@ module.exports = {
   TOOLS_DIR,
   GAME_DIR,
   JRE_DIR,
+  getGameDir,
+  getJreDir,
   PLAYER_ID_FILE,
   getClientCandidates,
   findClientPath,
   findUserDataPath,
   findUserDataRecursive,
-  getModsPath
+  getModsPath,
+  getProfilesDir
 };

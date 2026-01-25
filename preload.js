@@ -2,9 +2,11 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   launchGame: (playerName, javaPath, installPath, gpuPreference) => ipcRenderer.invoke('launch-game', playerName, javaPath, installPath, gpuPreference),
-  installGame: (playerName, javaPath, installPath) => ipcRenderer.invoke('install-game', playerName, javaPath, installPath),
+  installGame: (playerName, javaPath, installPath, branch) => ipcRenderer.invoke('install-game', playerName, javaPath, installPath, branch),
   closeWindow: () => ipcRenderer.invoke('window-close'),
   minimizeWindow: () => ipcRenderer.invoke('window-minimize'),
+  maximizeWindow: () => ipcRenderer.invoke('window-maximize'),
+  getVersion: () => ipcRenderer.invoke('get-version'),
   saveUsername: (username) => ipcRenderer.invoke('save-username', username),
   loadUsername: () => ipcRenderer.invoke('load-username'),
   saveChatUsername: (chatUsername) => ipcRenderer.invoke('save-chat-username', chatUsername),
@@ -17,17 +19,23 @@ contextBridge.exposeInMainWorld('electronAPI', {
   loadInstallPath: () => ipcRenderer.invoke('load-install-path'),
   saveDiscordRPC: (enabled) => ipcRenderer.invoke('save-discord-rpc', enabled),
   loadDiscordRPC: () => ipcRenderer.invoke('load-discord-rpc'),
+  saveLanguage: (language) => ipcRenderer.invoke('save-language', language),
+  loadLanguage: () => ipcRenderer.invoke('load-language'),
+  saveCloseLauncher: (enabled) => ipcRenderer.invoke('save-close-launcher', enabled),
+  loadCloseLauncher: () => ipcRenderer.invoke('load-close-launcher'),
   selectInstallPath: () => ipcRenderer.invoke('select-install-path'),
   browseJavaPath: () => ipcRenderer.invoke('browse-java-path'),
   isGameInstalled: () => ipcRenderer.invoke('is-game-installed'),
   uninstallGame: () => ipcRenderer.invoke('uninstall-game'),
   repairGame: () => ipcRenderer.invoke('repair-game'),
+  retryDownload: (retryData) => ipcRenderer.invoke('retry-download', retryData),
   getHytaleNews: () => ipcRenderer.invoke('get-hytale-news'),
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
   openExternalLink: (url) => ipcRenderer.invoke('openExternalLink', url),
   openGameLocation: () => ipcRenderer.invoke('open-game-location'),
   saveSettings: (settings) => ipcRenderer.invoke('save-settings', settings),
   loadSettings: () => ipcRenderer.invoke('load-settings'),
+  getEnvVar: (key) => ipcRenderer.invoke('get-env-var', key),
   getLocalAppData: () => ipcRenderer.invoke('get-local-app-data'),
   getModsPath: () => ipcRenderer.invoke('get-mods-path'),
   loadInstalledMods: (modsPath) => ipcRenderer.invoke('load-installed-mods', modsPath),
@@ -37,10 +45,23 @@ contextBridge.exposeInMainWorld('electronAPI', {
   selectModFiles: () => ipcRenderer.invoke('select-mod-files'),
   copyModFile: (sourcePath, modsPath) => ipcRenderer.invoke('copy-mod-file', sourcePath, modsPath),
   onProgressUpdate: (callback) => {
-    ipcRenderer.on('progress-update', (event, data) => callback(data));
+    ipcRenderer.on('progress-update', (event, data) => {
+      // Ensure data includes retry state if available
+      if (data && typeof data === 'object') {
+        callback(data);
+      } else {
+        callback(data);
+      }
+    });
   },
   onProgressComplete: (callback) => {
     ipcRenderer.on('progress-complete', () => callback());
+  },
+  onInstallationStart: (callback) => {
+    ipcRenderer.on('installation-start', () => callback());
+  },
+  onInstallationEnd: (callback) => {
+    ipcRenderer.on('installation-end', () => callback());
   },
   getUserId: () => ipcRenderer.invoke('get-user-id'),
   checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
@@ -54,6 +75,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
   saveGpuPreference: (gpuPreference) => ipcRenderer.invoke('save-gpu-preference', gpuPreference),
   loadGpuPreference: () => ipcRenderer.invoke('load-gpu-preference'),
   getDetectedGpu: () => ipcRenderer.invoke('get-detected-gpu'),
+
+  saveVersionBranch: (branch) => ipcRenderer.invoke('save-version-branch', branch),
+  loadVersionBranch: () => ipcRenderer.invoke('load-version-branch'),
+  loadVersionClient: () => ipcRenderer.invoke('load-version-client'),
 
   acceptFirstLaunchUpdate: (existingGame) => ipcRenderer.invoke('accept-first-launch-update', existingGame),
   markAsLaunched: () => ipcRenderer.invoke('mark-as-launched'),
@@ -92,9 +117,21 @@ contextBridge.exposeInMainWorld('electronAPI', {
     update: (id, updates) => ipcRenderer.invoke('profile-update', id, updates)
   },
 
-  // Themes API
-  getThemes: () => ipcRenderer.invoke('themes:list'),
-  getTheme: (id) => ipcRenderer.invoke('themes:get', id),
-  getActiveTheme: () => ipcRenderer.invoke('themes:active'),
-  applyTheme: (id) => ipcRenderer.invoke('themes:apply', id)
+  // Launcher Update API
+  checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
+  downloadUpdate: () => ipcRenderer.invoke('download-update'),
+  installUpdate: () => ipcRenderer.invoke('install-update'),
+  getLauncherVersion: () => ipcRenderer.invoke('get-launcher-version'),
+  onUpdateAvailable: (callback) => {
+    ipcRenderer.on('update-available', (event, data) => callback(data));
+  },
+  onUpdateDownloadProgress: (callback) => {
+    ipcRenderer.on('update-download-progress', (event, data) => callback(data));
+  },
+  onUpdateDownloaded: (callback) => {
+    ipcRenderer.on('update-downloaded', (event, data) => callback(data));
+  },
+  onUpdateError: (callback) => {
+    ipcRenderer.on('update-error', (event, data) => callback(data));
+  }
 });

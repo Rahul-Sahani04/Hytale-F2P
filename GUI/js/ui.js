@@ -6,6 +6,24 @@ let progressText;
 let progressPercent;
 let progressSpeed;
 let progressSize;
+let progressErrorContainer;
+let progressErrorMessage;
+let progressRetryInfo;
+let progressRetryBtn;
+let progressJRRetryBtn;
+let progressPWRRetryBtn;
+
+// Download retry state
+let currentDownloadState = {
+    isDownloading: false,
+    canRetry: false,
+    retryData: null,
+    lastError: null,
+    errorType: null,
+    branch: null,
+    fileName: null,
+    cacheDir: null
+};
 
 function showPage(pageId) {
   const pages = document.querySelectorAll('.page');
@@ -13,6 +31,15 @@ function showPage(pageId) {
     if (page.id === pageId) {
       page.classList.add('active');
       page.style.display = '';
+      
+      // Reload settings when settings page becomes visible
+      if (pageId === 'settings-page') {
+        console.log('[UI] Settings page activated, reloading branch...');
+        // Dynamically import and call loadVersionBranch from settings
+        if (window.SettingsAPI && window.SettingsAPI.reloadBranch) {
+          window.SettingsAPI.reloadBranch();
+        }
+      }
     } else {
       page.classList.remove('active');
       page.style.display = 'none';
@@ -144,6 +171,12 @@ function hideProgress() {
 }
 
 function updateProgress(data) {
+  // Handle retry state
+  if (data.retryState) {
+    currentDownloadState.retryData = data.retryState;
+    updateRetryState(data.retryState);
+  }
+
   if (data.message && progressText) {
     progressText.textContent = data.message;
   }
@@ -161,6 +194,120 @@ function updateProgress(data) {
     const totalMB = (data.total / 1024 / 1024).toFixed(2);
     if (progressSpeed) progressSpeed.textContent = `${speedMB} MB/s`;
     if (progressSize) progressSize.textContent = `${downloadedMB} / ${totalMB} MB`;
+  }
+
+  // Handle error states with enhanced categorization
+  // Don't show error during automatic retries - let the retry message display instead
+  if ((data.error || (data.message && data.message.includes('failed'))) && 
+      !(data.retryState && data.retryState.isAutomaticRetry)) {
+    const errorType = categorizeError(data.message);
+    console.log('[UI] Showing download error:', { message: data.message, canRetry: data.canRetry, errorType });
+    showDownloadError(data.message, data.canRetry, errorType, data);
+  } else if (data.percent === 100) {
+    hideDownloadError();
+  } else if (data.retryState && data.retryState.isAutomaticRetry) {
+    // Hide any existing error during automatic retries
+    hideDownloadError();
+  }
+}
+
+function updateRetryState(retryState) {
+  if (!progressRetryInfo) return;
+
+  if (retryState.isAutomaticRetry && retryState.automaticStallRetries > 0) {
+    // Show automatic stall retry count
+    progressRetryInfo.textContent = `Auto-retry ${retryState.automaticStallRetries}/3`;
+    progressRetryInfo.style.display = 'block';
+    progressRetryInfo.style.background = 'rgba(255, 193, 7, 0.2)'; // Light orange background for auto-retries
+    progressRetryInfo.style.color = '#ff9800'; // Orange text for auto-retries
+  } else if (retryState.attempts > 1) {
+    // Show manual retry count
+    progressRetryInfo.textContent = `Attempt ${retryState.attempts}/${retryState.maxRetries}`;
+    progressRetryInfo.style.display = 'block';
+    progressRetryInfo.style.background = ''; // Reset background
+    progressRetryInfo.style.color = ''; // Reset color
+  } else {
+    progressRetryInfo.style.display = 'none';
+    progressRetryInfo.style.background = ''; // Reset background
+    progressRetryInfo.style.color = ''; // Reset color
+  }
+}
+
+function showDownloadError(errorMessage, canRetry = true, errorType = 'general', data = null) {
+  if (!progressErrorContainer || !progressErrorMessage) return;
+
+  console.log('[UI] showDownloadError called with:', { errorMessage, canRetry, errorType, data });
+  console.log('[UI] Data properties:', {
+    hasData: !!data,
+    hasRetryData: !!(data && data.retryData),
+    dataErrorType: data && data.errorType,
+    dataIsJREError: data && data.retryData && data.retryData.isJREError
+  });
+  
+  currentDownloadState.lastError = errorMessage;
+  currentDownloadState.canRetry = canRetry;
+  currentDownloadState.errorType = errorType;
+  
+  // Update retry context if available
+  if (data && data.retryData) {
+    currentDownloadState.branch = data.retryData.branch;
+    currentDownloadState.fileName = data.retryData.fileName;
+    currentDownloadState.cacheDir = data.retryData.cacheDir;
+    // Override errorType if specified in data
+    if (data.errorType) {
+      currentDownloadState.errorType = data.errorType;
+    }
+  }
+
+  // Hide all retry buttons first
+  if (progressRetryBtn) progressRetryBtn.style.display = 'none';
+  if (progressJRRetryBtn) progressJRRetryBtn.style.display = 'none';
+  if (progressPWRRetryBtn) progressPWRRetryBtn.style.display = 'none';
+
+  // User-friendly error messages
+  const userMessage = getErrorMessage(errorMessage, errorType);
+  progressErrorMessage.textContent = userMessage;
+  progressErrorContainer.style.display = 'block';
+
+  // Show appropriate retry button based on error type
+  if (canRetry) {
+    if (errorType === 'jre') {
+      if (progressJRRetryBtn) {
+        console.log('[UI] Showing JRE retry button');
+        progressJRRetryBtn.style.display = 'block';
+      }
+    } else {
+      // All other errors use PWR retry button (game download, butler, etc.)
+      if (progressPWRRetryBtn) {
+        console.log('[UI] Showing PWR retry button');
+        progressPWRRetryBtn.style.display = 'block';
+      }
+    }
+  }
+
+  // Add visual indicators based on error type
+  progressErrorContainer.className = `progress-error-container error-${errorType}`;
+
+  if (progressOverlay) {
+    progressOverlay.classList.add('error-state');
+  }
+}
+
+function hideDownloadError() {
+  if (!progressErrorContainer) return;
+
+  // Hide all retry buttons
+  if (progressRetryBtn) progressRetryBtn.style.display = 'none';
+  if (progressJRRetryBtn) progressJRRetryBtn.style.display = 'none';
+  if (progressPWRRetryBtn) progressPWRRetryBtn.style.display = 'none';
+
+  progressErrorContainer.style.display = 'none';
+  currentDownloadState.canRetry = false;
+  currentDownloadState.lastError = null;
+  currentDownloadState.errorType = null;
+
+  if (progressOverlay) {
+    progressOverlay.classList.remove('error-state');
   }
 }
 
@@ -366,7 +513,7 @@ function lockPlayButton(locked) {
       if (!playButton.getAttribute('data-original-text')) {
         playButton.setAttribute('data-original-text', spanElement.textContent);
       }
-      spanElement.textContent = 'CHECKING...';
+      spanElement.textContent = window.i18n ? window.i18n.t('play.checking') : 'CHECKING...';
     }
 
     console.log('Play button locked');
@@ -377,9 +524,9 @@ function lockPlayButton(locked) {
     playButton.removeAttribute('data-locked');
 
     const spanElement = playButton.querySelector('span');
-    const originalText = playButton.getAttribute('data-original-text');
-    if (spanElement && originalText) {
-      spanElement.textContent = originalText;
+    if (spanElement) {
+      // Use i18n to get the current translation instead of restoring saved text
+      spanElement.textContent = window.i18n ? window.i18n.t('play.playButton') : 'PLAY HYTALE';
       playButton.removeAttribute('data-original-text');
     }
 
@@ -393,7 +540,8 @@ async function acceptFirstLaunchUpdate() {
   const existingGame = window.firstLaunchExistingGame;
 
   if (!existingGame) {
-    showNotification('Error: Game data not found', 'error');
+    const errorMsg = window.i18n ? window.i18n.t('notifications.gameDataNotFound') : 'Error: Game data not found';
+    showNotification(errorMsg, 'error');
     return;
   }
 
@@ -410,7 +558,8 @@ async function acceptFirstLaunchUpdate() {
 
   try {
     showProgress();
-    updateProgress({ message: 'Starting mandatory game update...', percent: 0 });
+    const updateMsg = window.i18n ? window.i18n.t('progress.startingUpdate') : 'Starting mandatory game update...';
+    updateProgress({ message: updateMsg, percent: 0 });
 
     const result = await window.electronAPI.acceptFirstLaunchUpdate(existingGame);
 
@@ -424,10 +573,12 @@ async function acceptFirstLaunchUpdate() {
 
     if (result.success) {
       hideProgress();
-      showNotification('Game updated successfully! 🎉', 'success');
+      const successMsg = window.i18n ? window.i18n.t('notifications.gameUpdatedSuccess') : 'Game updated successfully! 🎉';
+      showNotification(successMsg, 'success');
     } else {
       hideProgress();
-      showNotification(`Update failed: ${result.error}`, 'error');
+      const errorMsg = window.i18n ? window.i18n.t('notifications.updateFailed').replace('{error}', result.error) : `Update failed: ${result.error}`;
+      showNotification(errorMsg, 'error');
     }
   } catch (error) {
     if (modal) {
@@ -435,7 +586,8 @@ async function acceptFirstLaunchUpdate() {
     }
     lockPlayButton(false);
     hideProgress();
-    showNotification(`Update error: ${error.message}`, 'error');
+    const errorMsg = window.i18n ? window.i18n.t('notifications.updateError').replace('{error}', error.message) : `Update error: ${error.message}`;
+    showNotification(errorMsg, 'error');
   }
 }
 
@@ -473,6 +625,18 @@ function setupUI() {
   progressPercent = document.getElementById('progressPercent');
   progressSpeed = document.getElementById('progressSpeed');
   progressSize = document.getElementById('progressSize');
+  progressErrorContainer = document.getElementById('progressErrorContainer');
+  progressErrorMessage = document.getElementById('progressErrorMessage');
+  progressRetryInfo = document.getElementById('progressRetryInfo');
+  progressRetryBtn = document.getElementById('progressRetryBtn');
+  progressJRRetryBtn = document.getElementById('progressJRRetryBtn');
+  progressPWRRetryBtn = document.getElementById('progressPWRRetryBtn');
+
+  // Setup draggable progress bar
+  setupProgressDrag();
+
+  // Setup retry button
+  setupRetryButton();
 
   lockPlayButton(true);
 
@@ -492,8 +656,75 @@ function setupUI() {
   setupSidebarLogo();
   setupAnimations();
   setupFirstLaunchHandlers();
+  loadLauncherVersion();
+  checkGameInstallation().catch(err => {
+    console.error('Critical error in checkGameInstallation:', err);
+    lockPlayButton(false);
+  });
 
   document.body.focus();
+}
+
+// Load launcher version from package.json
+async function loadLauncherVersion() {
+  try {
+    if (window.electronAPI && window.electronAPI.getVersion) {
+      const version = await window.electronAPI.getVersion();
+      const versionElement = document.getElementById('launcherVersion');
+      if (versionElement) {
+        versionElement.textContent = `v${version}`;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load launcher version:', error);
+  }
+}
+
+// Check game installation status on startup
+async function checkGameInstallation() {
+  try {
+    console.log('Checking game installation status...');
+    
+    // Verify electronAPI is available
+    if (!window.electronAPI || !window.electronAPI.isGameInstalled) {
+      console.error('electronAPI not available, unlocking play button as fallback');
+      lockPlayButton(false);
+      return;
+    }
+    
+    // Check if game is installed
+    const isInstalled = await window.electronAPI.isGameInstalled();
+    
+    // Load version_client from config
+    let versionClient = null;
+    if (window.electronAPI.loadVersionClient) {
+      versionClient = await window.electronAPI.loadVersionClient();
+    }
+    
+    console.log(`Game installed: ${isInstalled}, version_client: ${versionClient}`);
+    
+    lockPlayButton(false);
+    
+    // If version_client is null and game is not installed, show install page
+    if (versionClient === null && !isInstalled) {
+      console.log('Game not installed and version_client is null, showing install page...');
+      
+      // Show installation page
+      const installPage = document.getElementById('install-page');
+      const launcher = document.getElementById('launcher-container');
+      const sidebar = document.querySelector('.sidebar');
+      
+      if (installPage) {
+        installPage.style.display = 'block';
+        if (launcher) launcher.style.display = 'none';
+        if (sidebar) sidebar.style.pointerEvents = 'none';
+      }
+    }
+  } catch (error) {
+    console.error('Error checking game installation:', error);
+    // Unlock on error to prevent permanent lock
+    lockPlayButton(false);
+  }
 }
 
 window.LauncherUI = {
@@ -504,5 +735,372 @@ window.LauncherUI = {
   hideProgress,
   updateProgress
 };
+
+// Make installation effects globally available
+
+
+// Draggable progress bar functionality
+function setupProgressDrag() {
+  if (!progressOverlay) return;
+
+  let isDragging = false;
+  let offsetX;
+  let offsetY;
+
+  progressOverlay.addEventListener('mousedown', dragStart);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', dragEnd);
+
+  function dragStart(e) {
+    // Only drag if clicking on the overlay itself, not on buttons or inputs
+    if (e.target.closest('.progress-bar-fill')) return;
+    
+    if (e.target === progressOverlay || e.target.closest('.progress-content')) {
+      isDragging = true;
+      progressOverlay.classList.add('dragging');
+      
+      // Get the current position of the progress overlay
+      const rect = progressOverlay.getBoundingClientRect();
+      offsetX = e.clientX - rect.left - progressOverlay.offsetWidth / 2;
+      offsetY = e.clientY - rect.top;
+    }
+  }
+
+  function drag(e) {
+    if (isDragging) {
+      e.preventDefault();
+      
+      // Calculate new position
+      const newX = e.clientX - offsetX - progressOverlay.offsetWidth / 2;
+      const newY = e.clientY - offsetY;
+
+      // Get window bounds
+      const maxX = window.innerWidth - progressOverlay.offsetWidth;
+      const maxY = window.innerHeight - progressOverlay.offsetHeight;
+      const minX = 0;
+      const minY = 0;
+
+      // Constrain to window bounds
+      const constrainedX = Math.max(minX, Math.min(newX, maxX));
+      const constrainedY = Math.max(minY, Math.min(newY, maxY));
+
+      progressOverlay.style.left = constrainedX + 'px';
+      progressOverlay.style.bottom = 'auto';
+      progressOverlay.style.top = constrainedY + 'px';
+      progressOverlay.style.transform = 'none';
+    }
+  }
+
+  function dragEnd() {
+    isDragging = false;
+    progressOverlay.classList.remove('dragging');
+  }
+}
+
+// Toggle maximize/restore window function
+function toggleMaximize() {
+  if (window.electronAPI && window.electronAPI.maximizeWindow) {
+    window.electronAPI.maximizeWindow();
+  }
+}
+
+// Error categorization and user-friendly messages
+function categorizeError(message) {
+  const msg = message.toLowerCase();
+  
+  if (msg.includes('network') || msg.includes('connection') || msg.includes('offline')) {
+    return 'network';
+  } else if (msg.includes('stalled') || msg.includes('timeout')) {
+    return 'stall';
+  } else if (msg.includes('file') || msg.includes('disk')) {
+    return 'file';
+  } else if (msg.includes('permission') || msg.includes('access')) {
+    return 'permission';
+  } else if (msg.includes('server') || msg.includes('5')) {
+    return 'server';
+  } else if (msg.includes('corrupted') || msg.includes('pwr file') || msg.includes('unexpected eof')) {
+    return 'corruption';
+  } else if (msg.includes('butler') || msg.includes('patch installation')) {
+    return 'butler';
+  } else if (msg.includes('space') || msg.includes('full') || msg.includes('device full')) {
+    return 'space';
+  } else if (msg.includes('conflict') || msg.includes('already exists')) {
+    return 'conflict';
+  } else if (msg.includes('jre') || msg.includes('java runtime')) {
+    return 'jre';
+  } else {
+    return 'general';
+  }
+}
+
+function getErrorMessage(technicalMessage, errorType) {
+  // Technical errors go to console, user gets friendly messages
+  console.error(`Download error [${errorType}]:`, technicalMessage);
+  
+  switch (errorType) {
+    case 'network':
+      return 'Network connection lost. Please check your internet connection and retry.';
+    case 'stall':
+      return 'Download stalled due to slow connection. Please retry.';
+    case 'file':
+      return 'Unable to save file. Check disk space and permissions. Please retry.';
+    case 'permission':
+      return 'Permission denied. Check if launcher has write access. Please retry.';
+    case 'server':
+      return 'Server error. Please wait a moment and retry.';
+    case 'corruption':
+      return 'Corrupted PWR file detected. File deleted and will retry.';
+    case 'butler':
+      return 'Patch installation failed. Please retry.';
+    case 'space':
+      return 'Insufficient disk space. Free up space and retry.';
+    case 'conflict':
+      return 'Installation directory conflict. Please retry.';
+    case 'jre':
+      return 'Java runtime download failed. Please retry.';
+    default:
+      return 'Download failed. Please retry.';
+  }
+}
+
+// Connection quality indicator (simplified)
+function updateConnectionQuality(quality) {
+  if (!progressSize) return;
+  
+  const qualityColors = {
+    'Good': '#10b981',
+    'Fair': '#fbbf24', 
+    'Poor': '#f87171'
+  };
+  
+  const color = qualityColors[quality] || '#6b7280';
+  progressSize.style.color = color;
+  
+  // Add subtle quality indicator
+  if (progressSize.dataset.quality !== quality) {
+    progressSize.dataset.quality = quality;
+    progressSize.style.transition = 'color 0.5s ease';
+  }
+}
+
+// Enhanced retry button setup
+function setupRetryButton() {
+  // Setup JRE retry button
+  if (progressJRRetryBtn) {
+    progressJRRetryBtn.addEventListener('click', async () => {
+      if (!currentDownloadState.canRetry || currentDownloadState.isDownloading) {
+        return;
+      }
+      progressJRRetryBtn.disabled = true;
+      progressJRRetryBtn.textContent = 'Retrying...';
+      progressJRRetryBtn.classList.add('retrying');
+      currentDownloadState.isDownloading = true;
+
+      try {
+        hideDownloadError();
+        
+        if (progressRetryInfo) {
+          progressRetryInfo.style.background = '';
+          progressRetryInfo.style.color = '';
+        }
+        
+        if (progressText) {
+          progressText.textContent = 'Re-downloading Java runtime...';
+        }
+
+        if (!currentDownloadState.retryData || currentDownloadState.errorType !== 'jre') {
+          currentDownloadState.retryData = {
+            isJREError: true,
+            jreUrl: '',
+            fileName: 'jre.tar.gz',
+            cacheDir: '',
+            osName: 'linux',
+            arch: 'amd64'
+          };
+          console.log('[UI] Created default JRE retry data:', currentDownloadState.retryData);
+        }
+
+        if (window.electronAPI && window.electronAPI.retryDownload) {
+          const result = await window.electronAPI.retryDownload(currentDownloadState.retryData);
+          if (!result.success) {
+            throw new Error(result.error || 'JRE retry failed');
+          }
+        } else {
+          console.warn('electronAPI.retryDownload not available, simulating JRE retry...');
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          throw new Error('JRE retry API not available');
+        }
+
+      } catch (error) {
+        console.error('JRE retry failed:', error);
+        showDownloadError(`JRE retry failed: ${error.message}`, true, 'jre');
+      } finally {
+        if (progressJRRetryBtn) {
+          progressJRRetryBtn.disabled = false;
+          progressJRRetryBtn.textContent = 'Retry Java Download';
+          progressJRRetryBtn.classList.remove('retrying');
+        }
+        currentDownloadState.isDownloading = false;
+      }
+    });
+  }
+
+  // Setup PWR retry button
+  if (progressPWRRetryBtn) {
+    progressPWRRetryBtn.addEventListener('click', async () => {
+      if (!currentDownloadState.canRetry || currentDownloadState.isDownloading) {
+        return;
+      }
+      progressPWRRetryBtn.disabled = true;
+      progressPWRRetryBtn.textContent = 'Retrying...';
+      progressPWRRetryBtn.classList.add('retrying');
+      currentDownloadState.isDownloading = true;
+
+      try {
+        hideDownloadError();
+        
+        if (progressRetryInfo) {
+          progressRetryInfo.style.background = '';
+          progressRetryInfo.style.color = '';
+        }
+        
+        if (progressText) {
+          const contextMessage = getRetryContextMessage();
+          progressText.textContent = contextMessage;
+        }
+
+        if (!currentDownloadState.retryData || currentDownloadState.errorType === 'jre') {
+          currentDownloadState.retryData = {
+            branch: 'release',
+            fileName: '4.pwr'
+          };
+          console.log('[UI] Created default PWR retry data:', currentDownloadState.retryData);
+        }
+
+        if (window.electronAPI && window.electronAPI.retryDownload) {
+          const result = await window.electronAPI.retryDownload(currentDownloadState.retryData);
+          if (!result.success) {
+            throw new Error(result.error || 'Game retry failed');
+          }
+        } else {
+          console.warn('electronAPI.retryDownload not available, simulating PWR retry...');
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          throw new Error('Game retry API not available');
+        }
+
+      } catch (error) {
+        console.error('PWR retry failed:', error);
+        const errorType = categorizeError(error.message);
+        showDownloadError(`Game retry failed: ${error.message}`, true, errorType, error);
+      } finally {
+        if (progressPWRRetryBtn) {
+          progressPWRRetryBtn.disabled = false;
+          progressPWRRetryBtn.textContent = error && error.isJREError ? 'Retry Java Download' : 'Retry Game Download';
+          progressPWRRetryBtn.classList.remove('retrying');
+        }
+        currentDownloadState.isDownloading = false;
+      }
+    });
+  }
+
+  // Setup generic retry button (fallback)
+  if (progressRetryBtn) {
+    progressRetryBtn.addEventListener('click', async () => {
+      if (!currentDownloadState.canRetry || currentDownloadState.isDownloading) {
+        return;
+      }
+      progressRetryBtn.disabled = true;
+      progressRetryBtn.textContent = 'Retrying...';
+      progressRetryBtn.classList.add('retrying');
+      currentDownloadState.isDownloading = true;
+
+      try {
+        hideDownloadError();
+        
+        if (progressRetryInfo) {
+          progressRetryInfo.style.background = '';
+          progressRetryInfo.style.color = '';
+        }
+        
+        if (progressText) {
+          const contextMessage = getRetryContextMessage();
+          progressText.textContent = contextMessage;
+        }
+
+        if (!currentDownloadState.retryData) {
+          if (currentDownloadState.errorType === 'jre') {
+            currentDownloadState.retryData = {
+              isJREError: true,
+              jreUrl: '',
+              fileName: 'jre.tar.gz',
+              cacheDir: '',
+              osName: 'linux',
+              arch: 'amd64'
+            };
+          } else {
+            currentDownloadState.retryData = {
+              branch: 'release',
+              fileName: '4.pwr'
+            };
+          }
+          console.log('[UI] Created default retry data:', currentDownloadState.retryData);
+        }
+
+        if (window.electronAPI && window.electronAPI.retryDownload) {
+          const result = await window.electronAPI.retryDownload(currentDownloadState.retryData);
+          if (!result.success) {
+            throw new Error(result.error || 'Retry failed');
+          }
+        } else {
+          console.warn('electronAPI.retryDownload not available, simulating retry...');
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          throw new Error('Retry API not available');
+        }
+
+      } catch (error) {
+        console.error('Retry failed:', error);
+        const errorType = categorizeError(error.message);
+        showDownloadError(`Retry failed: ${error.message}`, true, errorType);
+      } finally {
+        if (progressRetryBtn) {
+          progressRetryBtn.disabled = false;
+          progressRetryBtn.textContent = 'Retry Download';
+          progressRetryBtn.classList.remove('retrying');
+        }
+        currentDownloadState.isDownloading = false;
+      }
+    });
+  }
+}
+
+function getRetryContextMessage() {
+  const errorType = currentDownloadState.errorType;
+  
+  switch (errorType) {
+    case 'network':
+      return 'Reconnecting and retrying download...';
+    case 'stall':
+      return 'Resuming stalled download...';
+    case 'server':
+      return 'Waiting for server and retrying...';
+    case 'corruption':
+      return 'Re-downloading corrupted PWR file...';
+    case 'butler':
+      return 'Re-attempting patch installation...';
+    case 'space':
+      return 'Retrying after clearing disk space...';
+    case 'permission':
+      return 'Retrying with corrected permissions...';
+    case 'conflict':
+      return 'Retrying after resolving conflicts...';
+    case 'jre':
+      return 'Re-downloading Java runtime...';
+    default:
+      return 'Initiating retry download...';
+  }
+}
+
+// Make toggleMaximize globally available
+window.toggleMaximize = toggleMaximize;
 
 document.addEventListener('DOMContentLoaded', setupUI);
