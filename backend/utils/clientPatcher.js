@@ -566,11 +566,11 @@ class ClientPatcher {
 
     // Download pre-patched JAR
     if (progressCallback) progressCallback('Downloading patched server JAR...', 30);
-    console.log('Downloading pre-patched HytaleServer.jar from https://files.hytalef2p.com/jar');
+    console.log('Downloading pre-patched HytaleServer.jar');
 
     try {
       const https = require('https');
-      const url = 'https://files.hytalef2p.com/jar';
+      const url = 'https://pub-027b315ece074e2e891002ca38384792.r2.dev/HytaleServer.jar';
 
       await new Promise((resolve, reject) => {
         https.get(url, (response) => {
@@ -634,7 +634,7 @@ class ClientPatcher {
         domain: newDomain,
         patchedAt: new Date().toISOString(),
         patcher: 'PrePatchedDownload',
-        source: 'https://download.sanasol.ws/download/HytaleServer.jar'
+        source: 'https://pub-027b315ece074e2e891002ca38384792.r2.dev/HytaleServer.jar'
       }));
 
       if (progressCallback) progressCallback('Server patching complete', 100);
