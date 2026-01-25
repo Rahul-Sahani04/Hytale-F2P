@@ -48,7 +48,6 @@
     "adm-zip": "^0.5.10",
     "axios": "^1.6.0",
     "discord-rpc": "^4.0.1",
-    "dotenv": "^17.2.3",
     "electron-updater": "^6.7.3",
     "fs-extra": "^11.3.3",
     "tar": "^6.2.1",
@@ -81,7 +80,7 @@
           ]
         }
       ],
-      "icon": "icon.ico"
+      "icon": "build/icon.ico"
     },
     "linux": {
       "target": [
