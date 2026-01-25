@@ -19,7 +19,6 @@
 
 <body class="bg-black text-white overflow-hidden font-sans select-none" tabindex="-1">
     <div class="absolute inset-0 z-0">
-        <img src="https://assets.authbp.xyz/bg.png" alt="Background" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-black/60"></div>
         <img id="app-background" src="https://i.imgur.com/Visrk66.png" alt="Background"
             class="w-full h-full object-cover" />
@@ -359,81 +358,65 @@
                                                 onclick="repairGame()">
                                                 <i class="fas fa-tools"></i>
                                                 <div class="btn-content">
-                                                    <div class="btn-title">Repair Game</div>
-                                                    <div class="btn-description">Reinstall game files (preserves data)
+                                                    <div class="btn-title" data-i18n="settings.repairGame">Repair
+                                                        Game
+                                                    </div>
+                                                    <div class="btn-description" data-i18n="settings.reinstallGame">
+                                                        Reinstall game files (preserves data)
                                                     </div>
                                                 </div>
                                             </button>
                                         </div>
+                                    </div>
 
-
-                                        <div class="settings-option">
-                                            <div class="settings-button-group">
-                                                <button id="repairGameBtn" class="settings-action-btn"
-                                                    onclick="repairGame()">
-                                                    <i class="fas fa-tools"></i>
-                                                    <div class="btn-content">
-                                                        <div class="btn-title" data-i18n="settings.repairGame">Repair
-                                                            Game
-                                                        </div>
-                                                        <div class="btn-description" data-i18n="settings.reinstallGame">
-                                                            Reinstall game files (preserves data)
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="settings-option">
-                                            <div class="settings-input-group">
-                                                <label class="settings-input-label" data-i18n="settings.gameBranch">Game
-                                                    Branch</label>
-                                                <div class="segmented-control">
-                                                    <input type="radio" id="branch-release" name="gameBranch"
-                                                        value="release" checked>
-                                                    <label for="branch-release"
-                                                        data-i18n="settings.branchRelease">Release</label>
-                                                    <input type="radio" id="branch-pre-release" name="gameBranch"
-                                                        value="pre-release">
-                                                    <label for="branch-pre-release"
-                                                        data-i18n="settings.branchPreRelease">Pre-Release</label>
-                                                </div>
-                                                <p class="settings-hint">
-                                                    <i class="fas fa-info-circle"></i>
-                                                    <span data-i18n="settings.branchHint">Switch between stable release
-                                                        and experimental pre-release versions</span>
-                                                </p>
-                                                <p class="settings-hint" style="color: #f39c12;">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    <span data-i18n="settings.branchWarning">Changing branch will
-                                                        download and install a different game version</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="settings-option">
-                                            <label class="settings-input-label" data-i18n="settings.gpuPreference">GPU
-                                                Preference</label>
+                                    <div class="settings-option">
+                                        <div class="settings-input-group">
+                                            <label class="settings-input-label" data-i18n="settings.gameBranch">Game
+                                                Branch</label>
                                             <div class="segmented-control">
-                                                <input type="radio" id="gpu-auto" name="gpuPreference" value="auto"
-                                                    checked>
-                                                <label for="gpu-auto" data-i18n="settings.gpuAuto">Auto</label>
-                                                <input type="radio" id="gpu-integrated" name="gpuPreference"
-                                                    value="integrated">
-                                                <label for="gpu-integrated"
-                                                    data-i18n="settings.gpuIntegrated">Integrated</label>
-                                                <input type="radio" id="gpu-dedicated" name="gpuPreference"
-                                                    value="dedicated">
-                                                <label for="gpu-dedicated"
-                                                    data-i18n="settings.gpuDedicated">Dedicated</label>
+                                                <input type="radio" id="branch-release" name="gameBranch"
+                                                    value="release" checked>
+                                                <label for="branch-release"
+                                                    data-i18n="settings.branchRelease">Release</label>
+                                                <input type="radio" id="branch-pre-release" name="gameBranch"
+                                                    value="pre-release">
+                                                <label for="branch-pre-release"
+                                                    data-i18n="settings.branchPreRelease">Pre-Release</label>
                                             </div>
                                             <p class="settings-hint">
                                                 <i class="fas fa-info-circle"></i>
-                                                <span data-i18n="settings.gpuHint">Select your preferred GPU (Linux:
-                                                    affects DRI_PRIME)</span>
+                                                <span data-i18n="settings.branchHint">Switch between stable release
+                                                    and experimental pre-release versions</span>
                                             </p>
-                                            <div id="gpu-detection-info" class="gpu-detection-info"></div>
+                                            <p class="settings-hint" style="color: #f39c12;">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <span data-i18n="settings.branchWarning">Changing branch will
+                                                    download and install a different game version</span>
+                                            </p>
                                         </div>
+                                    </div>
+
+                                    <div class="settings-option">
+                                        <label class="settings-input-label" data-i18n="settings.gpuPreference">GPU
+                                            Preference</label>
+                                        <div class="segmented-control">
+                                            <input type="radio" id="gpu-auto" name="gpuPreference" value="auto" checked>
+                                            <label for="gpu-auto" data-i18n="settings.gpuAuto">Auto</label>
+                                            <input type="radio" id="gpu-integrated" name="gpuPreference"
+                                                value="integrated">
+                                            <label for="gpu-integrated"
+                                                data-i18n="settings.gpuIntegrated">Integrated</label>
+                                            <input type="radio" id="gpu-dedicated" name="gpuPreference"
+                                                value="dedicated">
+                                            <label for="gpu-dedicated"
+                                                data-i18n="settings.gpuDedicated">Dedicated</label>
+                                        </div>
+                                        <p class="settings-hint">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span data-i18n="settings.gpuHint">Select your preferred GPU (Linux:
+                                                affects DRI_PRIME)</span>
+                                        </p>
+                                        <div id="gpu-detection-info" class="gpu-detection-info"></div>
                                     </div>
                                 </div>
 
@@ -500,6 +483,26 @@
                                                 </div>
                                             </div>
                                         </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-palette"></i>
+                                        Appearance
+                                    </h3>
+                                    <div class="settings-option">
+                                        <div class="settings-button-group">
+                                            <button id="openThemesModalBtn" class="settings-action-btn"
+                                                onclick="openThemesModal()">
+                                                <i class="fas fa-paint-brush"></i>
+                                                <div class="btn-content">
+                                                    <div class="btn-title">Change Theme</div>
+                                                    <div class="btn-description">Select from available launcher themes
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
