@@ -286,6 +286,7 @@ app.whenReady().then(async () => {
 
   // Initialize Profile Manager (runs migration if needed)
   profileManager.init();
+  themeManager.init();
 
   createSplashScreen();
 

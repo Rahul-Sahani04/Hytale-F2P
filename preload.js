@@ -117,6 +117,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
     update: (id, updates) => ipcRenderer.invoke('profile-update', id, updates)
   },
 
+  // Theme API
+  getThemes: () => ipcRenderer.invoke('themes:list'),
+  getActiveTheme: () => ipcRenderer.invoke('themes:active'),
+  applyTheme: (id) => ipcRenderer.invoke('themes:apply', id),
+  getTheme: (id) => ipcRenderer.invoke('themes:get', id),
+
   // Launcher Update API
   checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
   downloadUpdate: () => ipcRenderer.invoke('download-update'),

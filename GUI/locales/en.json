@@ -138,6 +138,7 @@
     "branchWarning": "Changing branch will download and install a different game version",
     "branchSwitching": "Switching to {branch}...",
     "branchSwitched": "Switched to {branch} successfully!",
+    "themesTitle": "THEMES",
     "installRequired": "Installation Required",
     "branchInstallConfirm": "The game will be installed for the {branch} branch. Continue?"
   },
