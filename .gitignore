@@ -24,3 +24,6 @@ backend/patcher/
 Themes.md
 THEME_DESIGN_BRIEF.md
 bun.lock
+
+# Themes
+themes/*.json
