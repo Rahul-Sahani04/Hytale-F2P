@@ -9,8 +9,8 @@
         "primary": "#FCEE09",
         "secondary": "#00F0FF",
         "accent": "#FF003C",
-        "background": "#050505",
-        "surface": "#1A1A1A",
+        "background": "#000000",
+        "surface": "#121212",
         "text": "#FCEE09",
         "textSecondary": "#00F0FF",
         "border": "#FCEE09",
@@ -19,8 +19,8 @@
         "warning": "#FCEE09"
     },
     "fonts": {
-        "primary": "'Cyberpunk Is Not Dead', sans-serif",
-        "secondary": "'JetBrains Mono', monospace"
+        "primary": "'Orbitron', sans-serif",
+        "secondary": "'Share Tech Mono', monospace"
     },
     "effects": {
         "borderRadius": "0px",
@@ -34,11 +34,10 @@
         "border": "none",
         "borderRadius": "0px",
         "boxShadow": "4px 4px 0px #00F0FF",
-        "boxShadow": "4px 4px 0px #00F0FF",
         "transform": "scale(1)",
         "hoverBackground": "#FFFFFF",
-        "hoverTransform": "translate(-4px, -4px)",
-        "hoverBoxShadow": "6px 6px 0px #00F0FF",
+        "hoverTransform": "translate(-2px, -2px)",
+        "hoverBoxShadow": "6px 6px 0px #FF003C",
         "clipPath": "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
         "textTransform": "uppercase"
     }

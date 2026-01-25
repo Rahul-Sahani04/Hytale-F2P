@@ -658,7 +658,7 @@ input {
 }
 
 [data-theme="valorant"] .nav-item.active {
-    background: rgba(255, 70, 85, 0.1);
+    background: color-mix(in srgb, var(--color-primary), transparent 90%);
     box-shadow: inset 2px 0 0 var(--color-primary);
 }
 
@@ -718,7 +718,7 @@ input {
 /* Terraria Theme Overrides */
 [data-theme="terraria"] .sidebar {
     background: #1a1512;
-    border-right: 4px solid #3E9B48;
+    border-right: 4px solid var(--color-primary);
     image-rendering: pixelated;
 }
 
@@ -730,12 +730,12 @@ input {
 }
 
 [data-theme="terraria"] .nav-item:hover {
-    background: rgba(62, 155, 72, 0.2);
+    background: color-mix(in srgb, var(--color-primary), transparent 80%);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="terraria"] .nav-item.active {
-    background: #3E9B48;
+    background: var(--color-primary);
     color: white;
     border: 2px solid #1E5B28;
     box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.3);
@@ -762,12 +762,12 @@ input {
 
 [data-theme="japan"] .nav-item:hover {
     background: rgba(255, 183, 197, 0.2);
-    color: #FFB7C5;
+    color: var(--color-primary);
 }
 
 [data-theme="japan"] .nav-item.active {
     background: transparent;
-    color: #FFB7C5;
+    color: var(--color-primary);
 }
 
 [data-theme="japan"] .nav-item.active::before {
@@ -777,15 +777,15 @@ input {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #FFB7C5;
+    background: var(--color-primary);
     transform: translateX(-50%);
-    box-shadow: 0 0 8px #FFB7C5;
+    box-shadow: 0 0 8px var(--color-primary);
 }
 
 /* CSGO Theme Overrides */
 [data-theme="csgo"] .sidebar {
     background: linear-gradient(180deg, #1b2028, #0b0f13);
-    border-right: 2px solid #DE9B35;
+    border-right: 2px solid var(--color-primary);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
     /* Tactical cut */
 }
@@ -802,13 +802,13 @@ input {
 }
 
 [data-theme="csgo"] .nav-item:hover {
-    background: rgba(222, 155, 53, 0.1);
-    border-left-color: rgba(222, 155, 53, 0.5);
+    background: color-mix(in srgb, var(--color-primary), transparent 90%);
+    border-left-color: color-mix(in srgb, var(--color-primary), transparent 50%);
 }
 
 [data-theme="csgo"] .nav-item.active {
-    background: linear-gradient(90deg, rgba(222, 155, 53, 0.2), transparent);
-    border-left-color: #DE9B35;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--color-primary), transparent 80%), transparent);
+    border-left-color: var(--color-primary);
 }
 
 [data-theme="csgo"] .nav-item.active::before {

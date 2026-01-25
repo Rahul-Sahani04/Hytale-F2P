@@ -6,15 +6,15 @@
     "preview": "themes/previews/minecraft.png",
     "backgroundImage": "GUI/BackgroundWallpapers/minecraft.jpg",
     "colors": {
-        "primary": "#48B44A",
-        "secondary": "#2D2D2D",
-        "accent": "#000000",
-        "background": "#121212",
-        "surface": "#1F1F1F",
+        "primary": "#43B581",
+        "secondary": "#3C3C3C",
+        "accent": "#5CB85C",
+        "background": "#1D1D1D",
+        "surface": "#252525",
         "text": "#FFFFFF",
-        "textSecondary": "#B0B0B0",
-        "border": "#2D2D2D",
-        "success": "#48B44A",
+        "textSecondary": "#AAAAAA",
+        "border": "#3C3C3C",
+        "success": "#43B581",
         "error": "#FF5555",
         "warning": "#FFAA00"
     },
@@ -28,16 +28,16 @@
         "backdropFilter": "none"
     },
     "playButton": {
-        "background": "linear-gradient(180deg, #5CB85C 0%, #48B44A 100%)",
-        "backgroundColor": "#48B44A",
+        "background": "linear-gradient(180deg, #5CB85C 0%, #43B581 100%)",
+        "backgroundColor": "#43B581",
         "textColor": "#FFFFFF",
-        "border": "2px solid rgba(0,0,0,0.5)",
+        "border": "2px solid #2D2D2D",
         "borderRadius": "0px",
-        "boxShadow": "inset -4px -4px 0 rgba(0,0,0,0.2), inset 4px 4px 0 rgba(255,255,255,0.2)",
-        "boxShadow": "inset -4px -4px 0 rgba(0,0,0,0.2), inset 4px 4px 0 rgba(255,255,255,0.2)",
+        "boxShadow": "inset -4px -4px 0 rgba(0,0,0,0.4), inset 4px 4px 0 rgba(255,255,255,0.2)",
         "transform": "scale(1)",
         "hoverBackground": "linear-gradient(180deg, #66CC66 0%, #5CB85C 100%)",
-        "hoverTransform": "scale(1.02)",
+        "hoverTransform": "translateY(-2px)",
+        "hoverBoxShadow": "inset -4px -4px 0 rgba(0,0,0,0.4), inset 4px 4px 0 rgba(255,255,255,0.2), 0 4px 0 #1D1D1D",
         "textTransform": "uppercase"
     }
 }

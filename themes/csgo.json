@@ -9,8 +9,8 @@
         "primary": "#DE9B35",
         "secondary": "#2D3035",
         "accent": "#6A85B6",
-        "background": "#0D1117",
-        "surface": "rgba(33, 38, 45, 0.9)",
+        "background": "#0B0F13",
+        "surface": "rgba(22, 27, 34, 0.95)",
         "text": "#E6E6E6",
         "textSecondary": "#8B949E",
         "border": "#30363D",
@@ -19,30 +19,31 @@
         "warning": "#D29922"
     },
     "fonts": {
-        "primary": "'Stratum2', 'Arial', sans-serif",
-        "secondary": "'Arial', sans-serif"
+        "primary": "'Chakra Petch', sans-serif",
+        "secondary": "'Roboto Condensed', sans-serif"
     },
     "effects": {
         "borderRadius": "2px",
-        "boxShadow": "0 2px 8px rgba(0, 0, 0, 0.6)",
+        "boxShadow": "0 2px 8px rgba(0, 0, 0, 0.8)",
         "backdropFilter": "blur(4px)"
     },
     "sidebar": {
-        "background": "linear-gradient(180deg, #1b2028 0%, #0D1117 100%)",
+        "background": "linear-gradient(180deg, #161b22 0%, #0d1117 100%)",
         "borderRight": "2px solid #DE9B35",
         "itemColor": "#8B949E",
-        "itemBorderRadius": "4px"
+        "itemBorderRadius": "2px"
     },
     "playButton": {
         "background": "linear-gradient(180deg, #DE9B35 0%, #B87926 100%)",
         "backgroundColor": "#DE9B35",
-        "textColor": "#FFFFFF",
+        "textColor": "#0B0F13",
         "border": "1px solid #B87926",
         "borderRadius": "2px",
-        "boxShadow": "0 0 10px rgba(222, 155, 53, 0.2)",
-        "transform": "skew(-10deg)",
-        "hoverBackground": "linear-gradient(180deg, #E6A94D 0%, #C4832F 100%)",
-        "hoverTransform": "skew(-10deg) scale(1.02)",
+        "boxShadow": "0 2px 4px rgba(0,0,0,0.5)",
+        "transform": "skew(-15deg)",
+        "hoverBackground": "linear-gradient(180deg, #F0B14E 0%, #D89030 100%)",
+        "hoverTransform": "skew(-15deg) translateY(-1px)",
+        "hoverBoxShadow": "0 4px 12px rgba(222, 155, 53, 0.2)",
         "textTransform": "uppercase"
     }
 }

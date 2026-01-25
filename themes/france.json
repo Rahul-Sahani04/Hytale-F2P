@@ -6,44 +6,45 @@
     "preview": "GUI/BackgroundWallpapers/france.jpg",
     "backgroundImage": "GUI/BackgroundWallpapers/france.jpg",
     "colors": {
-        "primary": "#0055A4",
-        "secondary": "#EF4135",
-        "accent": "#FFFFFF",
-        "background": "#1a1a1a",
-        "surface": "rgba(255, 255, 255, 0.1)",
+        "primary": "#2196F3",
+        "secondary": "#E91E63",
+        "accent": "#FFD700",
+        "background": "#0F172A",
+        "surface": "rgba(255, 255, 255, 0.05)",
         "text": "#FFFFFF",
-        "textSecondary": "#CCCCCC",
-        "border": "rgba(255, 255, 255, 0.2)",
-        "success": "#28a745",
-        "error": "#dc3545",
-        "warning": "#ffc107"
+        "textSecondary": "#B0C4DE",
+        "border": "rgba(255, 255, 255, 0.1)",
+        "success": "#4CAF50",
+        "error": "#F44336",
+        "warning": "#FFC107"
     },
     "fonts": {
         "primary": "'Playfair Display', serif",
-        "secondary": "'Lato', sans-serif"
+        "secondary": "'Montserrat', sans-serif"
     },
     "effects": {
         "borderRadius": "8px",
-        "boxShadow": "0 4px 15px rgba(0, 0, 0, 0.3)",
-        "backdropFilter": "blur(10px)"
+        "boxShadow": "0 8px 32px rgba(0, 0, 0, 0.2)",
+        "backdropFilter": "blur(24px)"
     },
     "sidebar": {
-        "background": "rgba(255, 255, 255, 0.08)",
+        "background": "rgba(15, 23, 42, 0.6)",
         "backdropFilter": "blur(20px)",
-        "borderRight": "1px solid rgba(255, 255, 255, 0.15)",
-        "itemColor": "rgba(255, 255, 255, 0.8)",
+        "borderRight": "1px solid rgba(255, 255, 255, 0.05)",
+        "itemColor": "rgba(255, 255, 255, 0.7)",
         "itemBorderRadius": "50%"
     },
     "playButton": {
-        "background": "linear-gradient(135deg, #0055A4 0%, #003366 100%)",
-        "backgroundColor": "#0055A4",
+        "background": "linear-gradient(135deg, #2196F3 0%, #1976D2 100%)",
+        "backgroundColor": "#2196F3",
         "textColor": "#FFFFFF",
-        "border": "2px solid rgba(255,255,255,0.3)",
+        "border": "1px solid rgba(255,255,255,0.2)",
         "borderRadius": "8px",
-        "boxShadow": "0 4px 6px rgba(0,0,0,0.3)",
+        "boxShadow": "0 4px 15px rgba(33, 150, 243, 0.3)",
         "transform": "scale(1)",
-        "hoverBackground": "linear-gradient(135deg, #EF4135 0%, #B00000 100%)",
-        "hoverTransform": "scale(1.05)",
+        "hoverBackground": "linear-gradient(135deg, #42A5F5 0%, #1E88E5 100%)",
+        "hoverTransform": "translateY(-1px)",
+        "hoverBoxShadow": "0 6px 20px rgba(33, 150, 243, 0.5)",
         "textTransform": "uppercase"
     }
 }
