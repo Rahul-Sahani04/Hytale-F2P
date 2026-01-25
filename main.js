@@ -447,13 +447,6 @@ ipcMain.handle('launch-game', async (event, playerName, javaPath, installPath, g
 
 ipcMain.handle('install-game', async (event, playerName, javaPath, installPath, branch) => {
   try {
-    console.log(`[IPC] install-game called with parameters:`);
-    console.log(`  - playerName: ${playerName}`);
-    console.log(`  - javaPath: ${javaPath}`);
-    console.log(`  - installPath: ${installPath}`);
-    console.log(`  - branch: ${branch}`);
-    console.log(`[IPC] branch type: ${typeof branch}, value: ${JSON.stringify(branch)}`);
-    
     // Signal installation start
     if (mainWindow && !mainWindow.isDestroyed()) {
       mainWindow.webContents.send('installation-start');
@@ -633,7 +626,6 @@ ipcMain.handle('load-close-launcher', () => {
 });
 
 ipcMain.handle('select-install-path', async () => {
-
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openDirectory'],
     title: 'Select Installation Folder'
