@@ -286,7 +286,7 @@ The `.zip` version is useful for users who prefer a portable installation or nee
 
 ## 🛠️ Building from Source
 
-See [BUILD.md](BUILD.md) for comprehensive build instructions.
+See [BUILD.md](docs/BUILD.md) for comprehensive build instructions.
 
 ---
 
