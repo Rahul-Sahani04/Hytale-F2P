@@ -72,6 +72,15 @@ body:
       required: true
 
   - type: textarea
+    id: logs
+    attributes:
+      label: Logs or Error Messages
+      description: If applicable, paste any error messages or logs here.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
     id: additional
     attributes:
       label: Additional context
