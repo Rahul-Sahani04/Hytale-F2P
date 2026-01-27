@@ -52,11 +52,18 @@ function renderThemes(themes, activeId) {
             </div>
         `;
 
+        // Check if this is the default theme
+        const isDefaultTheme = theme.id === 'default';
+        const defaultBadge = isDefaultTheme ? '<span class="theme-default-badge"><i class="fas fa-star"></i></span>' : '';
+
         return `
             <div class="theme-card ${activeClass}" onclick="applyTheme('${theme.id}')">
                 <div class="theme-preview">
                    ${previewHtml}
-                   <div class="theme-active-badge">✓ Active</div>
+                   <div class="theme-active-badge">
+                       <i class="fas fa-check-circle"></i> Active
+                   </div>
+                   ${defaultBadge}
                 </div>
                 <div class="theme-info">
                     <div class="theme-header">
@@ -64,7 +71,9 @@ function renderThemes(themes, activeId) {
                     </div>
                     <p class="theme-description">${theme.description || ''}</p>
                     ${colorsHtml}
-                    <button class="theme-apply-btn">${btnText}</button>
+                    <button class="theme-apply-btn">
+                        ${isActive ? '<i class="fas fa-check"></i> Active' : '<i class="fas fa-magic"></i> Apply'}
+                    </button>
                 </div>
             </div>
         `;
@@ -79,14 +88,23 @@ async function applyTheme(themeId) {
         const theme = themes.find(t => t.id === themeId);
 
         if (theme) {
+            // Add transition class for smooth switching
+            document.body.classList.add('theme-transitioning');
+
             applyThemeToDOM(theme);
             renderThemes(themes, themeId);
 
             // Persist
             await window.electronAPI.applyTheme(themeId);
+
+            // Remove transition class after animation completes
+            setTimeout(() => {
+                document.body.classList.remove('theme-transitioning');
+            }, 450);
         }
     } catch (error) {
         console.error('Failed to apply theme:', error);
+        document.body.classList.remove('theme-transitioning');
     }
 }
 
