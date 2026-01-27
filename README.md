@@ -160,10 +160,12 @@
 <p id="fn2"><sup>Note 2</sup> Using Discrete/Dedicated GPU (dGPU) must have 8 GB RAM minimum.</p>
 <p id="fn3"><sup>Note 3</sup> Using Integrated GPU (dGPU) must have 12 GB RAM minimum.</p>
 
+> [!NOTE]
+> Warning
 
+---
 
 ### 🪟 Windows Prequisites
-* **
 * **Java JDK 25:**
   * [Oracle](https://www.oracle.com/java/technologies/downloads/#jdk25-windows), **no** support for Windows ARM64 in both version 25 and 21.
   * [Adoptium](https://adoptium.net/temurin/releases/?version=25), has Windows ARM64 support in version 21 only.
@@ -178,8 +180,8 @@
 > [!WARNING]
 > Ubuntu-based Distro like ZorinOS or Pop!_OS or Linux Mint would encounter issues due to UbuntuLTS environment, [check this Discord post](https://discord.com/channels/1462260103951421493/1463662398501027973).
 
-* Make sure you have already installed newest **GPU driver**, consult your distro docs or wiki.
-
+* Make sure you have already installed newest **GPU driver** especially proprietary NVIDIA, consult your distro docs or wiki.
+  * Also make sure that your GPU can be connected to EGL, try checking it first (again, consult your distro docs or wiki) before installing Hytale game via our launcher.
 * Install `libpng` package to avoid SDL3_Image error:
   * `libpng16-16 libpng-dev` for Ubuntu/Debian-based Distro
   * `libpng libpng-devel` for Fedora/RHEL-based Distro
@@ -197,6 +199,10 @@
     * Click **More info**.
     * Click **Run anyway**.
 4. **Launch:** Once installed, you can launch the app directly from your Desktop or the Start menu.
+5. **Whitelist in Windows Firewall to Avoid "Server Failed to Boot" Error** [#192](https://github.com/amiayweb/Hytale-F2P/issues/192#issuecomment-3803042908)
+    * Open the Windows Start Menu and search for `Allow an app through Windows Firewall`
+    * Click "Change settings" (you may need Admin privileges) and Locate `HytaleClient.exe` in the list.
+    * Ensure both the Private and Public checkboxes are checked. Click OK to save.
 
 ---
 
@@ -286,7 +292,7 @@ The `.zip` version is useful for users who prefer a portable installation or nee
 ## Dedicated Server
 
 > [!NOTE]
-> If you have already  `HytaleServer.jar` in `HytaleF2P/{release/pre-release}/package/game/latest/Server`, you can use it to host local dedicated server. 
+> If you already have the patched `HytaleServer.jar` in `HytaleF2P/{release/pre-release}/package/game/latest/Server`, you can use it to host local dedicated server. 
 
 > [!TIP]
 > Use services like Playit.gg, Tailscale, Radmin VPN to share UDP connection if setting up router as an admin is not possible.
@@ -295,7 +301,7 @@ The `.zip` version is useful for users who prefer a portable installation or nee
 > `Hytale-F2P-Server.rar` file is needed to set up a server on non-playing hardware (such as VPS/server hosting).
 
 > [!IMPORTANT]
-> See detailed information of setting up a server here: [SERVER.md](SERVER.md)
+> See detailed information of setting up a server here: [SERVER.md](SERVER.md). Download the latest patched JAR, the patched RAR, or the SH/BAT scripts from channel `#open-public-server` in our Discord Server. 
 
 ---
 
