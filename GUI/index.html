@@ -8,22 +8,29 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <!-- Custom Theme Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/cyberpunk-is-not-dead" rel="stylesheet">
 </head>
 
 <body class="bg-black text-white overflow-hidden font-sans select-none" tabindex="-1">
     <div class="absolute inset-0 z-0">
-        <img src="https://assets.authbp.xyz/bg.png" alt="Background" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="absolute inset-0 bg-black/60" id="app-background-overlay"></div>
+        <img id="app-background" src="https://i.imgur.com/Visrk66.png" alt="Background"
+            class="w-full h-full object-cover" />
+
         <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=" 0 0 256 256"
             xmlns="http://www.w3.org/2000/svg" %3E%3Cfilter id="noiseFilter" %3E%3CfeTurbulence type="fractalNoise"
             baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" /%3E%3C/filter%3E%3Crect width="100%25"
             height="100%25" filter="url(%23noiseFilter)" opacity="0.1" /%3E%3C/svg%3E')] opacity-20"></div>
     </div>
 
-    <div class="flex w-full h-screen relative z-10">
+    <div class="app-layout flex w-full h-screen relative z-10">
         <nav class="sidebar">
             <div class="sidebar-logo">
                 <img src="./icon.png" alt="Hytale Logo" />
@@ -352,7 +359,8 @@
                                                 onclick="repairGame()">
                                                 <i class="fas fa-tools"></i>
                                                 <div class="btn-content">
-                                                    <div class="btn-title" data-i18n="settings.repairGame">Repair Game
+                                                    <div class="btn-title" data-i18n="settings.repairGame">Repair
+                                                        Game
                                                     </div>
                                                     <div class="btn-description" data-i18n="settings.reinstallGame">
                                                         Reinstall game files (preserves data)
@@ -378,13 +386,13 @@
                                             </div>
                                             <p class="settings-hint">
                                                 <i class="fas fa-info-circle"></i>
-                                                <span data-i18n="settings.branchHint">Switch between stable release and
-                                                    experimental pre-release versions</span>
+                                                <span data-i18n="settings.branchHint">Switch between stable release
+                                                    and experimental pre-release versions</span>
                                             </p>
                                             <p class="settings-hint" style="color: #f39c12;">
                                                 <i class="fas fa-exclamation-triangle"></i>
-                                                <span data-i18n="settings.branchWarning">Changing branch will download
-                                                    and install a different game version</span>
+                                                <span data-i18n="settings.branchWarning">Changing branch will
+                                                    download and install a different game version</span>
                                             </p>
                                         </div>
                                     </div>
@@ -412,199 +420,205 @@
                                         <div id="gpu-detection-info" class="gpu-detection-info"></div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="settings-section">
-                                <h3 class="settings-section-title">
-                                    <i class="fas fa-fingerprint"></i>
-                                    <span data-i18n="settings.account">Player UUID Management</span>
-                                </h3>
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-fingerprint"></i>
+                                        <span data-i18n="settings.account">Player UUID Management</span>
+                                    </h3>
 
-                                <div class="settings-option">
-                                    <div class="settings-input-group">
-                                        <label class="settings-input-label" data-i18n="settings.currentUUID">Current
-                                            UUID</label>
-                                        <div class="uuid-display-container">
-                                            <input type="text" id="currentUuid" class="settings-input uuid-input"
-                                                readonly data-i18n-placeholder="settings.uuidPlaceholder" />
-                                            <button id="copyUuidBtn" class="uuid-btn copy-btn" title="Copy UUID">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="regenerateUuidBtn" class="uuid-btn regenerate-btn"
-                                                title="Generate New UUID">
-                                                <i class="fas fa-sync-alt"></i>
+                                    <div class="settings-option">
+                                        <div class="settings-input-group">
+                                            <label class="settings-input-label" data-i18n="settings.currentUUID">Current
+                                                UUID</label>
+                                            <div class="uuid-display-container">
+                                                <input type="text" id="currentUuid" class="settings-input uuid-input"
+                                                    readonly data-i18n-placeholder="settings.uuidPlaceholder" />
+                                                <button id="copyUuidBtn" class="uuid-btn copy-btn" title="Copy UUID">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                                <button id="regenerateUuidBtn" class="uuid-btn regenerate-btn"
+                                                    title="Generate New UUID">
+                                                    <i class="fas fa-sync-alt"></i>
+                                                </button>
+                                            </div>
+                                            <p class="settings-hint">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span data-i18n="settings.uuidHint">Your unique player identifier for
+                                                    this username</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="settings-option">
+                                        <div class="settings-button-group">
+                                            <button id="manageUuidsBtn" class="settings-action-btn">
+                                                <i class="fas fa-list"></i>
+                                                <div class="btn-content">
+                                                    <div class="btn-title" data-i18n="settings.manageUUIDs">Manage All
+                                                        UUIDs</div>
+                                                    <div class="btn-description" data-i18n="settings.manageUUIDsDesc">
+                                                        View and manage all player UUIDs</div>
+                                                </div>
                                             </button>
                                         </div>
-                                        <p class="settings-hint">
-                                            <i class="fas fa-info-circle"></i>
-                                            <span data-i18n="settings.uuidHint">Your unique player identifier for
-                                                this username</span>
-                                        </p>
                                     </div>
                                 </div>
 
-                                <div class="settings-option">
-                                    <div class="settings-button-group">
-                                        <button id="manageUuidsBtn" class="settings-action-btn">
-                                            <i class="fas fa-list"></i>
-                                            <div class="btn-content">
-                                                <div class="btn-title" data-i18n="settings.manageUUIDs">Manage All
-                                                    UUIDs</div>
-                                                <div class="btn-description" data-i18n="settings.manageUUIDsDesc">
-                                                    View and manage all player UUIDs</div>
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fab fa-discord"></i>
+                                        <span data-i18n="settings.discord">Discord Integration</span>
+                                    </h3>
+
+                                    <div class="settings-option">
+                                        <label class="settings-checkbox">
+                                            <input type="checkbox" id="discordRPCCheck" checked />
+                                            <span class="checkmark"></span>
+                                            <div class="checkbox-content">
+                                                <div class="checkbox-title" data-i18n="settings.enableRPC">Enable
+                                                    Discord Rich Presence</div>
+                                                <div class="checkbox-description"
+                                                    data-i18n="settings.discordDescription">Show your launcher activity
+                                                    on Discord
+                                                </div>
                                             </div>
-                                        </button>
+                                        </label>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="settings-section">
-                                <h3 class="settings-section-title">
-                                    <i class="fab fa-discord"></i>
-                                    <span data-i18n="settings.discord">Discord Integration</span>
-                                </h3>
-
-                                <div class="settings-option">
-                                    <label class="settings-checkbox">
-                                        <input type="checkbox" id="discordRPCCheck" checked />
-                                        <span class="checkmark"></span>
-                                        <div class="checkbox-content">
-                                            <div class="checkbox-title" data-i18n="settings.enableRPC">Enable
-                                                Discord Rich Presence</div>
-                                            <div class="checkbox-description" data-i18n="settings.discordDescription">
-                                                Show your launcher activity
-                                                on Discord
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="settings-section">
-                                <h3 class="settings-section-title">
-                                    <i class="fas fa-window-close"></i>
-                                    <span data-i18n="settings.closeLauncher">Launcher Behavior</span>
-                                </h3>
-
-                                <div class="settings-option">
-                                    <label class="settings-checkbox">
-                                        <input type="checkbox" id="closeLauncherCheck" />
-                                        <span class="checkmark"></span>
-                                        <div class="checkbox-content">
-                                            <div class="checkbox-title" data-i18n="settings.closeOnStart">Close Launcher
-                                                on game start</div>
-                                            <div class="checkbox-description"
-                                                data-i18n="settings.closeOnStartDescription">
-                                                Automatically close the launcher after Hytale has launched
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="settings-option">
-                                    <label class="settings-checkbox">
-                                        <input type="checkbox" id="launcherHwAccelCheck" />
-                                        <span class="checkmark"></span>
-                                        <div class="checkbox-content">
-                                            <div class="checkbox-title" data-i18n="settings.hwAccel">Launcher Hardware
-                                                Acceleration</div>
-                                            <div class="checkbox-description" data-i18n="settings.hwAccelDescription">
-                                                Enable hardware acceleration for the launcher UI (Requires restart)
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-
-                            <div class="settings-section">
-                                <h3 class="settings-section-title">
-                                    <i class="fas fa-coffee"></i>
-                                    <span data-i18n="settings.java">Java Runtime</span>
-                                </h3>
-
-                                <div class="settings-option">
-                                    <label class="settings-checkbox">
-                                        <input type="checkbox" id="customJavaCheck" />
-                                        <span class="checkmark"></span>
-                                        <div class="checkbox-content">
-                                            <div class="checkbox-title" data-i18n="settings.useCustomJava">Use
-                                                Custom Java Path</div>
-                                            <div class="checkbox-description" data-i18n="settings.javaDescription">
-                                                Override the bundled Java runtime with
-                                                your own installation</div>
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div id="customJavaOptions" class="custom-java-options" style="display: none;">
-                                    <div class="settings-input-group">
-                                        <label class="settings-input-label" data-i18n="settings.javaPath">Java
-                                            Executable Path</label>
-                                        <div class="settings-input-with-button">
-                                            <input type="text" id="customJavaPath" class="settings-input"
-                                                data-i18n-placeholder="settings.javaPathPlaceholder" readonly />
-                                            <button id="browseJavaBtn" class="settings-browse-btn">
-                                                <i class="fas fa-folder-open"></i>
-                                                <span data-i18n="settings.javaBrowse">Browse</span>
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-palette"></i>
+                                        Appearance
+                                    </h3>
+                                    <div class="settings-option">
+                                        <div class="settings-button-group">
+                                            <button id="openThemesModalBtn" class="settings-action-btn"
+                                                onclick="openThemesModal()">
+                                                <i class="fas fa-paint-brush"></i>
+                                                <div class="btn-content">
+                                                    <div class="btn-title">Change Theme</div>
+                                                    <div class="btn-description">Select from available launcher themes
+                                                    </div>
+                                                </div>
                                             </button>
                                         </div>
-                                        <p class="settings-hint">
-                                            <i class="fas fa-info-circle"></i>
-                                            <span data-i18n="settings.javaHint">Select the Java installation folder
-                                                (supports Windows, Mac, Linux)</span>
-                                        </p>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="settings-section">
-                                <h3 class="settings-section-title">
-                                    <i class="fas fa-language"></i>
-                                    <span data-i18n="settings.language">Language</span>
-                                </h3>
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-window-close"></i>
+                                        <span data-i18n="settings.closeLauncher">Launcher Behavior</span>
+                                    </h3>
 
-                                <div class="settings-option">
-                                    <div class="settings-input-group">
-                                        <label class="settings-input-label" data-i18n="settings.selectLanguage">Select
-                                            Language</label>
-                                        <select id="languageSelect" class="settings-input">
-                                            <!-- Options populated by i18n.js -->
-                                        </select>
+                                    <div class="settings-option">
+                                        <label class="settings-checkbox">
+                                            <input type="checkbox" id="closeLauncherCheck" />
+                                            <span class="checkmark"></span>
+                                            <div class="checkbox-content">
+                                                <div class="checkbox-title" data-i18n="settings.closeOnStart">Close
+                                                    Launcher on game start</div>
+                                                <div class="checkbox-description"
+                                                    data-i18n="settings.closeOnStartDescription">
+                                                    Automatically close the launcher after Hytale has launched
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-coffee"></i>
+                                        <span data-i18n="settings.java">Java Runtime</span>
+                                    </h3>
+
+                                    <div class="settings-option">
+                                        <label class="settings-checkbox">
+                                            <input type="checkbox" id="customJavaCheck" />
+                                            <span class="checkmark"></span>
+                                            <div class="checkbox-content">
+                                                <div class="checkbox-title" data-i18n="settings.useCustomJava">Use
+                                                    Custom Java Path</div>
+                                                <div class="checkbox-description" data-i18n="settings.javaDescription">
+                                                    Override the bundled Java runtime with
+                                                    your own installation</div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div id="customJavaOptions" class="custom-java-options" style="display: none;">
+                                        <div class="settings-input-group">
+                                            <label class="settings-input-label" data-i18n="settings.javaPath">Java
+                                                Executable Path</label>
+                                            <div class="settings-input-with-button">
+                                                <input type="text" id="customJavaPath" class="settings-input"
+                                                    data-i18n-placeholder="settings.javaPathPlaceholder" readonly />
+                                                <button id="browseJavaBtn" class="settings-browse-btn">
+                                                    <i class="fas fa-folder-open"></i>
+                                                    <span data-i18n="settings.javaBrowse">Browse</span>
+                                                </button>
+                                            </div>
+                                            <p class="settings-hint">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span data-i18n="settings.javaHint">Select the Java installation folder
+                                                    (supports Windows, Mac, Linux)</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-language"></i>
+                                        <span data-i18n="settings.language">Language</span>
+                                    </h3>
+
+                                    <div class="settings-option">
+                                        <div class="settings-input-group">
+                                            <label class="settings-input-label"
+                                                data-i18n="settings.selectLanguage">Select Language</label>
+                                            <select id="languageSelect" class="settings-input">
+                                                <!-- Options populated by i18n.js -->
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div id="logs-page" class="page">
-                    <div class="logs-container">
-                        <div class="logs-header">
-                            <h2 class="logs-title">
-                                <i class="fas fa-terminal"></i>
-                                <span data-i18n="settings.logs">SYSTEM LOGS</span>
-                            </h2>
-                            <div class="logs-actions">
-                                <button class="logs-action-btn" onclick="copyLogs()">
-                                    <i class="fas fa-copy"></i> <span data-i18n="settings.logsCopy">Copy</span>
-                                </button>
-                                <button class="logs-action-btn" onclick="refreshLogs()">
-                                    <i class="fas fa-sync-alt"></i> <span
-                                        data-i18n="settings.logsRefresh">Refresh</span>
-                                </button>
-                                <button class="logs-action-btn" onclick="openLogsFolder()">
-                                    <i class="fas fa-folder-open"></i> <span data-i18n="settings.logsFolder">Open
-                                        Folder</span>
-                                </button>
+                    <div id="logs-page" class="page">
+                        <div class="logs-container">
+                            <div class="logs-header">
+                                <h2 class="logs-title">
+                                    <i class="fas fa-terminal"></i>
+                                    <span data-i18n="settings.logs">SYSTEM LOGS</span>
+                                </h2>
+                                <div class="logs-actions">
+                                    <button class="logs-action-btn" onclick="copyLogs()">
+                                        <i class="fas fa-copy"></i> <span data-i18n="settings.logsCopy">Copy</span>
+                                    </button>
+                                    <button class="logs-action-btn" onclick="refreshLogs()">
+                                        <i class="fas fa-sync-alt"></i> <span
+                                            data-i18n="settings.logsRefresh">Refresh</span>
+                                    </button>
+                                    <button class="logs-action-btn" onclick="openLogsFolder()">
+                                        <i class="fas fa-folder-open"></i> <span data-i18n="settings.logsFolder">Open
+                                            Folder</span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div id="logsTerminal" class="logs-terminal">
-                            <div class="text-gray-500 text-center mt-10" data-i18n="settings.logsLoading">Loading
-                                logs...</div>
+                            <div id="logsTerminal" class="logs-terminal">
+                                <div class="text-gray-500 text-center mt-10" data-i18n="settings.logsLoading">Loading
+                                    logs...</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
     </div>
 
@@ -758,6 +772,26 @@
         </div>
     </div>
 
+    <!-- Themes Modal -->
+    <div id="themesModal" class="themes-modal">
+        <div class="themes-modal-content">
+            <div class="themes-modal-header">
+                <h2 class="themes-modal-title">
+                    <i class="fas fa-palette mr-2"></i>
+                    <span data-i18n="settings.themesTitle">THEMES</span>
+                </h2>
+                <button class="themes-modal-close" onclick="closeThemesModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="themes-modal-body">
+                <div id="themesGrid" class="themes-grid">
+                    <!-- Themes populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Profile Manager Modal -->
     <div id="profileManagerModal" class="profile-modal" style="display: none;">
         <div class="profile-modal-content">
@@ -880,6 +914,7 @@
     </div>
 
     <script src="js/i18n.js"></script>
+    <script src="js/themes.js"></script>
     <script type="module" src="js/settings.js"></script>
     <script type="module" src="js/update.js"></script>
     <script src="js/updater.js"></script>

@@ -21,3 +21,6 @@ backend/patcher/
 .DS_Store
 *.zst.DS_Store
 bun.lock
+THEME_DESIGN_BRIEF.md
+Themes.md
+themes/
