@@ -1,0 +1,53 @@
+{
+    "id": "cyberpunk",
+    "name": "Cyberpunk 2077",
+    "description": "High contrast, neon yellow and blue glitch aesthetic",
+    "author": "System",
+    "preview": "themes/previews/cyberpunk.png",
+    "backgroundImage": "themes/backgrounds/cyberpunk.jpg",
+    "overlayOpacity": 0.7,
+    "colors": {
+        "primary": "#FCEE09",
+        "secondary": "#00F0FF",
+        "accent": "#FF003C",
+        "background": "#0A0A0A",
+        "surface": "rgba(15, 15, 15, 0.95)",
+        "text": "#FFFFFF",
+        "textSecondary": "#00F0FF",
+        "border": "rgba(252, 238, 9, 0.5)",
+        "success": "#39FF14",
+        "error": "#FF003C",
+        "warning": "#FCEE09"
+    },
+    "fonts": {
+        "primary": "'Space Grotesk', sans-serif",
+        "secondary": "'JetBrains Mono', monospace"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "3px 3px 0px rgba(252, 238, 9, 0.7), 0 0 20px rgba(252, 238, 9, 0.1)",
+        "backdropFilter": "none"
+    },
+    "sidebar": {
+        "background": "rgba(10, 10, 10, 0.95)",
+        "borderRight": "2px solid #FCEE09",
+        "itemColor": "#00F0FF",
+        "itemBorderRadius": "0px",
+        "boxShadow": "inset -2px 0 20px rgba(252, 238, 9, 0.1)"
+    },
+    "playButton": {
+        "background": "linear-gradient(90deg, #FCEE09, #F2D809)",
+        "backgroundColor": "#FCEE09",
+        "textColor": "#000000",
+        "border": "none",
+        "borderRadius": "0px",
+        "boxShadow": "4px 4px 0px #00F0FF, 0 0 30px rgba(252, 238, 9, 0.3)",
+        "transform": "scale(1)",
+        "hoverBackground": "#FFFFFF",
+        "hoverTextColor": "#000000",
+        "hoverTransform": "translate(-2px, -2px)",
+        "hoverBoxShadow": "6px 6px 0px #FF003C, 0 0 40px rgba(255, 0, 60, 0.4)",
+        "clipPath": "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+        "textTransform": "uppercase"
+    }
+}

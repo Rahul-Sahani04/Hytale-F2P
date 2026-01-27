@@ -1,0 +1,51 @@
+{
+  "id": "neon-grid",
+  "name": "Neon Grid",
+  "description": "Cyberpunk-inspired grid aesthetic with vibrant neon colors",
+  "author": "System",
+  "preview": "themes/previews/neon-grid.png",
+  "backgroundImage": "themes/backgrounds/neon-grid.jpg",
+  "colors": {
+    "primary": "#0FFF50",
+    "secondary": "#050505",
+    "accent": "#FF006E",
+    "background": "#000000",
+    "surface": "rgba(20, 20, 20, 0.9)",
+    "text": "#FFFFFF",
+    "textSecondary": "#00FF88",
+    "border": "rgba(15, 255, 80, 0.2)",
+    "success": "#0FFF50",
+    "error": "#FF006E",
+    "warning": "#FFBE0B"
+  },
+  "fonts": {
+    "primary": "'JetBrains Mono', monospace",
+    "secondary": "'Rajdhani', sans-serif"
+  },
+  "effects": {
+    "borderRadius": "2px",
+    "boxShadow": "0 0 16px rgba(15, 255, 80, 0.3)",
+    "backdropFilter": "blur(12px)"
+  },
+  "sidebar": {
+    "background": "rgba(0, 0, 0, 0.95)",
+    "borderRight": "2px solid rgba(15, 255, 80, 0.3)",
+    "itemColor": "#00FF88",
+    "itemBorderRadius": "2px"
+  },
+  "playButton": {
+    "background": "linear-gradient(135deg, #0FFF50 0%, #00FF88 100%)",
+    "backgroundColor": "#0FFF50",
+    "textColor": "#000000",
+    "border": "2px solid #0FFF50",
+    "borderRadius": "2px",
+    "boxShadow": "0 0 24px rgba(15, 255, 80, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    "transform": "scale(1)",
+    "hoverBackground": "linear-gradient(135deg, #00FF88 0%, #0FFF50 100%)",
+    "hoverTransform": "scale(1.05)",
+    "hoverBoxShadow": "0 0 32px rgba(15, 255, 80, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    "textTransform": "uppercase",
+    "fontWeight": "900",
+    "letterSpacing": "0.12em"
+  }
+}

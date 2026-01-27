@@ -1,0 +1,55 @@
+{
+    "id": "france_editorial",
+    "name": "France",
+    "description": "High-fashion minimalist design inspired by Saint Laurent. Restraint, typography, and negative space.",
+    "author": "System",
+    "preview": "themes/backgrounds/france_editorial.jpg",
+    "backgroundImage": "themes/backgrounds/france_editorial.jpg",
+    "overlayOpacity": 0.2,
+    "colors": {
+        "primary": "#000000",
+        "secondary": "#FFFFFF",
+        "accent": "#FFFFFF",
+        "background": "#050505",
+        "surface": "#0C0C0C",
+        "surfaceElevated": "#141414",
+        "text": "#FFFFFF",
+        "textSecondary": "#888888",
+        "border": "#333333",
+        "success": "#FFFFFF",
+        "error": "#FF3333",
+        "warning": "#FFFFFF"
+    },
+    "fonts": {
+        "primary": "'Playfair Display', serif",
+        "secondary": "'Inter', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "backdropFilter": "none"
+    },
+    "sidebar": {
+        "background": "#050505",
+        "borderRight": "1px solid #333333",
+        "itemColor": "#666666",
+        "itemHoverColor": "#FFFFFF",
+        "itemActiveColor": "#FFFFFF",
+        "itemBorderRadius": "0px"
+    },
+    "topBar": {
+        "background": "#050505",
+        "borderBottom": "1px solid #333333",
+        "textColor": "#FFFFFF"
+    },
+    "playButton": {
+        "backgroundColor": "#FFFFFF",
+        "textColor": "#000000",
+        "border": "1px solid #FFFFFF",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "hoverBackground": "#2B2B2B",
+        "hoverTextColor": "#FFFFFF",
+        "hoverTransform": "none"
+    }
+}

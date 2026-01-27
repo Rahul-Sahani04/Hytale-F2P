@@ -1,0 +1,61 @@
+{
+  "id": "aurora",
+  "name": "Aurora",
+  "description": "Slow northern lights in an empty sky. Depth, softness, and restraint.",
+  "author": "System",
+  "preview": "themes/backgrounds/aurora.jpg",
+  "backgroundImage": "themes/backgrounds/aurora.jpg",
+  "overlayOpacity": 0.7,
+  "colors": {
+    "primary": "#818cf8",
+    "secondary": "#a5b4fc",
+    "accent": "#c084fc",
+    "background": "#02040a",
+    "surface": "rgba(255, 255, 255, 0.03)",
+    "surfaceElevated": "rgba(255, 255, 255, 0.07)",
+    "text": "#F0F4FF",
+    "textSecondary": "#94a3b8",
+    "border": "rgba(255, 255, 255, 0.05)",
+    "success": "#34d399",
+    "error": "#fb7185",
+    "warning": "#fbbf24"
+  },
+  "fonts": {
+    "primary": "'Space Grotesk', sans-serif",
+    "secondary": "'Inter', sans-serif"
+  },
+  "effects": {
+    "borderRadius": "24px",
+    "boxShadow": "0 20px 50px rgba(0,0,0,0.5)",
+    "backdropFilter": "blur(40px)"
+  },
+  "sidebar": {
+    "background": "transparent",
+    "borderRight": "none",
+    "borderLeft": "none",
+    "itemColor": "#64748b",
+    "itemHoverColor": "#e2e8f0",
+    "itemActiveColor": "#ffffff",
+    "itemBorderRadius": "16px"
+  },
+  "topBar": {
+    "background": "transparent",
+    "borderBottom": "none",
+    "textColor": "#F0F4FF"
+  },
+  "playButton": {
+    "background": "linear-gradient(135deg, rgba(129, 140, 248, 0.8) 0%, rgba(96, 165, 250, 0.6) 100%)",
+    "backgroundColor": "#818cf8",
+    "textColor": "#FFFFFF",
+    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "borderRadius": "24px",
+    "boxShadow": "0 0 40px rgba(129, 140, 248, 0.2)",
+    "transform": "scale(1)",
+    "hoverBackground": "linear-gradient(135deg, rgba(129, 140, 248, 0.9) 0%, rgba(96, 165, 250, 0.8) 100%)",
+    "hoverTransform": "translateY(-2px)",
+    "hoverBoxShadow": "0 0 60px rgba(129, 140, 248, 0.4)",
+    "textTransform": "uppercase",
+    "fontWeight": "600",
+    "letterSpacing": "0.1em"
+  }
+}

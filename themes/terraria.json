@@ -1,0 +1,52 @@
+{
+    "id": "terraria",
+    "name": "Terraria",
+    "description": "Adventure awaits in this pixel-perfect world",
+    "author": "System",
+    "preview": "themes/backgrounds/terraria.jpg",
+    "backgroundImage": "themes/backgrounds/terraria.jpg",
+    "colors": {
+        "primary": "#4CAF50",
+        "secondary": "#8B4513",
+        "accent": "#FFD700",
+        "background": "#1A1512",
+        "surface": "rgba(40, 30, 20, 0.95)",
+        "text": "#F5F5F5",
+        "textSecondary": "#BDBDBD",
+        "border": "#4CAF50",
+        "success": "#4CAF50",
+        "error": "#E53935",
+        "warning": "#FFA726"
+    },
+    "fonts": {
+        "primary": "'VT323', monospace",
+        "secondary": "'Roboto', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "4px 4px 0px rgba(0, 0, 0, 0.7)",
+        "backdropFilter": "none"
+    },
+    "sidebar": {
+        "background": "linear-gradient(180deg, rgba(26, 21, 18, 0.98) 0%, rgba(20, 16, 14, 0.98) 100%)",
+        "borderColor": "#4CAF50",
+        "borderRight": "4px solid #4CAF50",
+        "borderRadius": "0px",
+        "itemColor": "#F5F5F5",
+        "textColor": "#FFFFFF",
+        "itemBorderRadius": "0px"
+    },
+    "playButton": {
+        "background": "linear-gradient(180deg, #4CAF50 0%, #388E3C 100%)",
+        "backgroundColor": "#4CAF50",
+        "textColor": "#FFFFFF",
+        "border": "4px solid #2E7D32",
+        "borderRadius": "0px",
+        "boxShadow": "inset -4px -4px 0 rgba(0,0,0,0.4), inset 4px 4px 0 rgba(255,255,255,0.25), 4px 4px 0px #000, 0 0 20px rgba(76, 175, 80, 0.3)",
+        "transform": "scale(1)",
+        "hoverBackground": "linear-gradient(180deg, #66BB6A 0%, #4CAF50 100%)",
+        "hoverTransform": "translateY(-2px)",
+        "hoverBoxShadow": "inset -4px -4px 0 rgba(0,0,0,0.4), inset 4px 4px 0 rgba(255,255,255,0.25), 6px 6px 0px #000, 0 0 30px rgba(76, 175, 80, 0.4)",
+        "textTransform": "uppercase"
+    }
+}

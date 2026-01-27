@@ -1,0 +1,51 @@
+{
+  "id": "void",
+  "name": "Void",
+  "description": "Ultra-dark, high-contrast theme for competitive gaming with neon accents",
+  "author": "System",
+  "preview": "themes/previews/void.png",
+  "backgroundImage": "themes/backgrounds/void.jpg",
+  "colors": {
+    "primary": "#FF00FF",
+    "secondary": "#1A1A1F",
+    "accent": "#00FFFF",
+    "background": "#050505",
+    "surface": "rgba(20, 20, 25, 0.9)",
+    "text": "#FFFFFF",
+    "textSecondary": "#888899",
+    "border": "rgba(255, 0, 255, 0.1)",
+    "success": "#00FF00",
+    "error": "#FF0055",
+    "warning": "#FFFF00"
+  },
+  "fonts": {
+    "primary": "'JetBrains Mono', monospace",
+    "secondary": "'Space Grotesk', sans-serif"
+  },
+  "effects": {
+    "borderRadius": "4px",
+    "boxShadow": "0 0 20px rgba(255, 0, 255, 0.3)",
+    "backdropFilter": "blur(10px)"
+  },
+  "sidebar": {
+    "background": "rgba(5, 5, 5, 0.95)",
+    "borderRight": "2px solid #FF00FF",
+    "itemColor": "#888899",
+    "itemBorderRadius": "4px"
+  },
+  "playButton": {
+    "background": "linear-gradient(135deg, #FF00FF 0%, #FF0088 100%)",
+    "backgroundColor": "#FF00FF",
+    "textColor": "#FFFFFF",
+    "border": "2px solid #FF00FF",
+    "borderRadius": "4px",
+    "boxShadow": "0 0 30px rgba(255, 0, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    "transform": "scale(1)",
+    "hoverBackground": "linear-gradient(135deg, #FF0088 0%, #FF0055 100%)",
+    "hoverTransform": "scale(1.02)",
+    "hoverBoxShadow": "0 0 40px rgba(255, 0, 255, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    "textTransform": "uppercase",
+    "fontWeight": "800",
+    "letterSpacing": "0.1em"
+  }
+}

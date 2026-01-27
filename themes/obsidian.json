@@ -1,0 +1,51 @@
+{
+  "id": "obsidian",
+  "name": "Obsidian",
+  "description": "Luxury dark theme with elegant gold accents and premium glassmorphism",
+  "author": "System",
+  "preview": "themes/previews/obsidian.png",
+  "backgroundImage": "themes/backgrounds/obsidian.jpg",
+  "colors": {
+    "primary": "#D4AF37",
+    "secondary": "#1A1410",
+    "accent": "#C5A028",
+    "background": "#0D0B08",
+    "surface": "rgba(26, 20, 16, 0.8)",
+    "text": "#F5F1E8",
+    "textSecondary": "#A89968",
+    "border": "rgba(212, 175, 55, 0.15)",
+    "success": "#7CFC00",
+    "error": "#FF4444",
+    "warning": "#FFD700"
+  },
+  "fonts": {
+    "primary": "'Space Grotesk', sans-serif",
+    "secondary": "'Georgia', serif"
+  },
+  "effects": {
+    "borderRadius": "12px",
+    "boxShadow": "0 12px 40px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    "backdropFilter": "blur(20px)"
+  },
+  "sidebar": {
+    "background": "rgba(13, 11, 8, 0.95)",
+    "borderRight": "1px solid rgba(212, 175, 55, 0.2)",
+    "itemColor": "#A89968",
+    "itemBorderRadius": "8px"
+  },
+  "playButton": {
+    "background": "linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)",
+    "backgroundColor": "#D4AF37",
+    "textColor": "#0D0B08",
+    "border": "1px solid rgba(212, 175, 55, 0.3)",
+    "borderRadius": "8px",
+    "boxShadow": "0 8px 24px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
+    "transform": "scale(1)",
+    "hoverBackground": "linear-gradient(135deg, #E5C158 0%, #D4AF37 100%)",
+    "hoverTransform": "translateY(-3px)",
+    "hoverBoxShadow": "0 12px 32px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
+    "textTransform": "uppercase",
+    "fontWeight": "700",
+    "letterSpacing": "0.08em"
+  }
+}

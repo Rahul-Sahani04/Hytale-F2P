@@ -1,0 +1,165 @@
+{
+  "name": "hytale-f2p-launcher",
+  "version": "2.1.0",
+  "description": "A modern, cross-platform launcher for Hytale with automatic updates and multi-client support",
+  "keywords": [
+    "hytale",
+    "launcher",
+    "game",
+    "client",
+    "cross-platform",
+    "electron",
+    "auto-update",
+    "mod-manager",
+    "chat"
+  ],
+  "homepage": "https://github.com/amiayweb/Hytale-F2P",
+  "license": "MIT",
+  "author": {
+    "name": "AMIAY",
+    "email": "support@amiay.dev"
+  },
+  "maintainers": [
+    {
+      "name": "Terromur",
+      "url": "https://github.com/Terromur"
+    },
+    {
+      "name": "Fari Gading",
+      "email": "fazrigading@gmail.com",
+      "url": "https://github.com/fazrigading"
+    }
+  ],
+  "main": "main.js",
+  "scripts": {
+    "build": "electron-builder",
+    "build:all": "electron-builder --win --linux --mac",
+    "build:linux": "electron-builder --linux",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "dev": "electron . --dev",
+    "start": "electron ."
+  },
+  "overrides": {
+    "tar": "$tar"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "axios": "^1.6.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "discord-rpc": "^4.0.1",
+    "dotenv": "^17.2.3",
+    "electron-updater": "^6.7.3",
+    "fs-extra": "^11.3.3",
+    "lucide-react": "0.563.0",
+    "next": "16.1.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "3.4.0",
+    "tailwindcss-animate": "1.0.7",
+    "tar": "^6.2.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "25.0.10",
+    "@types/react": "19.2.9",
+    "@types/react-dom": "19.2.3",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.4.0",
+    "postcss": "8.5.6",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3"
+  },
+  "build": {
+    "appId": "com.hytalef2p.launcher",
+    "productName": "Hytale F2P Launcher",
+    "artifactName": "${name}_${version}_${arch}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "backend/**/*",
+      "**/*",
+      "package.json",
+      ".env"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "pacman",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "Game"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "icon": "build/icon.icns",
+      "category": "public.app-category.games"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "amiayweb",
+      "repo": "Hytale-F2P"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "id": "csgo",
+    "name": "CS:GO",
+    "description": "Tactical shooter aesthetic",
+    "author": "System",
+    "preview": "themes/backgrounds/csgo.jpg",
+    "backgroundImage": "themes/backgrounds/csgo.jpg",
+    "overlayOpacity": 0.5,
+    "colors": {
+        "primary": "#F59E0B",
+        "secondary": "#1F2937",
+        "accent": "#6B7280",
+        "background": "#0B0F13",
+        "surface": "rgba(31, 41, 55, 0.95)",
+        "text": "#F3F4F6",
+        "textSecondary": "#9CA3AF",
+        "border": "rgba(245, 158, 11, 0.3)",
+        "success": "#22C55E",
+        "error": "#EF4444",
+        "warning": "#F59E0B"
+    },
+    "fonts": {
+        "primary": "'Chakra Petch', sans-serif",
+        "secondary": "'Roboto Condensed', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "2px",
+        "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.6)",
+        "backdropFilter": "blur(8px)"
+    },
+    "sidebar": {
+        "background": "linear-gradient(180deg, rgba(31, 41, 55, 0.98) 0%, rgba(11, 15, 19, 0.98) 100%)",
+        "borderRight": "2px solid #F59E0B",
+        "itemColor": "#9CA3AF",
+        "itemBorderRadius": "2px",
+        "boxShadow": "inset -1px 0 20px rgba(245, 158, 11, 0.05)"
+    },
+    "playButton": {
+        "background": "linear-gradient(180deg, #F59E0B 0%, #D97706 100%)",
+        "backgroundColor": "#F59E0B",
+        "textColor": "#0B0F13",
+        "border": "1px solid #B45309",
+        "borderRadius": "2px",
+        "boxShadow": "0 4px 15px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
+        "transform": "skew(-15deg)",
+        "hoverBackground": "linear-gradient(180deg, #FBBF24 0%, #F59E0B 100%)",
+        "hoverTransform": "skew(-15deg) translateY(-2px)",
+        "hoverBoxShadow": "0 8px 25px rgba(245, 158, 11, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+        "textTransform": "uppercase"
+    }
+}

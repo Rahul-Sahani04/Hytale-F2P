@@ -1,0 +1,49 @@
+{
+    "id": "minecraft",
+    "name": "Minecraft",
+    "description": "Vibrant Creeper-green aesthetic on a modern dark background",
+    "author": "System",
+    "preview": "themes/previews/minecraft.png",
+    "backgroundImage": "themes/backgrounds/minecraft.jpg",
+    "colors": {
+        "primary": "#4ADE80",
+        "secondary": "#3C3C3C",
+        "accent": "#5CB85C",
+        "background": "#1A1A1A",
+        "surface": "rgba(40, 40, 40, 0.95)",
+        "text": "#FFFFFF",
+        "textSecondary": "#B0B0B0",
+        "border": "#3C3C3C",
+        "success": "#4ADE80",
+        "error": "#FF5555",
+        "warning": "#FFAA00"
+    },
+    "fonts": {
+        "primary": "'VT323', monospace",
+        "secondary": "'Roboto', sans-serif"
+    },
+    "effects": {
+        "borderRadius": "0px",
+        "boxShadow": "4px 4px 0 rgba(0, 0, 0, 0.5)",
+        "backdropFilter": "none"
+    },
+    "sidebar": {
+        "background": "rgba(30, 30, 30, 0.95)",
+        "borderRight": "4px solid #3C3C3C",
+        "itemColor": "#B0B0B0",
+        "itemBorderRadius": "0px"
+    },
+    "playButton": {
+        "background": "linear-gradient(180deg, #5CB85C 0%, #4ADE80 100%)",
+        "backgroundColor": "#4ADE80",
+        "textColor": "#FFFFFF",
+        "border": "3px solid #2D2D2D",
+        "borderRadius": "0px",
+        "boxShadow": "inset -4px -4px 0 rgba(0,0,0,0.5), inset 4px 4px 0 rgba(255,255,255,0.25), 4px 4px 0 #1A1A1A",
+        "transform": "scale(1)",
+        "hoverBackground": "linear-gradient(180deg, #6EE87A 0%, #5CB85C 100%)",
+        "hoverTransform": "translateY(-3px)",
+        "hoverBoxShadow": "inset -4px -4px 0 rgba(0,0,0,0.5), inset 4px 4px 0 rgba(255,255,255,0.25), 6px 6px 0 #1A1A1A, 0 0 20px rgba(74, 222, 128, 0.3)",
+        "textTransform": "uppercase"
+    }
+}
