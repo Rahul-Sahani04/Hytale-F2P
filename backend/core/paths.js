@@ -173,7 +173,18 @@ async function getModsPath(customInstallPath = null) {
     const hytaleSavesDir = getHytaleSavesDir();
     const modsPath = path.join(hytaleSavesDir, 'Mods');
 
-    // Ensure Mods directory exists
+    // Clean Old Symlinks
+    try {
+      const stats = fs.lstatSync(modsPath);
+      if (stats.isSymbolicLink()) {
+        console.log('[paths.js] Removing old symlink at', modsPath);
+        fs.unlinkSync(modsPath);
+      }
+    } catch (e) {
+      console.log('[paths.js] No old symlink found at', modsPath);
+    }
+
+    // Ensure Mods directory exists as a real directory
     if (!fs.existsSync(modsPath)) {
       fs.mkdirSync(modsPath, { recursive: true });
     }
