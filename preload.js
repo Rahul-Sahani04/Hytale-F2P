@@ -38,6 +38,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
   openExternalLink: (url) => ipcRenderer.invoke('openExternalLink', url),
   openGameLocation: () => ipcRenderer.invoke('open-game-location'),
+  openProfileModsFolder: (profileId) => ipcRenderer.invoke('open-profile-mods-folder', profileId),
   saveSettings: (settings) => ipcRenderer.invoke('save-settings', settings),
   loadSettings: () => ipcRenderer.invoke('load-settings'),
   getEnvVar: (key) => ipcRenderer.invoke('get-env-var', key),

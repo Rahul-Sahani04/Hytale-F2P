@@ -89,11 +89,16 @@ function renderProfileList(profiles, activeProfile) {
                         <div class="text-xs text-gray-500">ID: ${p.id.substring(0, 8)}...</div>
                     </div>
                 </div>
-                ${p.id !== activeProfile.id ? `
-                    <button class="profile-delete-btn" onclick="deleteProfile('${p.id}')" title="Delete Profile">
-                        <i class="fas fa-trash"></i>
+                <div class="flex items-center gap-2">
+                    <button class="profile-folder-btn" onclick="openProfileModsFolder('${p.id}')" title="Open Mods Folder">
+                        <i class="fas fa-folder-open"></i>
                     </button>
-                ` : '<span class="text-xs text-green-500 font-bold px-2">ACTIVE</span>'}
+                    ${p.id !== activeProfile.id ? `
+                        <button class="profile-delete-btn" onclick="deleteProfile('${p.id}')" title="Delete Profile">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    ` : '<span class="text-xs text-green-500 font-bold px-2">ACTIVE</span>'}
+                </div>
             </div>
         `).join('');
   }
@@ -205,7 +210,7 @@ export async function launch() {
   if (window.SettingsAPI && window.SettingsAPI.getCurrentJavaPath) {
     javaPath = window.SettingsAPI.getCurrentJavaPath();
   }
-  
+
   let gpuPreference = 'auto';
   try {
     if (window.electronAPI && window.electronAPI.loadGpuPreference) {
@@ -228,7 +233,7 @@ export async function launch() {
 
     if (window.electronAPI && window.electronAPI.launchGame) {
       const result = await window.electronAPI.launchGame(playerName, javaPath, '', gpuPreference);
-      
+
       isDownloading = false;
 
       if (window.LauncherUI) {
@@ -269,7 +274,7 @@ function showCustomConfirm(message, title, onConfirm, onCancel = null, confirmTe
   title = title || (window.i18n ? window.i18n.t('confirm.defaultTitle') : 'Confirm Action');
   confirmText = confirmText || (window.i18n ? window.i18n.t('common.confirm') : 'Confirm');
   cancelText = cancelText || (window.i18n ? window.i18n.t('common.cancel') : 'Cancel');
-  
+
   const existingModal = document.querySelector('.custom-confirm-modal');
   if (existingModal) {
     existingModal.remove();
@@ -395,7 +400,7 @@ export async function uninstallGame() {
   const title = window.i18n ? window.i18n.t('confirm.uninstallGameTitle') : 'Uninstall Game';
   const confirmBtn = window.i18n ? window.i18n.t('confirm.uninstallGameButton') : 'Uninstall';
   const cancelBtn = window.i18n ? window.i18n.t('common.cancel') : 'Cancel';
-  
+
   showCustomConfirm(
     message,
     title,
@@ -586,6 +591,21 @@ async function loadCustomJavaPath() {
     console.error('Error loading custom Java path:', error);
   }
 }
+
+window.openProfileModsFolder = async (profileId) => {
+  try {
+    if (window.electronAPI && window.electronAPI.openProfileModsFolder) {
+      const result = await window.electronAPI.openProfileModsFolder(profileId);
+      if (!result.success) {
+        console.error('Failed to open profile mods folder:', result.error);
+        alert('Failed to open mods folder: ' + result.error);
+      }
+    }
+  } catch (error) {
+    console.error('Failed to open profile mods folder:', error);
+    alert('Failed to open mods folder: ' + error.message);
+  }
+};
 
 window.launch = launch;
 window.uninstallGame = uninstallGame;

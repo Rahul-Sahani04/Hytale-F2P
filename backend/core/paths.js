@@ -169,59 +169,13 @@ function findUserDataRecursive(gameLatest) {
 
 async function getModsPath(customInstallPath = null) {
   try {
-    let installPath = customInstallPath;
+    // The game loads mods from HytaleSaves/Mods, NOT from the game installation directory
+    const hytaleSavesDir = getHytaleSavesDir();
+    const modsPath = path.join(hytaleSavesDir, 'Mods');
 
-    if (!installPath) {
-      const configFile = path.join(DEFAULT_APP_DIR, 'config.json');
-      if (fs.existsSync(configFile)) {
-        const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
-        installPath = config.installPath || '';
-      }
-    }
-
-    if (!installPath) {
-      // Use the standard app directory logic which handles platforms correctly
-      installPath = getAppDir();
-    }
-
-    const branch = loadVersionBranch();
-    const gameLatest = path.join(installPath, branch, 'package', 'game', 'latest');
-
-    const userDataPath = findUserDataPath(gameLatest);
-
-    const modsPath = path.join(userDataPath, 'Mods');
-    const disabledModsPath = path.join(userDataPath, 'DisabledMods');
-    const profilesPath = path.join(userDataPath, 'Profiles');
-
+    // Ensure Mods directory exists
     if (!fs.existsSync(modsPath)) {
-      // Check for broken symlink to avoid EEXIST/EPERM on mkdir
-      let isBrokenLink = false;
-      let pathExists = false;
-      try {
-          const stats = fs.lstatSync(modsPath);
-          pathExists = true;
-          if (stats.isSymbolicLink()) {
-              // Check if target exists
-              try {
-                  fs.statSync(modsPath);
-              } catch {
-                  isBrokenLink = true;
-              }
-          }
-      } catch (e) { /* path doesn't exist at all */ }
-
-      if (isBrokenLink) {
-        fs.unlinkSync(modsPath); // Remove broken symlink
-      }
-      if (!pathExists || isBrokenLink) {
-        fs.mkdirSync(modsPath, { recursive: true });
-      }
-    }
-    if (!fs.existsSync(disabledModsPath)) {
-      fs.mkdirSync(disabledModsPath, { recursive: true });
-    }
-    if (!fs.existsSync(profilesPath)) {
-      fs.mkdirSync(profilesPath, { recursive: true });
+      fs.mkdirSync(modsPath, { recursive: true });
     }
 
     return modsPath;
@@ -236,15 +190,15 @@ function getProfilesDir(customInstallPath = null) {
     // NEW 2.1.2: Use centralized UserData location
     const userDataPath = getHytaleSavesDir();
     const profilesDir = path.join(userDataPath, 'Profiles');
-    
+
     if (!fs.existsSync(profilesDir)) {
-        fs.mkdirSync(profilesDir, { recursive: true });
+      fs.mkdirSync(profilesDir, { recursive: true });
     }
-    
+
     return profilesDir;
   } catch (err) {
-      console.error('Error getting profiles dir:', err);
-      return null;
+    console.error('Error getting profiles dir:', err);
+    return null;
   }
 }
 

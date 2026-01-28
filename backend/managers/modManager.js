@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const axios = require('axios');
-const { getOS } = require('../utils/platformUtils');
 const { getModsPath, getProfilesDir } = require('../core/paths');
 const { saveModsToConfig, loadModsFromConfig } = require('../core/config');
 const profileManager = require('./profileManager');
@@ -16,14 +15,14 @@ const API_KEY = "$2a$10$bqk254NMZOWVTzLVJCcxEOmhcyUujKxA5xk.kQCN9q0KNYFJd5b32";
 function getProfileModsPath(profileId) {
   const profilesDir = getProfilesDir();
   if (!profilesDir) return null;
-  
+
   const profileDir = path.join(profilesDir, profileId);
   const modsDir = path.join(profileDir, 'mods');
-  
+
   if (!fs.existsSync(modsDir)) {
     fs.mkdirSync(modsDir, { recursive: true });
   }
-  
+
   return modsDir;
 }
 
@@ -63,11 +62,11 @@ async function loadInstalledMods(modsPath) {
     if (!activeProfile) return [];
 
     const profileMods = activeProfile.mods || [];
-    
+
     // Use profile-specific paths
     const profileModsPath = getProfileModsPath(activeProfile.id);
     const profileDisabledModsPath = path.join(path.dirname(profileModsPath), 'DisabledMods');
-    
+
     if (!fs.existsSync(profileModsPath)) fs.mkdirSync(profileModsPath, { recursive: true });
     if (!fs.existsSync(profileDisabledModsPath)) fs.mkdirSync(profileDisabledModsPath, { recursive: true });
 
@@ -199,7 +198,7 @@ async function uninstallMod(modId, modsPath) {
     // Use profile paths
     const profileModsPath = getProfileModsPath(activeProfile.id);
     const disabledModsPath = path.join(path.dirname(profileModsPath), 'DisabledMods');
-    
+
     const enabledPath = path.join(profileModsPath, mod.fileName);
     const disabledPath = path.join(disabledModsPath, mod.fileName);
 
@@ -255,7 +254,7 @@ async function toggleMod(modId, modsPath) {
     // Move file between Profile/Mods and Profile/DisabledMods
     const profileModsPath = getProfileModsPath(activeProfile.id);
     const disabledModsPath = path.join(path.dirname(profileModsPath), 'DisabledMods');
-    
+
     if (!fs.existsSync(disabledModsPath)) fs.mkdirSync(disabledModsPath, { recursive: true });
 
     const currentPath = mod.enabled ? path.join(profileModsPath, mod.fileName) : path.join(disabledModsPath, mod.fileName);
@@ -297,7 +296,7 @@ async function syncModsForCurrentProfile() {
 
     // 1. Resolve Paths
     // globalModsPath is the one the game uses (symlink target)
-    const globalModsPath = await getModsPath(); 
+    const globalModsPath = await getModsPath();
     // profileModsPath is the real storage for this profile
     const profileModsPath = getProfileModsPath(activeProfile.id);
     const profileDisabledModsPath = path.join(path.dirname(profileModsPath), 'DisabledMods');
@@ -306,96 +305,58 @@ async function syncModsForCurrentProfile() {
       fs.mkdirSync(profileDisabledModsPath, { recursive: true });
     }
 
-    // 2. Symlink / Migration Logic
-    let needsLink = false;
-    let globalStats = null;
-    
+    // 2. Sync mods using file copy (no symlinks - works on all platforms, i hope ~ rahul)
+    // Clear game's Mods folder, copy enabled mods from profile folder
     try {
-      globalStats = fs.lstatSync(globalModsPath);
-    } catch (e) {
-      // Path doesn't exist
-    }
-
-    if (globalStats) {
-      if (globalStats.isSymbolicLink()) {
-        const linkTarget = fs.readlinkSync(globalModsPath);
-        // Normalize paths for comparison
-        if (path.resolve(linkTarget) !== path.resolve(profileModsPath)) {
-          console.log(`[ModManager] Updating symlink from ${linkTarget} to ${profileModsPath}`);
-          fs.unlinkSync(globalModsPath);
-          needsLink = true;
-        }
-      } else if (globalStats.isDirectory()) {
-        // MIGRATION: It's a real directory. Move contents to profile.
-        console.log('[ModManager] Migrating global mods folder to profile folder...');
-        const files = fs.readdirSync(globalModsPath);
-        for (const file of files) {
-          const src = path.join(globalModsPath, file);
-          const dest = path.join(profileModsPath, file);
-          // Only move if dest doesn't exist to avoid overwriting
-          if (!fs.existsSync(dest)) {
-             fs.renameSync(src, dest);
-          }
-        }
-        
-        // Also migrate DisabledMods if it exists globally
-        const globalDisabledPath = path.join(path.dirname(globalModsPath), 'DisabledMods');
-        if (fs.existsSync(globalDisabledPath) && fs.lstatSync(globalDisabledPath).isDirectory()) {
-             const dFiles = fs.readdirSync(globalDisabledPath);
-             for (const file of dFiles) {
-                 const src = path.join(globalDisabledPath, file);
-                 const dest = path.join(profileDisabledModsPath, file);
-                 if (!fs.existsSync(dest)) {
-                     fs.renameSync(src, dest);
-                 }
-             }
-             // We can remove global DisabledMods now, as it's not used by game
-             try { fs.rmSync(globalDisabledPath, { recursive: true, force: true }); } catch(e) {} 
-        }
-
-        // Remove the directory so we can link it
-        try {
-            let retries = 3;
-            while (retries > 0) {
-                try {
-                    fs.rmSync(globalModsPath, { recursive: true, force: true });
-                    break;
-                } catch (err) {
-                    if ((err.code === 'EPERM' || err.code === 'EBUSY') && retries > 0) {
-                        retries--;
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                    } else {
-                        throw err;
-                    }
-                }
-            }
-            needsLink = true;
-        } catch (e) {
-            console.error('Failed to remove global mods dir:', e);
-             // Throw error to stop.
-             throw new Error('Failed to migrate mods directory. Please clear ' + globalModsPath);
-        }
+      const stats = fs.lstatSync(globalModsPath);
+      if (stats.isSymbolicLink()) {
+        console.log('[ModManager] Removing old symlink, switching to copy-based sync');
+        fs.unlinkSync(globalModsPath);
       }
-    } else {
-      needsLink = true;
+    } catch (e) {
+      // Path doesn't exist, that's fine
     }
 
-    if (needsLink) {
-      console.log(`[ModManager] Creating symlink: ${globalModsPath} -> ${profileModsPath}`);
-      try {
-         const symlinkType = getOS() === 'windows' ? 'junction' : 'dir';
-         fs.symlinkSync(profileModsPath, globalModsPath, symlinkType); 
-      } catch (err) {
-        // If we can't create the symlink, try creating the directory first
-        console.error('[ModManager] Failed to create symlink. Falling back to direct folder mode.');
-        console.error(err.message);
-
-    // Fallback: create a real directory so the game still works
+    // Create game's Mods directory if needed
     if (!fs.existsSync(globalModsPath)) {
       fs.mkdirSync(globalModsPath, { recursive: true });
+    }
+
+    // Clear game's Mods folder (remove all .jar and .zip files)
+    try {
+      const existingFiles = fs.readdirSync(globalModsPath);
+      for (const file of existingFiles) {
+        if (file.endsWith('.jar') || file.endsWith('.zip')) {
+          const filePath = path.join(globalModsPath, file);
+          try {
+            fs.unlinkSync(filePath);
+          } catch (err) {
+            console.warn(`[ModManager] Could not delete ${file}:`, err.code);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[ModManager] Could not clear game Mods folder:', err.message);
+    }
+
+    // Copy enabled mods from profile folder to game folder
+    if (fs.existsSync(profileModsPath)) {
+      const modFiles = fs.readdirSync(profileModsPath).filter(f => f.endsWith('.jar') || f.endsWith('.zip'));
+      console.log(`[ModManager] Copying ${modFiles.length} enabled mods to game folder`);
+
+      for (const file of modFiles) {
+        const src = path.join(profileModsPath, file);
+        const dest = path.join(globalModsPath, file);
+        try {
+          fs.copyFileSync(src, dest);
+        } catch (copyErr) {
+          console.error(`[ModManager] Failed to copy ${file}:`, copyErr.message);
+        }
       }
     }
-  }
+
+    console.log('[ModManager] Mod sync complete (copy-based)');
+
 
     // 3. Auto-Repair (Download missing mods)
     const profileModsSnapshot = activeProfile.mods || [];
@@ -424,7 +385,7 @@ async function syncModsForCurrentProfile() {
 
     // 4. Auto-Import (Detect manual drops in the profile folder)
     const enabledFiles = fs.existsSync(profileModsPath) ? fs.readdirSync(profileModsPath).filter(f => f.endsWith('.jar') || f.endsWith('.zip')) : [];
-    
+
     let profileMods = activeProfile.mods || [];
     let profileUpdated = false;
 
@@ -461,13 +422,13 @@ async function syncModsForCurrentProfile() {
 
     // 5. Enforce Enabled/Disabled State (Move files between Profile/Mods and Profile/DisabledMods)
     // Note: Since Global/Mods IS Profile/Mods (via symlink), moving out of Profile/Mods disables it for the game.
-    
+
     const disabledFiles = fs.existsSync(profileDisabledModsPath) ? fs.readdirSync(profileDisabledModsPath).filter(f => f.endsWith('.jar') || f.endsWith('.zip')) : [];
     const allFiles = new Set([...enabledFiles, ...disabledFiles]);
 
     for (const fileName of allFiles) {
       const modConfig = profileMods.find(m => m.fileName === fileName);
-      const shouldBeEnabled = modConfig && modConfig.enabled !== false; 
+      const shouldBeEnabled = modConfig && modConfig.enabled !== false;
 
       const currentPath = enabledFiles.includes(fileName) ? path.join(profileModsPath, fileName) : path.join(profileDisabledModsPath, fileName);
       const targetDir = shouldBeEnabled ? profileModsPath : profileDisabledModsPath;

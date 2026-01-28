@@ -882,6 +882,42 @@ ipcMain.handle('open-game-location', async () => {
   }
 });
 
+// Open a profile's mods folder for manual mod management
+ipcMain.handle('open-profile-mods-folder', async (event, profileId) => {
+  try {
+    const profileManager = require('./backend/managers/profileManager');
+    const { getProfilesDir } = require('./backend/core/paths');
+
+    // Use provided profile ID or fall back to active profile
+    let targetProfileId = profileId;
+    if (!targetProfileId) {
+      const activeProfile = profileManager.getActiveProfile();
+      if (!activeProfile) {
+        throw new Error('No active profile');
+      }
+      targetProfileId = activeProfile.id;
+    }
+
+    const profilesDir = getProfilesDir();
+    if (!profilesDir) {
+      throw new Error('Could not determine profiles directory');
+    }
+
+    const profileModsDir = path.join(profilesDir, targetProfileId, 'mods');
+
+    // Ensure the directory exists
+    if (!fs.existsSync(profileModsDir)) {
+      fs.mkdirSync(profileModsDir, { recursive: true });
+    }
+
+    await shell.openPath(profileModsDir);
+    return { success: true, path: profileModsDir };
+  } catch (error) {
+    console.error('Failed to open profile mods folder:', error);
+    return { success: false, error: error.message };
+  }
+});
+
 ipcMain.handle('browse-java-path', async () => {
   const isWindows = process.platform === 'win32';
   const isMac = process.platform === 'darwin';
