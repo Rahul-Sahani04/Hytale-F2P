@@ -1,0 +1,703 @@
+/* ============================================
+   MINECRAFT THEME
+   ============================================ */
+
+[data-theme="minecraft"] {
+    /* Minecraft Color Palette */
+    --mc-dirt: #593d29;
+    --mc-dirt-dark: #3d2b1f;
+    --mc-grass: #5d8c47;
+    --mc-grass-dark: #3d5a2e;
+    --mc-stone: #7d7d7d;
+    --mc-stone-dark: #595959;
+    --mc-wood: #8b7355;
+    --mc-gold: #ffaa00;
+    --mc-diamond: #00ffff;
+    --mc-bg: #c6c6c6;
+    --mc-container: #2b2b2b;
+    --mc-shadow: #1a1a1a;
+    --mc-highlight: #4a4a4a;
+
+
+    font-family: 'VT323', monospace;
+}
+
+/* Dirt Background Pattern */
+[data-theme="minecraft"] #app-background {
+    filter: contrast(1.1) brightness(0.8);
+}
+
+/* Pixelated Font Everywhere (except Font Awesome icons) */
+[data-theme="minecraft"] *:not(.fa):not(.fa-solid):not(.fa-regular):not(.fa-brands):not(.fas):not(.far):not(.fab):not([class^="fa-"]):not([class*=" fa-"]) {
+    font-family: 'VT323', monospace !important;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   SIDEBAR - Inventory Style
+   ============================================ */
+
+[data-theme="minecraft"] .sidebar {
+    background: var(--mc-container) !important;
+    border-right: 4px solid var(--mc-shadow) !important;
+    box-shadow:
+        inset -4px 0 0 var(--mc-shadow),
+        inset 4px 0 0 var(--mc-highlight) !important;
+    width: 72px !important;
+    padding: 8px !important;
+
+}
+
+/* Logo slot */
+[data-theme="minecraft"] .sidebar-logo {
+    background: var(--mc-dirt) !important;
+    border: 2px solid var(--mc-dirt-dark) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.5),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1) !important;
+    margin-bottom: 12px !important;
+    padding: 8px !important;
+
+}
+
+[data-theme="minecraft"] .sidebar-logo img {
+
+    filter: contrast(1.2);
+}
+
+/* Inventory Slots for Nav Items */
+[data-theme="minecraft"] .nav-item {
+    width: 48px !important;
+    height: 48px !important;
+    background: var(--mc-bg) !important;
+    border: 2px solid var(--mc-shadow) !important;
+    border-radius: 0 !important;
+    margin-bottom: 8px !important;
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow:
+        inset -2px -2px 0 var(--mc-shadow),
+        inset 2px 2px 0 #ffffff !important;
+    transition: none !important;
+    cursor: pointer;
+}
+
+/* Active slot (selected item) */
+[data-theme="minecraft"] .nav-item.active {
+    background: var(--mc-gold) !important;
+    border-color: var(--mc-wood) !important;
+    box-shadow:
+        inset -2px -2px 0 #8b6914,
+        inset 2px 2px 0 #ffdd66 !important;
+}
+
+/* Hover effect - item pickup */
+[data-theme="minecraft"] .nav-item:hover {
+    background: #d6d6d6 !important;
+    transform: scale(1.05) !important;
+    z-index: 10;
+    box-shadow:
+        inset -2px -2px 0 var(--mc-shadow),
+        inset 2px 2px 0 #ffffff,
+        0 4px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="minecraft"] .nav-item i {
+    font-size: 20px !important;
+    color: #3d3d3d !important;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    display: inline-block !important;
+    line-height: 1 !important;
+}
+
+/* Active state - bright icons */
+[data-theme="minecraft"] .nav-item.active i {
+    color: #ffffff !important;
+    text-shadow:
+        2px 2px 0 #8b6914,
+        0 0 10px rgba(255, 255, 255, 0.5) !important;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+/* Hover state */
+[data-theme="minecraft"] .nav-item:hover i {
+    color: #000000 !important;
+    transform: scale(1.2) !important;
+    transition: transform 0.1s !important;
+}
+
+[data-theme="minecraft"] .nav-tooltip {
+    background: rgba(16, 0, 16, 0.95) !important;
+    border: 2px solid #5000ff !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    left: 80px !important;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5) !important;
+    text-shadow: 2px 2px 0 #000000 !important;
+}
+
+/* Tooltip arrow */
+[data-theme="minecraft"] .nav-tooltip::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: #5000ff;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+[data-theme="minecraft"] .main-content {
+    background: transparent !important;
+}
+
+/* Dirt pattern overlay */
+[data-theme="minecraft"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
+    pointer-events: none;
+    opacity: 0.3;
+
+}
+
+/* ============================================
+   HEADER - Stone bar style
+   ============================================ */
+
+[data-theme="minecraft"] .header {
+    background: var(--mc-stone) !important;
+    border-bottom: 4px solid var(--mc-stone-dark) !important;
+    box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2) !important;
+    height: 48px !important;
+    padding: 0 16px !important;
+}
+
+[data-theme="minecraft"] .players-counter {
+    background: var(--mc-container) !important;
+    border: 2px solid var(--mc-shadow) !important;
+    border-radius: 0 !important;
+    padding: 4px 12px !important;
+    box-shadow:
+        inset -1px -1px 0 var(--mc-shadow),
+        inset 1px 1px 0 var(--mc-highlight) !important;
+    font-size: 16px !important;
+    color: #55ff55 !important;
+    /* XP green */
+    text-shadow: 2px 2px 0 #000 !important;
+}
+
+[data-theme="minecraft"] .players-counter i {
+    color: var(--mc-gold) !important;
+    margin-right: 8px !important;
+}
+
+/* Window controls - stone buttons */
+[data-theme="minecraft"] .window-controls .control-btn {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -2px -2px 0 var(--mc-shadow),
+        inset 2px 2px 0 #ffffff !important;
+    margin-left: 4px !important;
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+[data-theme="minecraft"] .window-controls .control-btn:hover {
+    background: #d6d6d6 !important;
+    transform: translateY(-1px) !important;
+}
+
+[data-theme="minecraft"] .window-controls .control-btn.close:hover {
+    background: var(--mc-dirt) !important;
+    color: white !important;
+}
+
+/* ============================================
+   GAME TITLE - Minecraft Logo Style
+   ============================================ */
+
+[data-theme="minecraft"] .game-title-section {
+    margin: 40px 0 !important;
+    text-align: center !important;
+}
+
+[data-theme="minecraft"] .game-title {
+    font-family: 'VT323', monospace !important;
+    font-size: 72px !important;
+    color: #4a4a4a !important;
+    text-shadow:
+        4px 4px 0 #1a1a1a,
+        -2px -2px 0 #ffffff,
+        6px 6px 0 rgba(0, 0, 0, 0.5) !important;
+    letter-spacing: 4px !important;
+    position: relative;
+    display: inline-block;
+}
+
+[data-theme="minecraft"] .game-title::after {
+    content: 'HYTALE';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    color: #5d8c47 !important;
+    /* Grass color behind */
+    z-index: -1;
+    text-shadow: 4px 4px 0 #3d5a2e !important;
+}
+
+[data-theme="minecraft"] .title-accent {
+    color: var(--mc-dirt) !important;
+}
+
+/* ============================================
+   BUTTONS - 3D Block Style
+   ============================================ */
+
+/* Main Play Button - Grass Block Style */
+[data-theme="minecraft"] .home-play-button,
+[data-theme="minecraft"] .install-button {
+    background: linear-gradient(to bottom, #5d8c47 0%, #4a6e38 50%, #3d5a2e 50%, #5d8c47 100%) !important;
+    border: 3px solid #000 !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.2),
+        0 8px 0 #1a1a1a,
+        0 10px 10px rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+    font-size: 24px !important;
+    font-family: 'VT323', monospace !important;
+    padding: 16px 48px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    text-shadow: 2px 2px 0 #1a1a1a !important;
+    position: relative;
+    top: 0;
+    transition: all 0.1s !important;
+    cursor: pointer;
+
+}
+
+[data-theme="minecraft"] .home-play-button:hover,
+[data-theme="minecraft"] .install-button:hover {
+    background: linear-gradient(to bottom, #6b9e52 0%, #5d8c47 50%, #4a6e38 50%, #6b9e52 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.2),
+        0 10px 0 #1a1a1a,
+        0 12px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="minecraft"] .home-play-button:active,
+[data-theme="minecraft"] .install-button:active {
+    transform: translateY(4px) !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.2),
+        0 4px 0 #1a1a1a,
+        0 4px 4px rgba(0, 0, 0, 0.5) !important;
+    top: 4px;
+}
+
+/* Button inner text fix for VT323 */
+[data-theme="minecraft"] .home-play-button span,
+[data-theme="minecraft"] .install-button span {
+    display: inline-block !important;
+    transform: none !important;
+    font-weight: 400 !important;
+}
+
+/* Secondary buttons (Stone style) */
+[data-theme="minecraft"] .view-all-btn,
+[data-theme="minecraft"] .settings-action-btn {
+    background: linear-gradient(to bottom, #9e9e9e, #7d7d7d) !important;
+    border: 2px solid #3d3d3d !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.3),
+        0 4px 0 #595959,
+        0 6px 6px rgba(0, 0, 0, 0.3) !important;
+    color: white !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 16px !important;
+    text-shadow: 1px 1px 0 #3d3d3d !important;
+    padding: 8px 16px !important;
+    position: relative;
+    top: 0;
+    transition: all 0.1s !important;
+}
+
+[data-theme="minecraft"] .view-all-btn:hover,
+[data-theme="minecraft"] .settings-action-btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.3),
+        0 5px 0 #595959,
+        0 7px 7px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="minecraft"] .view-all-btn:active,
+[data-theme="minecraft"] .settings-action-btn:active {
+    transform: translateY(2px) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.3),
+        0 2px 0 #595959,
+        0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    top: 2px;
+}
+
+/* ============================================
+   PANELS & CONTAINERS - Chest Style
+   ============================================ */
+
+[data-theme="minecraft"] .install-content,
+[data-theme="minecraft"] .settings-container,
+[data-theme="minecraft"] .news-section,
+[data-theme="minecraft"] .mods-modal-content {
+    background: var(--mc-bg) !important;
+    border: 4px solid var(--mc-shadow) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.2),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.5),
+        0 8px 0 rgba(0, 0, 0, 0.5) !important;
+    padding: 24px !important;
+    position: relative;
+}
+
+/* Inner darker areas (like chest interior) */
+[data-theme="minecraft"] .settings-content,
+[data-theme="minecraft"] .news-grid-horizontal {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2) !important;
+    padding: 16px !important;
+}
+
+[data-theme="minecraft"] .settings-section-title {
+    color: #4a4a4a !important;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+    font-size: 20px !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+    padding-bottom: 8px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="minecraft"] .form-input,
+[data-theme="minecraft"] .settings-input,
+[data-theme="minecraft"] .mods-search {
+    background: #000000 !important;
+    border: 2px solid #a0a0a0 !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px !important;
+    padding: 8px 12px !important;
+    box-shadow: inset 0 0 0 2px #000000 !important;
+    caret-color: #ffffff;
+}
+
+[data-theme="minecraft"] .form-input:focus,
+[data-theme="minecraft"] .settings-input:focus {
+    border-color: var(--mc-gold) !important;
+    outline: none !important;
+    box-shadow:
+        inset 0 0 0 2px #000000,
+        0 0 0 2px rgba(255, 170, 0, 0.5) !important;
+}
+
+/* Labels */
+[data-theme="minecraft"] .form-label,
+[data-theme="minecraft"] .settings-input-label {
+    color: #4a4a4a !important;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    margin-bottom: 4px !important;
+}
+
+/* Radio buttons - Minecraft style */
+[data-theme="minecraft"] .custom-radio {
+    appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: #7d7d7d !important;
+    border: 2px solid #3d3d3d !important;
+    box-shadow:
+        inset -1px -1px 0 rgba(0, 0, 0, 0.3),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.3) !important;
+    position: relative;
+    cursor: pointer;
+}
+
+[data-theme="minecraft"] .custom-radio:checked {
+    background: var(--mc-gold) !important;
+    border-color: var(--mc-wood) !important;
+}
+
+[data-theme="minecraft"] .custom-radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: #ffffff !important;
+    box-shadow: inset 0 0 0 2px var(--mc-gold) !important;
+}
+
+/* Checkboxes */
+[data-theme="minecraft"] .custom-checkbox {
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: #7d7d7d !important;
+    border: 2px solid #3d3d3d !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.3) !important;
+    cursor: pointer;
+    position: relative;
+}
+
+[data-theme="minecraft"] .custom-checkbox:checked {
+    background: var(--mc-gold) !important;
+}
+
+[data-theme="minecraft"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 16px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ============================================
+   PROGRESS BAR - XP Style
+   ============================================ */
+
+[data-theme="minecraft"] .progress-bar-container {
+    background: #000000 !important;
+    border: 2px solid #a0a0a0 !important;
+    border-radius: 0 !important;
+    height: 20px !important;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5) !important;
+    overflow: hidden;
+}
+
+[data-theme="minecraft"] .progress-bar-fill {
+    background: linear-gradient(to bottom, #00ff00, #00aa00) !important;
+    border-right: 2px solid #00aa00 !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    position: relative;
+}
+
+[data-theme="minecraft"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent) !important;
+}
+
+[data-theme="minecraft"] .progress-text {
+    color: white !important;
+    text-shadow: 2px 2px 0 #000000 !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 16px !important;
+}
+
+/* ============================================
+   NEWS CARDS - Item Frame Style
+   ============================================ */
+
+[data-theme="minecraft"] .news-card,
+[data-theme="minecraft"] .mod-card {
+    background: var(--mc-wood) !important;
+    border: 4px solid #5a4a36 !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1),
+        4px 4px 0 rgba(0, 0, 0, 0.3) !important;
+    padding: 8px !important;
+    transition: transform 0.1s !important;
+}
+
+[data-theme="minecraft"] .news-card:hover,
+[data-theme="minecraft"] .mod-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1),
+        4px 8px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="minecraft"] .news-card img {
+    border: 2px solid #3d3d3d !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
+    image-rendering: pixelated !important;
+}
+
+/* ============================================
+   TOOLTIPS - Item Tooltip Style
+   ============================================ */
+
+[data-theme="minecraft"] .tooltip,
+[data-theme="minecraft"] [title]::after {
+    background: rgba(16, 0, 16, 0.95) !important;
+    border: 2px solid #5000ff !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 16px !important;
+    padding: 8px !important;
+    text-shadow: 2px 2px 0 #000000 !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Rarity colors */
+[data-theme="minecraft"] .rarity-common {
+    color: #ffffff !important;
+}
+
+[data-theme="minecraft"] .rarity-uncommon {
+    color: #ffff55 !important;
+}
+
+[data-theme="minecraft"] .rarity-rare {
+    color: #5555ff !important;
+}
+
+[data-theme="minecraft"] .rarity-epic {
+    color: #ff55ff !important;
+}
+
+[data-theme="minecraft"] .rarity-legendary {
+    color: #ffaa00 !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="minecraft"] ::-webkit-scrollbar {
+    width: 12px !important;
+    background: #000000 !important;
+    border: 2px solid #a0a0a0 !important;
+}
+
+[data-theme="minecraft"] ::-webkit-scrollbar-thumb {
+    background: #c6c6c6 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: inset -2px -2px 0 #7d7d7d !important;
+}
+
+[data-theme="minecraft"] ::-webkit-scrollbar-thumb:hover {
+    background: #d6d6d6 !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Bobbing animation for items */
+@keyframes mc-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+[data-theme="minecraft"] .nav-item:hover i {
+    animation: mc-bob 1s ease-in-out infinite !important;
+}
+
+/* Breaking animation for page transitions */
+@keyframes mc-break {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        filter: none;
+    }
+
+    25% {
+        transform: scale(0.98);
+        opacity: 0.8;
+        filter: contrast(1.5);
+    }
+
+    50% {
+        transform: scale(0.95);
+        opacity: 0.5;
+        filter: contrast(2) brightness(1.5);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+[data-theme="minecraft"] .page-switching {
+    animation: mc-break 0.2s steps(4) forwards !important;
+}
+
+/* Heartbeat for important buttons */
+@keyframes mc-heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+[data-theme="minecraft"] .home-play-button {
+    animation: mc-heartbeat 2s ease-in-out infinite !important;
+}
+
+[data-theme="minecraft"] .home-play-button:hover {
+    animation: none !important;
+}

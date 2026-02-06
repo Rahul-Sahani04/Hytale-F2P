@@ -1,0 +1,542 @@
+/* ============================================
+   VOID THEME
+   Ultra-Dark, High-Contrast, Neon Aesthetic
+   ============================================ */
+
+[data-theme="void"] {
+    /* Void Color Palette */
+    --void-magenta: #FF00FF;
+    --void-magenta-dark: #CC00CC;
+    --void-cyan: #00FFFF;
+    --void-green: #00FF00;
+    --void-red: #FF0055;
+    --void-yellow: #FFFF00;
+    --void-dark: #050505;
+    --void-darker: #020202;
+    --void-surface: rgba(20, 20, 25, 0.9);
+    --void-text: #FFFFFF;
+    --void-text-secondary: #888899;
+    --void-glow: rgba(255, 0, 255, 0.4);
+}
+
+/* CRT Scanline Effect */
+[data-theme="void"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.2) 0px,
+            rgba(0, 0, 0, 0.2) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    z-index: 1;
+    animation: void-scanlines 0.1s linear infinite;
+}
+
+@keyframes void-scanlines {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(2px);
+    }
+}
+
+/* Vignette Effect */
+[data-theme="void"] .main-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+}
+
+/* ============================================
+   SIDEBAR - Dark Terminal
+   ============================================ */
+
+[data-theme="void"] .sidebar {
+    background: rgba(5, 5, 5, 0.98) !important;
+    border-right: 2px solid var(--void-magenta) !important;
+    box-shadow:
+        inset -1px 0 30px rgba(255, 0, 255, 0.1),
+        4px 0 20px rgba(255, 0, 255, 0.1) !important;
+}
+
+[data-theme="void"] .sidebar-logo {
+    background: var(--void-darker) !important;
+    border: 1px solid var(--void-magenta) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 0 20px var(--void-glow) !important;
+}
+
+/* Nav Items - Neon Glow */
+[data-theme="void"] .nav-item {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .nav-item i {
+    color: var(--void-text-secondary) !important;
+    text-shadow: none;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .nav-item:hover {
+    background: rgba(255, 0, 255, 0.1) !important;
+    border-color: var(--void-magenta) !important;
+    box-shadow:
+        0 0 20px var(--void-glow),
+        inset 0 0 20px rgba(255, 0, 255, 0.05) !important;
+}
+
+[data-theme="void"] .nav-item:hover i {
+    color: var(--void-magenta) !important;
+    text-shadow: 0 0 10px var(--void-magenta) !important;
+    transform: scale(1.1) !important;
+}
+
+[data-theme="void"] .nav-item.active {
+    background: rgba(255, 0, 255, 0.15) !important;
+    border-color: var(--void-magenta) !important;
+    box-shadow:
+        0 0 30px var(--void-glow),
+        inset 0 0 30px rgba(255, 0, 255, 0.1) !important;
+}
+
+[data-theme="void"] .nav-item.active i {
+    color: var(--void-magenta) !important;
+    text-shadow: 0 0 15px var(--void-magenta) !important;
+    animation: void-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes void-pulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px var(--void-magenta));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 15px var(--void-magenta));
+    }
+}
+
+/* Tooltips */
+[data-theme="void"] .nav-tooltip {
+    background: var(--void-darker) !important;
+    border: 1px solid var(--void-cyan) !important;
+    border-radius: 0 !important;
+    color: var(--void-cyan) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.3),
+        4px 4px 0 var(--void-magenta) !important;
+}
+
+/* ============================================
+   HEADER - Terminal Bar
+   ============================================ */
+
+[data-theme="void"] .header {
+    background: var(--void-darker) !important;
+    border-bottom: 1px solid var(--void-magenta) !important;
+    box-shadow: 0 0 20px var(--void-glow) !important;
+}
+
+[data-theme="void"] .players-counter {
+    background: var(--void-dark) !important;
+    border: 1px solid var(--void-cyan) !important;
+    border-radius: 0 !important;
+    color: var(--void-cyan) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-shadow: 0 0 10px var(--void-cyan) !important;
+}
+
+[data-theme="void"] .players-counter i {
+    color: var(--void-green) !important;
+    text-shadow: 0 0 10px var(--void-green) !important;
+}
+
+/* Window Controls */
+[data-theme="void"] .window-controls .control-btn {
+    background: var(--void-dark) !important;
+    border: 1px solid var(--void-text-secondary) !important;
+    border-radius: 0 !important;
+    color: var(--void-text-secondary) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .window-controls .control-btn:hover {
+    background: var(--void-magenta) !important;
+    border-color: var(--void-magenta) !important;
+    color: var(--void-dark) !important;
+    box-shadow: 0 0 20px var(--void-glow) !important;
+}
+
+[data-theme="void"] .window-controls .control-btn.close:hover {
+    background: var(--void-red) !important;
+    border-color: var(--void-red) !important;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.5) !important;
+}
+
+/* ============================================
+   GAME TITLE - Glitch Neon
+   ============================================ */
+
+[data-theme="void"] .game-title {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 8px !important;
+    color: var(--void-text) !important;
+    text-shadow:
+        0 0 10px var(--void-magenta),
+        0 0 20px var(--void-magenta),
+        0 0 40px var(--void-magenta),
+        2px 2px 0 var(--void-cyan),
+        -2px -2px 0 var(--void-magenta) !important;
+    animation: void-glitch 5s infinite;
+}
+
+@keyframes void-glitch {
+
+    0%,
+    93%,
+    100% {
+        transform: translate(0);
+        text-shadow:
+            0 0 10px var(--void-magenta),
+            0 0 20px var(--void-magenta),
+            0 0 40px var(--void-magenta),
+            2px 2px 0 var(--void-cyan),
+            -2px -2px 0 var(--void-magenta);
+    }
+
+    94% {
+        transform: translate(-2px, 1px);
+    }
+
+    95% {
+        transform: translate(2px, -1px);
+    }
+
+    96% {
+        transform: translate(-1px, -1px);
+    }
+
+    97% {
+        transform: translate(1px, 1px);
+    }
+}
+
+[data-theme="void"] .title-accent {
+    color: var(--void-cyan) !important;
+}
+
+/* ============================================
+   BUTTONS - Intense Neon
+   ============================================ */
+
+[data-theme="void"] .home-play-button,
+[data-theme="void"] .install-button {
+    background: linear-gradient(135deg, var(--void-magenta) 0%, #FF0088 100%) !important;
+    border: 2px solid var(--void-magenta) !important;
+    border-radius: 4px !important;
+    color: white !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    box-shadow:
+        0 0 30px var(--void-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .home-play-button::before,
+[data-theme="void"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: void-shine 3s infinite;
+}
+
+@keyframes void-shine {
+    0% {
+        left: -100%;
+    }
+
+    20%,
+    100% {
+        left: 100%;
+    }
+}
+
+[data-theme="void"] .home-play-button:hover,
+[data-theme="void"] .install-button:hover {
+    background: linear-gradient(135deg, #FF0088 0%, #FF0055 100%) !important;
+    transform: scale(1.02) !important;
+    box-shadow:
+        0 0 40px var(--void-glow),
+        0 0 60px rgba(255, 0, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="void"] .home-play-button:active,
+[data-theme="void"] .install-button:active {
+    transform: scale(0.98) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="void"] .view-all-btn,
+[data-theme="void"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--void-cyan) !important;
+    border-radius: 0 !important;
+    color: var(--void-cyan) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .view-all-btn:hover,
+[data-theme="void"] .settings-action-btn:hover {
+    background: var(--void-cyan) !important;
+    color: var(--void-dark) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS
+   ============================================ */
+
+[data-theme="void"] .install-content,
+[data-theme="void"] .settings-container,
+[data-theme="void"] .news-section,
+[data-theme="void"] .mods-modal-content {
+    background: rgba(5, 5, 5, 0.95) !important;
+    border: 1px solid rgba(255, 0, 255, 0.3) !important;
+    border-radius: 4px !important;
+    box-shadow:
+        0 0 40px rgba(255, 0, 255, 0.1),
+        inset 0 0 60px rgba(255, 0, 255, 0.02) !important;
+}
+
+[data-theme="void"] .settings-section-title {
+    color: var(--void-cyan) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    text-shadow: 0 0 10px var(--void-cyan) !important;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="void"] .form-input,
+[data-theme="void"] .settings-input,
+[data-theme="void"] .mods-search {
+    background: var(--void-darker) !important;
+    border: 1px solid var(--void-text-secondary) !important;
+    border-radius: 0 !important;
+    color: var(--void-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    caret-color: var(--void-green);
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .form-input:focus,
+[data-theme="void"] .settings-input:focus,
+[data-theme="void"] .mods-search:focus {
+    border-color: var(--void-magenta) !important;
+    box-shadow: 0 0 20px var(--void-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="void"] .form-input::placeholder {
+    color: #555566 !important;
+}
+
+/* Checkboxes */
+[data-theme="void"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: var(--void-darker) !important;
+    border: 1px solid var(--void-magenta) !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .custom-checkbox:checked {
+    background: var(--void-magenta) !important;
+    box-shadow: 0 0 15px var(--void-glow) !important;
+}
+
+[data-theme="void"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="void"] .progress-bar-container {
+    background: var(--void-darker) !important;
+    border: 1px solid var(--void-magenta) !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+}
+
+[data-theme="void"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--void-magenta), var(--void-cyan)) !important;
+    box-shadow: 0 0 20px var(--void-glow) !important;
+    animation: void-progress-glow 1s ease-in-out infinite;
+}
+
+@keyframes void-progress-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--void-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--void-glow), 0 0 40px rgba(0, 255, 255, 0.2);
+    }
+}
+
+[data-theme="void"] .progress-text {
+    color: var(--void-text) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-shadow: 0 0 10px var(--void-magenta) !important;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+[data-theme="void"] .news-card,
+[data-theme="void"] .mod-card {
+    background: rgba(20, 20, 25, 0.9) !important;
+    border: 1px solid rgba(255, 0, 255, 0.2) !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="void"] .news-card:hover,
+[data-theme="void"] .mod-card:hover {
+    border-color: var(--void-magenta) !important;
+    box-shadow: 0 0 30px var(--void-glow) !important;
+    transform: translateY(-4px) !important;
+}
+
+[data-theme="void"] .news-card img {
+    filter: saturate(1.2) contrast(1.1);
+}
+
+[data-theme="void"] .news-card:hover img {
+    filter: saturate(1.5) contrast(1.2);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="void"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: var(--void-darker) !important;
+}
+
+[data-theme="void"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--void-magenta), var(--void-cyan)) !important;
+    border: none !important;
+}
+
+[data-theme="void"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--void-magenta) !important;
+    box-shadow: 0 0 10px var(--void-glow) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="void"] .modal-overlay {
+    background: rgba(2, 2, 2, 0.95) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+/* ============================================
+   FLICKER ANIMATION
+   ============================================ */
+
+@keyframes void-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    92% {
+        opacity: 1;
+    }
+
+    93% {
+        opacity: 0.8;
+    }
+
+    94% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.9;
+    }
+
+    96% {
+        opacity: 1;
+    }
+}
+
+[data-theme="void"] .home-play-button {
+    animation: void-flicker 4s infinite;
+}
+
+[data-theme="void"] .home-play-button:hover {
+    animation: none;
+}

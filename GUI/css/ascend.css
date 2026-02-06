@@ -1,0 +1,475 @@
+/* ============================================
+   ASCEND THEME
+   Modern Tech, Premium Gaming Platform Aesthetic
+   ============================================ */
+
+[data-theme="ascend"] {
+    /* Ascend Color Palette */
+    --asc-cyan: #00D9FF;
+    --asc-cyan-dark: #00B8E6;
+    --asc-cyan-light: #00E6FF;
+    --asc-orange: #FFB800;
+    --asc-dark: #0F0F1E;
+    --asc-darker: #0A0A15;
+    --asc-surface: rgba(26, 26, 46, 0.85);
+    --asc-text: #E8E8F0;
+    --asc-text-secondary: #A0A0B8;
+    --asc-border: rgba(0, 217, 255, 0.15);
+    --asc-glow: rgba(0, 217, 255, 0.3);
+}
+
+/* Subtle Tech Pattern */
+[data-theme="ascend"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 184, 0, 0.02) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+/* ============================================
+   SIDEBAR - Clean Modern Panel
+   ============================================ */
+
+[data-theme="ascend"] .sidebar {
+    background: rgba(15, 15, 30, 0.95) !important;
+    border-right: 1px solid var(--asc-border) !important;
+    box-shadow: inset -1px 0 30px rgba(0, 217, 255, 0.02) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="ascend"] .sidebar-logo {
+    background: var(--asc-surface) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Nav Items - Clean Rounded */
+[data-theme="ascend"] .nav-item {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    margin: 4px !important;
+    transition: all 0.25s ease !important;
+    position: relative;
+}
+
+[data-theme="ascend"] .nav-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), transparent);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+[data-theme="ascend"] .nav-item i {
+    color: var(--asc-text-secondary) !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="ascend"] .nav-item:hover {
+    background: rgba(0, 217, 255, 0.08) !important;
+    border-color: var(--asc-border) !important;
+}
+
+[data-theme="ascend"] .nav-item:hover::before {
+    opacity: 1;
+}
+
+[data-theme="ascend"] .nav-item:hover i {
+    color: var(--asc-cyan) !important;
+    transform: scale(1.1) !important;
+}
+
+[data-theme="ascend"] .nav-item.active {
+    background: rgba(0, 217, 255, 0.12) !important;
+    border-color: var(--asc-cyan) !important;
+    box-shadow:
+        0 0 20px var(--asc-glow),
+        inset 0 1px 0 rgba(0, 217, 255, 0.1) !important;
+}
+
+[data-theme="ascend"] .nav-item.active::before {
+    opacity: 1;
+}
+
+[data-theme="ascend"] .nav-item.active i {
+    color: var(--asc-cyan) !important;
+    filter: drop-shadow(0 0 5px var(--asc-glow));
+}
+
+/* Tooltips */
+[data-theme="ascend"] .nav-tooltip {
+    background: var(--asc-darker) !important;
+    border: 1px solid var(--asc-cyan) !important;
+    border-radius: 8px !important;
+    color: var(--asc-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 500 !important;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.3),
+        0 0 20px var(--asc-glow) !important;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+[data-theme="ascend"] .header {
+    background: linear-gradient(90deg, var(--asc-darker), var(--asc-dark)) !important;
+    border-bottom: 1px solid var(--asc-border) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="ascend"] .players-counter {
+    background: var(--asc-surface) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 8px !important;
+    color: var(--asc-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+[data-theme="ascend"] .players-counter i {
+    color: var(--asc-cyan) !important;
+}
+
+/* Window Controls */
+[data-theme="ascend"] .window-controls .control-btn {
+    background: var(--asc-surface) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 8px !important;
+    color: var(--asc-text-secondary) !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="ascend"] .window-controls .control-btn:hover {
+    background: var(--asc-cyan) !important;
+    border-color: var(--asc-cyan) !important;
+    color: var(--asc-dark) !important;
+    box-shadow: 0 0 15px var(--asc-glow) !important;
+}
+
+[data-theme="ascend"] .window-controls .control-btn.close:hover {
+    background: #FF4757 !important;
+    border-color: #FF4757 !important;
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.3) !important;
+}
+
+/* ============================================
+   GAME TITLE - Clean Modern
+   ============================================ */
+
+[data-theme="ascend"] .game-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 6px !important;
+    color: var(--asc-text) !important;
+    text-shadow:
+        0 0 30px var(--asc-glow),
+        0 0 60px rgba(0, 217, 255, 0.15) !important;
+}
+
+[data-theme="ascend"] .title-accent {
+    color: var(--asc-cyan) !important;
+    text-shadow: 0 0 20px var(--asc-glow) !important;
+}
+
+/* ============================================
+   BUTTONS - Premium Cyan Gradient
+   ============================================ */
+
+[data-theme="ascend"] .home-play-button,
+[data-theme="ascend"] .install-button {
+    background: linear-gradient(135deg, var(--asc-cyan) 0%, var(--asc-cyan-dark) 100%) !important;
+    border: 2px solid rgba(0, 217, 255, 0.3) !important;
+    border-radius: 8px !important;
+    color: var(--asc-dark) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    box-shadow:
+        0 0 20px var(--asc-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="ascend"] .home-play-button::before,
+[data-theme="ascend"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+[data-theme="ascend"] .home-play-button:hover,
+[data-theme="ascend"] .install-button:hover {
+    background: linear-gradient(135deg, var(--asc-cyan-light) 0%, var(--asc-cyan) 100%) !important;
+    transform: translateY(-4px) !important;
+    box-shadow:
+        0 12px 32px rgba(0, 217, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="ascend"] .home-play-button:hover::before,
+[data-theme="ascend"] .install-button:hover::before {
+    left: 100%;
+}
+
+[data-theme="ascend"] .home-play-button:active,
+[data-theme="ascend"] .install-button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 0 15px var(--asc-glow) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="ascend"] .view-all-btn,
+[data-theme="ascend"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--asc-cyan) !important;
+    border-radius: 8px !important;
+    color: var(--asc-cyan) !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="ascend"] .view-all-btn:hover,
+[data-theme="ascend"] .settings-action-btn:hover {
+    background: var(--asc-cyan) !important;
+    color: var(--asc-dark) !important;
+    box-shadow: 0 0 20px var(--asc-glow) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS
+   ============================================ */
+
+[data-theme="ascend"] .install-content,
+[data-theme="ascend"] .settings-container,
+[data-theme="ascend"] .news-section,
+[data-theme="ascend"] .mods-modal-content {
+    background: var(--asc-surface) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(16px) !important;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 217, 255, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+[data-theme="ascend"] .settings-section-title {
+    color: var(--asc-cyan) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    border-bottom: 1px solid var(--asc-border) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="ascend"] .form-input,
+[data-theme="ascend"] .settings-input,
+[data-theme="ascend"] .mods-search {
+    background: rgba(10, 10, 21, 0.8) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 8px !important;
+    color: var(--asc-text) !important;
+    font-family: 'Roboto', sans-serif !important;
+    caret-color: var(--asc-cyan);
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="ascend"] .form-input:focus,
+[data-theme="ascend"] .settings-input:focus,
+[data-theme="ascend"] .mods-search:focus {
+    border-color: var(--asc-cyan) !important;
+    box-shadow: 0 0 20px var(--asc-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="ascend"] .form-input::placeholder {
+    color: var(--asc-text-secondary) !important;
+}
+
+/* Checkboxes */
+[data-theme="ascend"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: rgba(10, 10, 21, 0.8) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="ascend"] .custom-checkbox:checked {
+    background: linear-gradient(135deg, var(--asc-cyan), var(--asc-cyan-dark)) !important;
+    border-color: var(--asc-cyan) !important;
+    box-shadow: 0 0 10px var(--asc-glow) !important;
+}
+
+[data-theme="ascend"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--asc-dark) !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="ascend"] .progress-bar-container {
+    background: rgba(10, 10, 21, 0.8) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+[data-theme="ascend"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--asc-cyan-dark), var(--asc-cyan), var(--asc-cyan-light)) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 20px var(--asc-glow) !important;
+    position: relative;
+}
+
+[data-theme="ascend"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+    border-radius: 8px 8px 0 0;
+}
+
+[data-theme="ascend"] .progress-text {
+    color: var(--asc-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+[data-theme="ascend"] .news-card,
+[data-theme="ascend"] .mod-card {
+    background: var(--asc-surface) !important;
+    border: 1px solid var(--asc-border) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden;
+}
+
+[data-theme="ascend"] .news-card:hover,
+[data-theme="ascend"] .mod-card:hover {
+    border-color: rgba(0, 217, 255, 0.4) !important;
+    transform: translateY(-6px) !important;
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.3),
+        0 0 30px var(--asc-glow) !important;
+}
+
+[data-theme="ascend"] .news-card img {
+    border-radius: 8px !important;
+    transition: transform 0.3s ease;
+}
+
+[data-theme="ascend"] .news-card:hover img {
+    transform: scale(1.03);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="ascend"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: var(--asc-darker) !important;
+}
+
+[data-theme="ascend"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--asc-cyan), var(--asc-cyan-dark)) !important;
+    border-radius: 4px !important;
+}
+
+[data-theme="ascend"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--asc-cyan-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="ascend"] .modal-overlay {
+    background: rgba(10, 10, 21, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes asc-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--asc-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--asc-glow), 0 0 40px rgba(0, 217, 255, 0.15);
+    }
+}
+
+[data-theme="ascend"] .home-play-button {
+    animation: asc-glow-pulse 3s ease-in-out infinite;
+}
+
+[data-theme="ascend"] .home-play-button:hover {
+    animation: none;
+}
+
+/* Accent element animations */
+@keyframes asc-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+[data-theme="ascend"] .nav-item.active i {
+    animation: asc-float 2s ease-in-out infinite;
+}

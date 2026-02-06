@@ -1,0 +1,522 @@
+/* ============================================
+   VALORANT THEME
+   Tactical, Sharp, Clean Red/Black Aesthetic
+   ============================================ */
+
+[data-theme="valorant"] {
+    /* Valorant Color Palette */
+    --val-red: #FF4655;
+    --val-red-dark: #BD3944;
+    --val-cream: #ECE8E1;
+    --val-dark: #0F1923;
+    --val-darker: #0A1017;
+    --val-gray: #9DA5AB;
+    --val-teal: #17E5B3;
+    --val-glow: rgba(255, 70, 85, 0.3);
+}
+
+/* Tactical Grid Overlay */
+[data-theme="valorant"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, rgba(255, 70, 85, 0.02) 1px, transparent 1px),
+        linear-gradient(rgba(255, 70, 85, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ============================================
+   SIDEBAR - Tactical Panel
+   ============================================ */
+
+[data-theme="valorant"] .sidebar {
+    background: linear-gradient(180deg, rgba(255, 70, 85, 0.05) 0%, rgba(15, 25, 35, 0.98) 100%) !important;
+    border-right: 1px solid rgba(255, 70, 85, 0.3) !important;
+    box-shadow: inset -1px 0 30px rgba(255, 70, 85, 0.05) !important;
+}
+
+[data-theme="valorant"] .sidebar-logo {
+    background: var(--val-dark) !important;
+    border: 1px solid var(--val-red) !important;
+    transform: skewX(-5deg);
+}
+
+[data-theme="valorant"] .sidebar-logo img {
+    transform: skewX(5deg);
+}
+
+/* Nav Items - Skewed Tactical */
+[data-theme="valorant"] .nav-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    transform: skewX(-10deg) !important;
+    margin: 6px 8px !important;
+    position: relative;
+    transition: all 0.15s ease !important;
+}
+
+[data-theme="valorant"] .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--val-red);
+    transition: width 0.2s ease;
+}
+
+[data-theme="valorant"] .nav-item i {
+    transform: skewX(10deg) !important;
+    color: var(--val-gray) !important;
+    transition: all 0.15s !important;
+}
+
+[data-theme="valorant"] .nav-item:hover {
+    background: rgba(255, 70, 85, 0.1) !important;
+}
+
+[data-theme="valorant"] .nav-item:hover::before {
+    width: 3px;
+}
+
+[data-theme="valorant"] .nav-item:hover i {
+    color: var(--val-cream) !important;
+    transform: skewX(10deg) scale(1.1) !important;
+}
+
+[data-theme="valorant"] .nav-item.active {
+    background: rgba(255, 70, 85, 0.15) !important;
+    box-shadow: inset 3px 0 0 var(--val-red) !important;
+}
+
+[data-theme="valorant"] .nav-item.active::before {
+    width: 3px;
+    box-shadow: 0 0 10px var(--val-red);
+}
+
+[data-theme="valorant"] .nav-item.active i {
+    color: var(--val-red) !important;
+    filter: drop-shadow(0 0 5px var(--val-glow));
+}
+
+/* Tooltips */
+[data-theme="valorant"] .nav-tooltip {
+    background: var(--val-dark) !important;
+    border: 1px solid var(--val-red) !important;
+    border-radius: 0 !important;
+    color: var(--val-cream) !important;
+    font-family: 'Kanit', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-weight: 600 !important;
+    transform: skewX(-5deg);
+    box-shadow: 0 4px 20px rgba(255, 70, 85, 0.2) !important;
+}
+
+/* ============================================
+   HEADER - HUD Bar
+   ============================================ */
+
+[data-theme="valorant"] .header {
+    background: linear-gradient(90deg, var(--val-darker), var(--val-dark)) !important;
+    border-bottom: 1px solid rgba(255, 70, 85, 0.3) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="valorant"] .players-counter {
+    background: rgba(255, 70, 85, 0.1) !important;
+    border: 1px solid rgba(255, 70, 85, 0.3) !important;
+    border-radius: 0 !important;
+    color: var(--val-cream) !important;
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transform: skewX(-5deg);
+}
+
+[data-theme="valorant"] .players-counter span {
+    transform: skewX(5deg);
+    display: inline-block;
+}
+
+[data-theme="valorant"] .players-counter i {
+    color: var(--val-red) !important;
+    transform: skewX(5deg);
+}
+
+/* Window Controls */
+[data-theme="valorant"] .window-controls .control-btn {
+    background: transparent !important;
+    border: 1px solid rgba(255, 70, 85, 0.2) !important;
+    border-radius: 0 !important;
+    color: var(--val-gray) !important;
+    transform: skewX(-5deg);
+    transition: all 0.15s !important;
+}
+
+[data-theme="valorant"] .window-controls .control-btn i {
+    transform: skewX(5deg);
+}
+
+[data-theme="valorant"] .window-controls .control-btn:hover {
+    background: rgba(255, 70, 85, 0.2) !important;
+    border-color: var(--val-red) !important;
+    color: var(--val-cream) !important;
+}
+
+[data-theme="valorant"] .window-controls .control-btn.close:hover {
+    background: var(--val-red) !important;
+    color: white !important;
+}
+
+/* ============================================
+   GAME TITLE
+   ============================================ */
+
+[data-theme="valorant"] .game-title {
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 12px !important;
+    color: var(--val-cream) !important;
+    text-shadow:
+        2px 2px 0 var(--val-red),
+        0 0 40px var(--val-glow) !important;
+    transform: skewX(-5deg);
+}
+
+[data-theme="valorant"] .title-accent {
+    color: var(--val-red) !important;
+}
+
+/* ============================================
+   BUTTONS - Tactical Skewed
+   ============================================ */
+
+[data-theme="valorant"] .home-play-button,
+[data-theme="valorant"] .install-button {
+    background: linear-gradient(135deg, var(--val-red) 0%, var(--val-red-dark) 100%) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 4px !important;
+    transform: skewX(-15deg) !important;
+    box-shadow:
+        0 4px 20px var(--val-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s !important;
+}
+
+[data-theme="valorant"] .home-play-button span,
+[data-theme="valorant"] .install-button span {
+    transform: skewX(15deg) !important;
+    display: inline-block !important;
+}
+
+[data-theme="valorant"] .home-play-button::before,
+[data-theme="valorant"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s;
+}
+
+[data-theme="valorant"] .home-play-button:hover,
+[data-theme="valorant"] .install-button:hover {
+    background: linear-gradient(135deg, #FF5A68 0%, var(--val-red) 100%) !important;
+    transform: skewX(-15deg) translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(255, 70, 85, 0.5) !important;
+}
+
+[data-theme="valorant"] .home-play-button:hover::before,
+[data-theme="valorant"] .install-button:hover::before {
+    left: 150%;
+}
+
+[data-theme="valorant"] .home-play-button:active,
+[data-theme="valorant"] .install-button:active {
+    transform: skewX(-15deg) translateY(1px) !important;
+    box-shadow: 0 2px 10px var(--val-glow) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="valorant"] .view-all-btn,
+[data-theme="valorant"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--val-cream) !important;
+    border-radius: 0 !important;
+    color: var(--val-cream) !important;
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    transform: skewX(-10deg);
+    transition: all 0.2s !important;
+}
+
+[data-theme="valorant"] .view-all-btn span,
+[data-theme="valorant"] .settings-action-btn span {
+    transform: skewX(10deg);
+    display: inline-block;
+}
+
+[data-theme="valorant"] .view-all-btn:hover,
+[data-theme="valorant"] .settings-action-btn:hover {
+    background: var(--val-cream) !important;
+    color: var(--val-dark) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS
+   ============================================ */
+
+[data-theme="valorant"] .install-content,
+[data-theme="valorant"] .settings-container,
+[data-theme="valorant"] .news-section,
+[data-theme="valorant"] .mods-modal-content {
+    background: rgba(15, 25, 35, 0.95) !important;
+    border: 1px solid rgba(255, 70, 85, 0.2) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 70, 85, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    position: relative;
+}
+
+/* Accent corners */
+[data-theme="valorant"] .settings-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--val-red);
+}
+
+[data-theme="valorant"] .settings-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 40px;
+    background: var(--val-red);
+}
+
+[data-theme="valorant"] .settings-section-title {
+    color: var(--val-cream) !important;
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    border-bottom: 1px solid rgba(255, 70, 85, 0.2) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="valorant"] .form-input,
+[data-theme="valorant"] .settings-input,
+[data-theme="valorant"] .mods-search {
+    background: rgba(10, 16, 23, 0.9) !important;
+    border: 1px solid rgba(255, 70, 85, 0.2) !important;
+    border-radius: 0 !important;
+    color: var(--val-cream) !important;
+    font-family: 'Roboto', sans-serif !important;
+    caret-color: var(--val-red);
+    transition: all 0.2s !important;
+}
+
+[data-theme="valorant"] .form-input:focus,
+[data-theme="valorant"] .settings-input:focus,
+[data-theme="valorant"] .mods-search:focus {
+    border-color: var(--val-red) !important;
+    box-shadow: 0 0 0 1px var(--val-red), 0 0 15px var(--val-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="valorant"] .form-input::placeholder {
+    color: var(--val-gray) !important;
+}
+
+/* Checkboxes */
+[data-theme="valorant"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: var(--val-darker) !important;
+    border: 1px solid rgba(255, 70, 85, 0.3) !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s !important;
+}
+
+[data-theme="valorant"] .custom-checkbox:checked {
+    background: var(--val-red) !important;
+    border-color: var(--val-red) !important;
+}
+
+[data-theme="valorant"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="valorant"] .progress-bar-container {
+    background: var(--val-darker) !important;
+    border: 1px solid rgba(255, 70, 85, 0.2) !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+}
+
+[data-theme="valorant"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--val-red), var(--val-red-dark)) !important;
+    box-shadow: 0 0 20px var(--val-glow) !important;
+    position: relative;
+}
+
+[data-theme="valorant"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    animation: val-progress-shine 1s ease-in-out infinite;
+}
+
+@keyframes val-progress-shine {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+[data-theme="valorant"] .progress-text {
+    color: var(--val-cream) !important;
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+[data-theme="valorant"] .news-card,
+[data-theme="valorant"] .mod-card {
+    background: rgba(15, 25, 35, 0.9) !important;
+    border: 1px solid rgba(255, 70, 85, 0.1) !important;
+    border-radius: 0 !important;
+    transition: all 0.2s !important;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="valorant"] .news-card::before,
+[data-theme="valorant"] .mod-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--val-red);
+    transition: width 0.3s ease;
+}
+
+[data-theme="valorant"] .news-card:hover,
+[data-theme="valorant"] .mod-card:hover {
+    border-color: rgba(255, 70, 85, 0.4) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="valorant"] .news-card:hover::before,
+[data-theme="valorant"] .mod-card:hover::before {
+    width: 100%;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="valorant"] ::-webkit-scrollbar {
+    width: 6px !important;
+    background: var(--val-darker) !important;
+}
+
+[data-theme="valorant"] ::-webkit-scrollbar-thumb {
+    background: var(--val-red) !important;
+    border: none !important;
+}
+
+[data-theme="valorant"] ::-webkit-scrollbar-thumb:hover {
+    background: #FF5A68 !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="valorant"] .modal-overlay {
+    background: rgba(10, 16, 23, 0.9) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes val-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 var(--val-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+[data-theme="valorant"] .nav-item.active {
+    animation: val-pulse 2s ease-in-out infinite;
+}

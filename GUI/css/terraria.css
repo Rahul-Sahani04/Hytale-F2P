@@ -1,0 +1,527 @@
+/* ============================================
+   TERRARIA THEME
+   Pixel Art, Retro, Adventure Aesthetic
+   ============================================ */
+
+[data-theme="terraria"] {
+    /* Terraria Color Palette */
+    --tr-green: #4CAF50;
+    --tr-green-dark: #388E3C;
+    --tr-green-light: #66BB6A;
+    --tr-brown: #8B4513;
+    --tr-brown-dark: #5D2E0C;
+    --tr-gold: #FFD700;
+    --tr-dark: #1A1512;
+    --tr-darker: #14100D;
+    --tr-surface: rgba(40, 30, 20, 0.95);
+    --tr-text: #F5F5F5;
+    --tr-glow: rgba(76, 175, 80, 0.3);
+
+    /* Pixel fonts */
+    font-family: 'VT323', monospace;
+}
+
+/* Pixelated rendering */
+[data-theme="terraria"] * {
+    image-rendering: pixelated;
+}
+
+/* Dirt/Stone Block Pattern Overlay */
+[data-theme="terraria"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(0deg,
+            transparent 0px,
+            transparent 16px,
+            rgba(0, 0, 0, 0.05) 16px,
+            rgba(0, 0, 0, 0.05) 17px),
+        repeating-linear-gradient(90deg,
+            transparent 0px,
+            transparent 16px,
+            rgba(0, 0, 0, 0.05) 16px,
+            rgba(0, 0, 0, 0.05) 17px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ============================================
+   SIDEBAR - Inventory Panel Style
+   ============================================ */
+
+[data-theme="terraria"] .sidebar {
+    background: linear-gradient(180deg, rgba(26, 21, 18, 0.98) 0%, rgba(20, 16, 14, 0.98) 100%) !important;
+    border-right: 4px solid var(--tr-green) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -4px 0 0 rgba(0, 0, 0, 0.3),
+        4px 0 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .sidebar-logo {
+    background: var(--tr-brown) !important;
+    border: 3px solid var(--tr-brown-dark) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.4),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.15),
+        3px 3px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Nav Items - Inventory Slots */
+[data-theme="terraria"] .nav-item {
+    background: rgba(139, 69, 19, 0.3) !important;
+    border: 2px solid transparent !important;
+    border-radius: 0 !important;
+    margin: 4px !important;
+    transition: none !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="terraria"] .nav-item i {
+    color: var(--tr-text) !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .nav-item:hover {
+    background: rgba(76, 175, 80, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+[data-theme="terraria"] .nav-item:hover i {
+    color: var(--tr-green-light) !important;
+}
+
+[data-theme="terraria"] .nav-item.active {
+    background: var(--tr-green) !important;
+    border: 2px solid #2E7D32 !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.4),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.25),
+        0 0 15px var(--tr-glow) !important;
+}
+
+[data-theme="terraria"] .nav-item.active i {
+    color: white !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Tooltips */
+[data-theme="terraria"] .nav-tooltip {
+    background: rgba(20, 0, 30, 0.95) !important;
+    border: 2px solid var(--tr-green) !important;
+    border-radius: 0 !important;
+    color: var(--tr-text) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 16px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   HEADER - Stone Bar
+   ============================================ */
+
+[data-theme="terraria"] .header {
+    background: linear-gradient(90deg, var(--tr-darker), var(--tr-dark)) !important;
+    border-bottom: 4px solid var(--tr-brown) !important;
+    box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        0 4px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .players-counter {
+    background: var(--tr-brown) !important;
+    border: 2px solid var(--tr-brown-dark) !important;
+    border-radius: 0 !important;
+    color: var(--tr-gold) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="terraria"] .players-counter i {
+    color: var(--tr-green) !important;
+}
+
+/* Window Controls */
+[data-theme="terraria"] .window-controls .control-btn {
+    background: var(--tr-brown) !important;
+    border: 2px solid var(--tr-brown-dark) !important;
+    border-radius: 0 !important;
+    color: var(--tr-text) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: none !important;
+}
+
+[data-theme="terraria"] .window-controls .control-btn:hover {
+    background: var(--tr-green) !important;
+    border-color: var(--tr-green-dark) !important;
+    transform: translateY(-2px) !important;
+}
+
+[data-theme="terraria"] .window-controls .control-btn.close:hover {
+    background: #E53935 !important;
+    border-color: #C62828 !important;
+}
+
+/* ============================================
+   GAME TITLE - Pixel Style
+   ============================================ */
+
+[data-theme="terraria"] .game-title {
+    font-family: 'VT323', monospace !important;
+    font-size: 64px !important;
+    color: var(--tr-text) !important;
+    text-shadow:
+        4px 4px 0 var(--tr-brown-dark),
+        -2px -2px 0 rgba(255, 255, 255, 0.1),
+        0 0 20px var(--tr-glow) !important;
+    letter-spacing: 4px !important;
+}
+
+[data-theme="terraria"] .title-accent {
+    color: var(--tr-green) !important;
+}
+
+/* ============================================
+   BUTTONS - 3D Pixel Block Style
+   ============================================ */
+
+[data-theme="terraria"] .home-play-button,
+[data-theme="terraria"] .install-button {
+    background: linear-gradient(180deg, var(--tr-green) 0%, var(--tr-green-dark) 100%) !important;
+    border: 4px solid #2E7D32 !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 24px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.4),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.25),
+        4px 4px 0 #000,
+        0 0 20px var(--tr-glow) !important;
+    position: relative;
+    top: 0;
+    transition: none !important;
+}
+
+[data-theme="terraria"] .home-play-button:hover,
+[data-theme="terraria"] .install-button:hover {
+    background: linear-gradient(180deg, var(--tr-green-light) 0%, var(--tr-green) 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.4),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.25),
+        6px 6px 0 #000,
+        0 0 30px var(--tr-glow) !important;
+}
+
+[data-theme="terraria"] .home-play-button:active,
+[data-theme="terraria"] .install-button:active {
+    transform: translateY(2px) !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.4),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.25),
+        2px 2px 0 #000 !important;
+}
+
+/* Secondary Buttons */
+[data-theme="terraria"] .view-all-btn,
+[data-theme="terraria"] .settings-action-btn {
+    background: linear-gradient(180deg, #7d7d7d, #5a5a5a) !important;
+    border: 2px solid #3d3d3d !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 16px !important;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+        2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+    transition: none !important;
+}
+
+[data-theme="terraria"] .view-all-btn:hover,
+[data-theme="terraria"] .settings-action-btn:hover {
+    background: linear-gradient(180deg, #9d9d9d, #7d7d7d) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS - Chest Style
+   ============================================ */
+
+[data-theme="terraria"] .install-content,
+[data-theme="terraria"] .settings-container,
+[data-theme="terraria"] .news-section,
+[data-theme="terraria"] .mods-modal-content {
+    background: var(--tr-surface) !important;
+    border: 4px solid var(--tr-brown) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.2),
+        inset 4px 4px 0 rgba(255, 255, 255, 0.1),
+        6px 6px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .settings-section-title {
+    color: var(--tr-gold) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 22px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+    border-bottom: 2px solid var(--tr-brown) !important;
+    padding-bottom: 8px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="terraria"] .form-input,
+[data-theme="terraria"] .settings-input,
+[data-theme="terraria"] .mods-search {
+    background: #000000 !important;
+    border: 2px solid var(--tr-brown) !important;
+    border-radius: 0 !important;
+    color: var(--tr-text) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px !important;
+    caret-color: var(--tr-green);
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .form-input:focus,
+[data-theme="terraria"] .settings-input:focus,
+[data-theme="terraria"] .mods-search:focus {
+    border-color: var(--tr-green) !important;
+    box-shadow:
+        inset 0 0 0 2px rgba(0, 0, 0, 0.5),
+        0 0 10px var(--tr-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="terraria"] .form-input::placeholder {
+    color: #666 !important;
+}
+
+/* Checkboxes */
+[data-theme="terraria"] .custom-checkbox {
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: #3d3d3d !important;
+    border: 2px solid var(--tr-brown-dark) !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+    position: relative;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="terraria"] .custom-checkbox:checked {
+    background: var(--tr-green) !important;
+    border-color: var(--tr-green-dark) !important;
+}
+
+[data-theme="terraria"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 14px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   PROGRESS BAR - Health/Mana Style
+   ============================================ */
+
+[data-theme="terraria"] .progress-bar-container {
+    background: #000000 !important;
+    border: 2px solid var(--tr-brown) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) !important;
+    height: 24px !important;
+}
+
+[data-theme="terraria"] .progress-bar-fill {
+    background: linear-gradient(180deg, var(--tr-green) 0%, var(--tr-green-dark) 50%, var(--tr-green) 100%) !important;
+    border-right: 2px solid var(--tr-green-dark) !important;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        0 0 10px var(--tr-glow) !important;
+}
+
+[data-theme="terraria"] .progress-text {
+    color: white !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px !important;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   CARDS - Item Frame Style
+   ============================================ */
+
+[data-theme="terraria"] .news-card,
+[data-theme="terraria"] .mod-card {
+    background: var(--tr-brown) !important;
+    border: 3px solid var(--tr-brown-dark) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1),
+        4px 4px 0 rgba(0, 0, 0, 0.5) !important;
+    transition: none !important;
+}
+
+[data-theme="terraria"] .news-card:hover,
+[data-theme="terraria"] .mod-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow:
+        inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.1),
+        6px 8px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="terraria"] .news-card img {
+    border: 2px solid var(--tr-brown-dark) !important;
+    image-rendering: pixelated !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="terraria"] ::-webkit-scrollbar {
+    width: 14px !important;
+    background: #000000 !important;
+    border: 2px solid var(--tr-brown) !important;
+}
+
+[data-theme="terraria"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--tr-green), var(--tr-green-dark)) !important;
+    border: 2px solid var(--tr-green-dark) !important;
+    box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="terraria"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--tr-green-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="terraria"] .modal-overlay {
+    background: rgba(20, 16, 13, 0.9) !important;
+}
+
+/* ============================================
+   ITEM RARITY COLORS
+   ============================================ */
+
+[data-theme="terraria"] .rarity-white {
+    color: #FFFFFF !important;
+}
+
+[data-theme="terraria"] .rarity-blue {
+    color: #9696FF !important;
+}
+
+[data-theme="terraria"] .rarity-green {
+    color: #96FF96 !important;
+}
+
+[data-theme="terraria"] .rarity-orange {
+    color: #FFC896 !important;
+}
+
+[data-theme="terraria"] .rarity-light-red {
+    color: #FF9696 !important;
+}
+
+[data-theme="terraria"] .rarity-pink {
+    color: #FF96FF !important;
+}
+
+[data-theme="terraria"] .rarity-purple {
+    color: #D2A0FF !important;
+}
+
+[data-theme="terraria"] .rarity-lime {
+    color: #96FF00 !important;
+}
+
+[data-theme="terraria"] .rarity-yellow {
+    color: #FFFF00 !important;
+}
+
+[data-theme="terraria"] .rarity-cyan {
+    color: #05C8FF !important;
+}
+
+[data-theme="terraria"] .rarity-red {
+    color: #FF2864 !important;
+}
+
+/* ============================================
+   ANIMATIONS - Bobbing Items
+   ============================================ */
+
+@keyframes tr-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+[data-theme="terraria"] .nav-item:hover i {
+    animation: tr-bob 0.8s ease-in-out infinite;
+}
+
+/* Heartbeat for play button */
+@keyframes tr-heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+[data-theme="terraria"] .home-play-button {
+    animation: tr-heartbeat 2s ease-in-out infinite;
+}
+
+[data-theme="terraria"] .home-play-button:hover {
+    animation: none;
+}

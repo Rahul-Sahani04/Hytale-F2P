@@ -1,0 +1,463 @@
+/* ============================================
+   OBSIDIAN THEME
+   Luxury Dark, Elegant Gold Accents, Premium Feel
+   ============================================ */
+
+[data-theme="obsidian"] {
+    /* Obsidian Color Palette */
+    --ob-gold: #D4AF37;
+    --ob-gold-light: #E5C158;
+    --ob-gold-dark: #C5A028;
+    --ob-dark: #0D0B08;
+    --ob-darker: #080604;
+    --ob-surface: rgba(26, 20, 16, 0.8);
+    --ob-text: #F5F1E8;
+    --ob-text-secondary: #A89968;
+    --ob-border: rgba(212, 175, 55, 0.15);
+    --ob-glow: rgba(212, 175, 55, 0.25);
+}
+
+/* Subtle Gold Shimmer Effect */
+[data-theme="obsidian"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    animation: ob-shimmer 8s ease-in-out infinite;
+}
+
+@keyframes ob-shimmer {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   SIDEBAR - Refined Dark Panel
+   ============================================ */
+
+[data-theme="obsidian"] .sidebar {
+    background: rgba(13, 11, 8, 0.95) !important;
+    border-right: 1px solid var(--ob-border) !important;
+    box-shadow: inset -1px 0 30px rgba(212, 175, 55, 0.02) !important;
+}
+
+[data-theme="obsidian"] .sidebar-logo {
+    background: var(--ob-surface) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 12px !important;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Nav Items - Elegant Rounded */
+[data-theme="obsidian"] .nav-item {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    margin: 4px !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .nav-item i {
+    color: var(--ob-text-secondary) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .nav-item:hover {
+    background: rgba(212, 175, 55, 0.08) !important;
+    border-color: var(--ob-border) !important;
+}
+
+[data-theme="obsidian"] .nav-item:hover i {
+    color: var(--ob-gold) !important;
+    transform: scale(1.1) !important;
+}
+
+[data-theme="obsidian"] .nav-item.active {
+    background: rgba(212, 175, 55, 0.12) !important;
+    border-color: var(--ob-gold) !important;
+    box-shadow:
+        0 0 20px var(--ob-glow),
+        inset 0 1px 0 rgba(212, 175, 55, 0.1) !important;
+}
+
+[data-theme="obsidian"] .nav-item.active i {
+    color: var(--ob-gold) !important;
+    filter: drop-shadow(0 0 5px var(--ob-glow));
+}
+
+/* Tooltips */
+[data-theme="obsidian"] .nav-tooltip {
+    background: var(--ob-dark) !important;
+    border: 1px solid var(--ob-gold) !important;
+    border-radius: 8px !important;
+    color: var(--ob-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px var(--ob-glow) !important;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+[data-theme="obsidian"] .header {
+    background: linear-gradient(90deg, var(--ob-darker), var(--ob-dark)) !important;
+    border-bottom: 1px solid var(--ob-border) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="obsidian"] .players-counter {
+    background: var(--ob-surface) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 8px !important;
+    color: var(--ob-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    box-shadow: inset 0 1px 0 rgba(212, 175, 55, 0.05) !important;
+}
+
+[data-theme="obsidian"] .players-counter i {
+    color: var(--ob-gold) !important;
+}
+
+/* Window Controls */
+[data-theme="obsidian"] .window-controls .control-btn {
+    background: var(--ob-surface) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 8px !important;
+    color: var(--ob-text-secondary) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .window-controls .control-btn:hover {
+    background: var(--ob-gold) !important;
+    border-color: var(--ob-gold) !important;
+    color: var(--ob-dark) !important;
+    box-shadow: 0 0 15px var(--ob-glow) !important;
+}
+
+[data-theme="obsidian"] .window-controls .control-btn.close:hover {
+    background: #FF4444 !important;
+    border-color: #FF4444 !important;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3) !important;
+}
+
+/* ============================================
+   GAME TITLE - Elegant Gold
+   ============================================ */
+
+[data-theme="obsidian"] .game-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 8px !important;
+    color: var(--ob-text) !important;
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.5),
+        0 0 40px var(--ob-glow) !important;
+}
+
+[data-theme="obsidian"] .title-accent {
+    color: var(--ob-gold) !important;
+    text-shadow: 0 0 20px var(--ob-glow) !important;
+}
+
+/* ============================================
+   BUTTONS - Premium Gold Gradient
+   ============================================ */
+
+[data-theme="obsidian"] .home-play-button,
+[data-theme="obsidian"] .install-button {
+    background: linear-gradient(135deg, var(--ob-gold) 0%, var(--ob-gold-dark) 100%) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 8px !important;
+    color: var(--ob-dark) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    box-shadow:
+        0 8px 24px rgba(212, 175, 55, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .home-play-button::before,
+[data-theme="obsidian"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+[data-theme="obsidian"] .home-play-button:hover,
+[data-theme="obsidian"] .install-button:hover {
+    background: linear-gradient(135deg, var(--ob-gold-light) 0%, var(--ob-gold) 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow:
+        0 12px 32px rgba(212, 175, 55, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="obsidian"] .home-play-button:hover::before,
+[data-theme="obsidian"] .install-button:hover::before {
+    left: 100%;
+}
+
+[data-theme="obsidian"] .home-play-button:active,
+[data-theme="obsidian"] .install-button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 4px 16px var(--ob-glow) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="obsidian"] .view-all-btn,
+[data-theme="obsidian"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--ob-gold) !important;
+    border-radius: 8px !important;
+    color: var(--ob-gold) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .view-all-btn:hover,
+[data-theme="obsidian"] .settings-action-btn:hover {
+    background: var(--ob-gold) !important;
+    color: var(--ob-dark) !important;
+    box-shadow: 0 0 20px var(--ob-glow) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS - Premium Glass
+   ============================================ */
+
+[data-theme="obsidian"] .install-content,
+[data-theme="obsidian"] .settings-container,
+[data-theme="obsidian"] .news-section,
+[data-theme="obsidian"] .mods-modal-content {
+    background: var(--ob-surface) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        0 0 40px rgba(212, 175, 55, 0.03) !important;
+}
+
+[data-theme="obsidian"] .settings-section-title {
+    color: var(--ob-gold) !important;
+    font-family: 'Georgia', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: 20px !important;
+    letter-spacing: 0.05em !important;
+    border-bottom: 1px solid var(--ob-border) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="obsidian"] .form-input,
+[data-theme="obsidian"] .settings-input,
+[data-theme="obsidian"] .mods-search {
+    background: rgba(8, 6, 4, 0.8) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 8px !important;
+    color: var(--ob-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    caret-color: var(--ob-gold);
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .form-input:focus,
+[data-theme="obsidian"] .settings-input:focus,
+[data-theme="obsidian"] .mods-search:focus {
+    border-color: var(--ob-gold) !important;
+    box-shadow: 0 0 20px var(--ob-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="obsidian"] .form-input::placeholder {
+    color: var(--ob-text-secondary) !important;
+}
+
+/* Checkboxes */
+[data-theme="obsidian"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: rgba(8, 6, 4, 0.8) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="obsidian"] .custom-checkbox:checked {
+    background: linear-gradient(135deg, var(--ob-gold), var(--ob-gold-dark)) !important;
+    border-color: var(--ob-gold) !important;
+    box-shadow: 0 0 10px var(--ob-glow) !important;
+}
+
+[data-theme="obsidian"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ob-dark) !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="obsidian"] .progress-bar-container {
+    background: rgba(8, 6, 4, 0.8) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+[data-theme="obsidian"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--ob-gold-dark), var(--ob-gold), var(--ob-gold-light)) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 20px var(--ob-glow) !important;
+    position: relative;
+}
+
+[data-theme="obsidian"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+    border-radius: 8px 8px 0 0;
+}
+
+[data-theme="obsidian"] .progress-text {
+    color: var(--ob-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* ============================================
+   CARDS - Elegant Frames
+   ============================================ */
+
+[data-theme="obsidian"] .news-card,
+[data-theme="obsidian"] .mod-card {
+    background: var(--ob-surface) !important;
+    border: 1px solid var(--ob-border) !important;
+    border-radius: 12px !important;
+    transition: all 0.4s ease !important;
+    overflow: hidden;
+}
+
+[data-theme="obsidian"] .news-card:hover,
+[data-theme="obsidian"] .mod-card:hover {
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    transform: translateY(-6px) !important;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px var(--ob-glow) !important;
+}
+
+[data-theme="obsidian"] .news-card img {
+    border-radius: 8px !important;
+    transition: transform 0.4s ease;
+}
+
+[data-theme="obsidian"] .news-card:hover img {
+    transform: scale(1.03);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="obsidian"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: var(--ob-darker) !important;
+}
+
+[data-theme="obsidian"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--ob-gold), var(--ob-gold-dark)) !important;
+    border-radius: 4px !important;
+}
+
+[data-theme="obsidian"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--ob-gold-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="obsidian"] .modal-overlay {
+    background: rgba(8, 6, 4, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* ============================================
+   SUBTLE ANIMATIONS
+   ============================================ */
+
+@keyframes ob-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--ob-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--ob-glow), 0 0 40px rgba(212, 175, 55, 0.15);
+    }
+}
+
+[data-theme="obsidian"] .home-play-button {
+    animation: ob-glow-pulse 3s ease-in-out infinite;
+}
+
+[data-theme="obsidian"] .home-play-button:hover {
+    animation: none;
+}
+
+/* Gold shimmer on headings */
+[data-theme="obsidian"] h1,
+[data-theme="obsidian"] h2 {
+    background: linear-gradient(135deg, var(--ob-text) 0%, var(--ob-gold) 50%, var(--ob-text) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

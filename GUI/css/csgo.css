@@ -1,0 +1,509 @@
+/* ============================================
+   CS:GO THEME
+   Tactical Shooter, Military Aesthetic
+   ============================================ */
+
+[data-theme="csgo"] {
+    /* CS:GO Color Palette */
+    --csgo-orange: #F59E0B;
+    --csgo-orange-dark: #D97706;
+    --csgo-orange-light: #FBBF24;
+    --csgo-dark: #0B0F13;
+    --csgo-darker: #070A0D;
+    --csgo-gray: #1F2937;
+    --csgo-text: #F3F4F6;
+    --csgo-text-secondary: #9CA3AF;
+    --csgo-glow: rgba(245, 158, 11, 0.3);
+}
+
+/* Tactical Grid Overlay */
+[data-theme="csgo"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, rgba(245, 158, 11, 0.01) 1px, transparent 1px),
+        linear-gradient(rgba(245, 158, 11, 0.01) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* ============================================
+   SIDEBAR - Tactical Panel
+   ============================================ */
+
+[data-theme="csgo"] .sidebar {
+    background: linear-gradient(180deg, rgba(31, 41, 55, 0.98) 0%, rgba(11, 15, 19, 0.98) 100%) !important;
+    border-right: 2px solid var(--csgo-orange) !important;
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 85% 100%, 0 100%) !important;
+    box-shadow: inset -1px 0 20px rgba(245, 158, 11, 0.05) !important;
+}
+
+[data-theme="csgo"] .sidebar-logo {
+    background: var(--csgo-gray) !important;
+    border: 1px solid var(--csgo-orange) !important;
+    border-radius: 2px !important;
+    transform: skewX(-5deg);
+}
+
+[data-theme="csgo"] .sidebar-logo img {
+    transform: skewX(5deg);
+}
+
+/* Nav Items - Skewed Tactical */
+[data-theme="csgo"] .nav-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 2px !important;
+    border-left: 2px solid transparent !important;
+    transform: skewX(-10deg) !important;
+    margin: 4px 8px !important;
+    transition: all 0.15s ease !important;
+}
+
+[data-theme="csgo"] .nav-item i {
+    transform: skewX(10deg) !important;
+    color: var(--csgo-text-secondary) !important;
+    transition: all 0.15s !important;
+}
+
+[data-theme="csgo"] .nav-item:hover {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-left-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+[data-theme="csgo"] .nav-item:hover i {
+    color: var(--csgo-text) !important;
+    transform: skewX(10deg) scale(1.1) !important;
+}
+
+[data-theme="csgo"] .nav-item.active {
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), transparent) !important;
+    border-left-color: var(--csgo-orange) !important;
+    box-shadow: inset 3px 0 10px rgba(245, 158, 11, 0.1) !important;
+}
+
+[data-theme="csgo"] .nav-item.active i {
+    color: var(--csgo-orange) !important;
+    filter: drop-shadow(0 0 5px var(--csgo-glow));
+}
+
+/* Tooltips */
+[data-theme="csgo"] .nav-tooltip {
+    background: var(--csgo-gray) !important;
+    border: 1px solid var(--csgo-orange) !important;
+    border-radius: 2px !important;
+    color: var(--csgo-text) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transform: skewX(-5deg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ============================================
+   HEADER - HUD Bar
+   ============================================ */
+
+[data-theme="csgo"] .header {
+    background: linear-gradient(90deg, var(--csgo-darker), var(--csgo-dark)) !important;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2) !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="csgo"] .players-counter {
+    background: rgba(31, 41, 55, 0.9) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    border-radius: 2px !important;
+    color: var(--csgo-text) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    transform: skewX(-5deg);
+}
+
+[data-theme="csgo"] .players-counter span,
+[data-theme="csgo"] .players-counter i {
+    transform: skewX(5deg);
+    display: inline-block;
+}
+
+[data-theme="csgo"] .players-counter i {
+    color: var(--csgo-orange) !important;
+}
+
+/* Window Controls */
+[data-theme="csgo"] .window-controls .control-btn {
+    background: var(--csgo-gray) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 2px !important;
+    color: var(--csgo-text-secondary) !important;
+    transform: skewX(-5deg);
+    transition: all 0.15s !important;
+}
+
+[data-theme="csgo"] .window-controls .control-btn i {
+    transform: skewX(5deg);
+}
+
+[data-theme="csgo"] .window-controls .control-btn:hover {
+    background: var(--csgo-orange) !important;
+    color: var(--csgo-dark) !important;
+}
+
+[data-theme="csgo"] .window-controls .control-btn.close:hover {
+    background: #EF4444 !important;
+    border-color: #EF4444 !important;
+}
+
+/* ============================================
+   GAME TITLE
+   ============================================ */
+
+[data-theme="csgo"] .game-title {
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 10px !important;
+    color: var(--csgo-text) !important;
+    text-shadow:
+        2px 2px 0 var(--csgo-orange),
+        0 0 30px var(--csgo-glow) !important;
+    transform: skewX(-3deg);
+}
+
+[data-theme="csgo"] .title-accent {
+    color: var(--csgo-orange) !important;
+}
+
+/* ============================================
+   BUTTONS - Military Style
+   ============================================ */
+
+[data-theme="csgo"] .home-play-button,
+[data-theme="csgo"] .install-button {
+    background: linear-gradient(180deg, var(--csgo-orange) 0%, var(--csgo-orange-dark) 100%) !important;
+    border: 1px solid #B45309 !important;
+    border-radius: 2px !important;
+    color: var(--csgo-dark) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    transform: skewX(-15deg) !important;
+    box-shadow:
+        0 4px 15px rgba(245, 158, 11, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s !important;
+}
+
+[data-theme="csgo"] .home-play-button span,
+[data-theme="csgo"] .install-button span {
+    transform: skewX(15deg) !important;
+    display: inline-block !important;
+}
+
+[data-theme="csgo"] .home-play-button::before,
+[data-theme="csgo"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.4s;
+}
+
+[data-theme="csgo"] .home-play-button:hover,
+[data-theme="csgo"] .install-button:hover {
+    background: linear-gradient(180deg, var(--csgo-orange-light) 0%, var(--csgo-orange) 100%) !important;
+    transform: skewX(-15deg) translateY(-2px) !important;
+    box-shadow:
+        0 8px 25px rgba(245, 158, 11, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="csgo"] .home-play-button:hover::before,
+[data-theme="csgo"] .install-button:hover::before {
+    left: 100%;
+}
+
+[data-theme="csgo"] .home-play-button:active,
+[data-theme="csgo"] .install-button:active {
+    transform: skewX(-15deg) translateY(1px) !important;
+    box-shadow: 0 2px 10px var(--csgo-glow) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="csgo"] .view-all-btn,
+[data-theme="csgo"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--csgo-orange) !important;
+    border-radius: 2px !important;
+    color: var(--csgo-orange) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transform: skewX(-8deg);
+    transition: all 0.2s !important;
+}
+
+[data-theme="csgo"] .view-all-btn span,
+[data-theme="csgo"] .settings-action-btn span {
+    transform: skewX(8deg);
+    display: inline-block;
+}
+
+[data-theme="csgo"] .view-all-btn:hover,
+[data-theme="csgo"] .settings-action-btn:hover {
+    background: var(--csgo-orange) !important;
+    color: var(--csgo-dark) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS
+   ============================================ */
+
+[data-theme="csgo"] .install-content,
+[data-theme="csgo"] .settings-container,
+[data-theme="csgo"] .news-section,
+[data-theme="csgo"] .mods-modal-content {
+    background: rgba(31, 41, 55, 0.95) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    position: relative;
+}
+
+/* Corner accents */
+[data-theme="csgo"] .settings-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--csgo-orange);
+}
+
+[data-theme="csgo"] .settings-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 30px;
+    background: var(--csgo-orange);
+}
+
+[data-theme="csgo"] .settings-section-title {
+    color: var(--csgo-orange) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="csgo"] .form-input,
+[data-theme="csgo"] .settings-input,
+[data-theme="csgo"] .mods-search {
+    background: rgba(11, 15, 19, 0.9) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 2px !important;
+    color: var(--csgo-text) !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    caret-color: var(--csgo-orange);
+    transition: all 0.2s !important;
+}
+
+[data-theme="csgo"] .form-input:focus,
+[data-theme="csgo"] .settings-input:focus,
+[data-theme="csgo"] .mods-search:focus {
+    border-color: var(--csgo-orange) !important;
+    box-shadow: 0 0 15px var(--csgo-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="csgo"] .form-input::placeholder {
+    color: var(--csgo-text-secondary) !important;
+}
+
+/* Checkboxes */
+[data-theme="csgo"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: var(--csgo-darker) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    border-radius: 2px !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s !important;
+}
+
+[data-theme="csgo"] .custom-checkbox:checked {
+    background: var(--csgo-orange) !important;
+    border-color: var(--csgo-orange) !important;
+}
+
+[data-theme="csgo"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--csgo-dark) !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="csgo"] .progress-bar-container {
+    background: var(--csgo-darker) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 2px !important;
+    overflow: hidden;
+}
+
+[data-theme="csgo"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--csgo-orange), var(--csgo-orange-dark)) !important;
+    box-shadow: 0 0 15px var(--csgo-glow) !important;
+    position: relative;
+}
+
+[data-theme="csgo"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(-45deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(0, 0, 0, 0.1) 5px,
+            rgba(0, 0, 0, 0.1) 10px);
+}
+
+[data-theme="csgo"] .progress-text {
+    color: var(--csgo-text) !important;
+    font-family: 'Chakra Petch', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+}
+
+/* ============================================
+   CARDS - Weapon Skin Style
+   ============================================ */
+
+[data-theme="csgo"] .news-card,
+[data-theme="csgo"] .mod-card {
+    background: rgba(31, 41, 55, 0.9) !important;
+    border: 1px solid rgba(245, 158, 11, 0.1) !important;
+    border-radius: 2px !important;
+    transition: all 0.2s !important;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="csgo"] .news-card::before,
+[data-theme="csgo"] .mod-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--csgo-orange), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+[data-theme="csgo"] .news-card:hover,
+[data-theme="csgo"] .mod-card:hover {
+    border-color: rgba(245, 158, 11, 0.4) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="csgo"] .news-card:hover::before,
+[data-theme="csgo"] .mod-card:hover::before {
+    opacity: 1;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="csgo"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: var(--csgo-darker) !important;
+}
+
+[data-theme="csgo"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--csgo-orange), var(--csgo-orange-dark)) !important;
+    border-radius: 2px !important;
+}
+
+[data-theme="csgo"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--csgo-orange-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="csgo"] .modal-overlay {
+    background: rgba(7, 10, 13, 0.9) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ============================================
+   WEAPON RARITY COLORS (for cards)
+   ============================================ */
+
+[data-theme="csgo"] .rarity-common {
+    border-left: 3px solid #B0C3D9 !important;
+}
+
+[data-theme="csgo"] .rarity-uncommon {
+    border-left: 3px solid #5E98D9 !important;
+}
+
+[data-theme="csgo"] .rarity-rare {
+    border-left: 3px solid #4B69FF !important;
+}
+
+[data-theme="csgo"] .rarity-mythical {
+    border-left: 3px solid #8847FF !important;
+}
+
+[data-theme="csgo"] .rarity-legendary {
+    border-left: 3px solid #D32CE6 !important;
+}
+
+[data-theme="csgo"] .rarity-ancient {
+    border-left: 3px solid #EB4B4B !important;
+}
+
+[data-theme="csgo"] .rarity-immortal {
+    border-left: 3px solid #E4AE39 !important;
+}

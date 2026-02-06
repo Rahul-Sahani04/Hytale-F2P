@@ -1,0 +1,611 @@
+/* ============================================
+   NEON GRID THEME
+   Synthwave, Retro-Futuristic, Matrix Aesthetic
+   ============================================ */
+
+[data-theme="neon-grid"] {
+    /* Neon Grid Color Palette */
+    --ng-green: #0FFF50;
+    --ng-green-dark: #0CC040;
+    --ng-green-light: #00FF88;
+    --ng-pink: #FF006E;
+    --ng-dark: #000000;
+    --ng-surface: rgba(20, 20, 20, 0.9);
+    --ng-text: #FFFFFF;
+    --ng-text-secondary: #00FF88;
+    --ng-border: rgba(15, 255, 80, 0.2);
+    --ng-glow: rgba(15, 255, 80, 0.4);
+}
+
+/* Grid Line Overlay */
+[data-theme="neon-grid"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, rgba(15, 255, 80, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(15, 255, 80, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    animation: ng-grid-pulse 4s ease-in-out infinite;
+}
+
+@keyframes ng-grid-pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Perspective Grid Floor Effect */
+[data-theme="neon-grid"] .main-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background:
+        linear-gradient(transparent, rgba(15, 255, 80, 0.05)),
+        repeating-linear-gradient(90deg,
+            rgba(15, 255, 80, 0.05) 0px,
+            rgba(15, 255, 80, 0.05) 1px,
+            transparent 1px,
+            transparent 40px);
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: bottom;
+    pointer-events: none;
+}
+
+/* ============================================
+   SIDEBAR - Matrix Terminal
+   ============================================ */
+
+[data-theme="neon-grid"] .sidebar {
+    background: rgba(0, 0, 0, 0.98) !important;
+    border-right: 2px solid var(--ng-border) !important;
+    box-shadow:
+        inset -1px 0 30px rgba(15, 255, 80, 0.05),
+        4px 0 20px rgba(15, 255, 80, 0.1) !important;
+}
+
+[data-theme="neon-grid"] .sidebar-logo {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+}
+
+/* Nav Items - Matrix Style */
+[data-theme="neon-grid"] .nav-item {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 2px !important;
+    transition: all 0.2s ease !important;
+    position: relative;
+}
+
+[data-theme="neon-grid"] .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--ng-green);
+    transition: width 0.2s ease;
+}
+
+[data-theme="neon-grid"] .nav-item i {
+    color: var(--ng-text-secondary) !important;
+    text-shadow: 0 0 5px var(--ng-green) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .nav-item:hover {
+    background: rgba(15, 255, 80, 0.1) !important;
+    border-color: var(--ng-green) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+}
+
+[data-theme="neon-grid"] .nav-item:hover::before {
+    width: 3px;
+}
+
+[data-theme="neon-grid"] .nav-item:hover i {
+    color: var(--ng-green) !important;
+    text-shadow: 0 0 10px var(--ng-green) !important;
+    transform: scale(1.1) !important;
+}
+
+[data-theme="neon-grid"] .nav-item.active {
+    background: rgba(15, 255, 80, 0.15) !important;
+    border-color: var(--ng-green) !important;
+    box-shadow:
+        0 0 30px var(--ng-glow),
+        inset 0 0 20px rgba(15, 255, 80, 0.05) !important;
+}
+
+[data-theme="neon-grid"] .nav-item.active::before {
+    width: 3px;
+    box-shadow: 0 0 10px var(--ng-green);
+}
+
+[data-theme="neon-grid"] .nav-item.active i {
+    color: var(--ng-green) !important;
+    text-shadow: 0 0 15px var(--ng-green) !important;
+    animation: ng-icon-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ng-icon-pulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px var(--ng-green));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 15px var(--ng-green));
+    }
+}
+
+/* Tooltips */
+[data-theme="neon-grid"] .nav-tooltip {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    color: var(--ng-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    box-shadow:
+        0 0 20px var(--ng-glow),
+        4px 4px 0 rgba(255, 0, 110, 0.5) !important;
+}
+
+/* ============================================
+   HEADER - Terminal Bar
+   ============================================ */
+
+[data-theme="neon-grid"] .header {
+    background: var(--ng-dark) !important;
+    border-bottom: 1px solid var(--ng-border) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+}
+
+[data-theme="neon-grid"] .players-counter {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    color: var(--ng-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-shadow: 0 0 10px var(--ng-green) !important;
+}
+
+[data-theme="neon-grid"] .players-counter i {
+    color: var(--ng-pink) !important;
+    text-shadow: 0 0 10px var(--ng-pink) !important;
+}
+
+/* Window Controls */
+[data-theme="neon-grid"] .window-controls .control-btn {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-border) !important;
+    border-radius: 2px !important;
+    color: var(--ng-text-secondary) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .window-controls .control-btn:hover {
+    background: var(--ng-green) !important;
+    border-color: var(--ng-green) !important;
+    color: var(--ng-dark) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+}
+
+[data-theme="neon-grid"] .window-controls .control-btn.close:hover {
+    background: var(--ng-pink) !important;
+    border-color: var(--ng-pink) !important;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5) !important;
+}
+
+/* ============================================
+   GAME TITLE - Neon Glow
+   ============================================ */
+
+[data-theme="neon-grid"] .game-title {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 10px !important;
+    color: var(--ng-text) !important;
+    text-shadow:
+        0 0 10px var(--ng-green),
+        0 0 20px var(--ng-green),
+        0 0 40px var(--ng-green),
+        0 0 80px var(--ng-green) !important;
+    animation: ng-title-flicker 4s infinite;
+}
+
+@keyframes ng-title-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    92% {
+        opacity: 1;
+    }
+
+    93% {
+        opacity: 0.8;
+    }
+
+    94% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.9;
+    }
+
+    96% {
+        opacity: 1;
+    }
+}
+
+[data-theme="neon-grid"] .title-accent {
+    color: var(--ng-pink) !important;
+    text-shadow:
+        0 0 10px var(--ng-pink),
+        0 0 20px var(--ng-pink) !important;
+}
+
+/* ============================================
+   BUTTONS - Neon Bordered
+   ============================================ */
+
+[data-theme="neon-grid"] .home-play-button,
+[data-theme="neon-grid"] .install-button {
+    background: linear-gradient(135deg, var(--ng-green) 0%, var(--ng-green-light) 100%) !important;
+    border: 2px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    color: var(--ng-dark) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    box-shadow:
+        0 0 24px var(--ng-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .home-play-button::before,
+[data-theme="neon-grid"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: ng-shine 2s infinite;
+}
+
+@keyframes ng-shine {
+    0% {
+        left: -100%;
+    }
+
+    30%,
+    100% {
+        left: 100%;
+    }
+}
+
+[data-theme="neon-grid"] .home-play-button:hover,
+[data-theme="neon-grid"] .install-button:hover {
+    background: linear-gradient(135deg, var(--ng-green-light) 0%, var(--ng-green) 100%) !important;
+    transform: scale(1.05) !important;
+    box-shadow:
+        0 0 32px var(--ng-glow),
+        0 0 48px rgba(15, 255, 80, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="neon-grid"] .home-play-button:active,
+[data-theme="neon-grid"] .install-button:active {
+    transform: scale(0.98) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="neon-grid"] .view-all-btn,
+[data-theme="neon-grid"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    color: var(--ng-green) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .view-all-btn:hover,
+[data-theme="neon-grid"] .settings-action-btn:hover {
+    background: var(--ng-green) !important;
+    color: var(--ng-dark) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS
+   ============================================ */
+
+[data-theme="neon-grid"] .install-content,
+[data-theme="neon-grid"] .settings-container,
+[data-theme="neon-grid"] .news-section,
+[data-theme="neon-grid"] .mods-modal-content {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border: 1px solid var(--ng-border) !important;
+    border-radius: 2px !important;
+    box-shadow:
+        0 0 30px rgba(15, 255, 80, 0.1),
+        inset 0 0 60px rgba(15, 255, 80, 0.02) !important;
+    position: relative;
+}
+
+/* Grid corner accents */
+[data-theme="neon-grid"] .settings-container::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 20px;
+    height: 20px;
+    border-left: 2px solid var(--ng-pink);
+    border-top: 2px solid var(--ng-pink);
+}
+
+[data-theme="neon-grid"] .settings-container::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid var(--ng-pink);
+    border-bottom: 2px solid var(--ng-pink);
+}
+
+[data-theme="neon-grid"] .settings-section-title {
+    color: var(--ng-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    text-shadow: 0 0 10px var(--ng-green) !important;
+    border-bottom: 1px solid var(--ng-border) !important;
+    padding-bottom: 12px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="neon-grid"] .form-input,
+[data-theme="neon-grid"] .settings-input,
+[data-theme="neon-grid"] .mods-search {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-border) !important;
+    border-radius: 2px !important;
+    color: var(--ng-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    caret-color: var(--ng-green);
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .form-input:focus,
+[data-theme="neon-grid"] .settings-input:focus,
+[data-theme="neon-grid"] .mods-search:focus {
+    border-color: var(--ng-green) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="neon-grid"] .form-input::placeholder {
+    color: rgba(15, 255, 80, 0.4) !important;
+}
+
+/* Checkboxes */
+[data-theme="neon-grid"] .custom-checkbox {
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="neon-grid"] .custom-checkbox:checked {
+    background: var(--ng-green) !important;
+    box-shadow: 0 0 15px var(--ng-glow) !important;
+}
+
+[data-theme="neon-grid"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ng-dark) !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="neon-grid"] .progress-bar-container {
+    background: var(--ng-dark) !important;
+    border: 1px solid var(--ng-green) !important;
+    border-radius: 2px !important;
+    overflow: hidden;
+}
+
+[data-theme="neon-grid"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--ng-green), var(--ng-green-light)) !important;
+    box-shadow: 0 0 20px var(--ng-glow) !important;
+    position: relative;
+}
+
+[data-theme="neon-grid"] .progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(90deg,
+            transparent 0px,
+            transparent 15px,
+            rgba(0, 0, 0, 0.2) 15px,
+            rgba(0, 0, 0, 0.2) 30px);
+    animation: ng-progress-scroll 1s linear infinite;
+}
+
+@keyframes ng-progress-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(30px);
+    }
+}
+
+[data-theme="neon-grid"] .progress-text {
+    color: var(--ng-green) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-shadow: 0 0 10px var(--ng-green) !important;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+[data-theme="neon-grid"] .news-card,
+[data-theme="neon-grid"] .mod-card {
+    background: rgba(20, 20, 20, 0.9) !important;
+    border: 1px solid var(--ng-border) !important;
+    border-radius: 2px !important;
+    transition: all 0.2s ease !important;
+    position: relative;
+}
+
+[data-theme="neon-grid"] .news-card::before,
+[data-theme="neon-grid"] .mod-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ng-green), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+[data-theme="neon-grid"] .news-card:hover,
+[data-theme="neon-grid"] .mod-card:hover {
+    border-color: var(--ng-green) !important;
+    box-shadow: 0 0 30px var(--ng-glow) !important;
+    transform: translateY(-4px) !important;
+}
+
+[data-theme="neon-grid"] .news-card:hover::before,
+[data-theme="neon-grid"] .mod-card:hover::before {
+    opacity: 1;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="neon-grid"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: var(--ng-dark) !important;
+}
+
+[data-theme="neon-grid"] ::-webkit-scrollbar-thumb {
+    background: var(--ng-green) !important;
+    border: none !important;
+    box-shadow: 0 0 10px var(--ng-glow) !important;
+}
+
+[data-theme="neon-grid"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--ng-green-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="neon-grid"] .modal-overlay {
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+/* ============================================
+   MATRIX RAIN EFFECT (subtle)
+   ============================================ */
+
+@keyframes ng-matrix-fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Neon pulse on play button */
+[data-theme="neon-grid"] .home-play-button {
+    animation: ng-neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ng-neon-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 24px var(--ng-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 40px var(--ng-glow), 0 0 60px rgba(15, 255, 80, 0.2);
+    }
+}
+
+[data-theme="neon-grid"] .home-play-button:hover {
+    animation: none;
+}

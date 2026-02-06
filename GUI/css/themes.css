@@ -1,0 +1,54 @@
+/* ============================================
+   THEME CSS IMPORTS
+   ============================================ */
+
+/* Core Themes */
+@import "minecraft.css";
+
+/* Game-Inspired Themes */
+@import "cyberpunk.css";
+@import "valorant.css";
+@import "csgo.css";
+@import "terraria.css";
+
+/* Cultural/Artistic Themes */
+@import "japan.css";
+@import "france.css";
+
+/* Abstract/Atmospheric Themes */
+@import "aurora.css";
+@import "void.css";
+@import "obsidian.css";
+@import "neon-grid.css";
+@import "ascend.css";
+
+/* ============================================
+   SHARED THEME ANIMATIONS
+   ============================================ */
+
+/* Glitch animation used by Cyberpunk theme */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}

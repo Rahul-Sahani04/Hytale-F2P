@@ -1,0 +1,493 @@
+/* ============================================
+   AURORA THEME
+   Northern Lights, Dreamy, Ethereal Aesthetic
+   ============================================ */
+
+[data-theme="aurora"] {
+    /* Aurora Color Palette */
+    --au-purple: #818cf8;
+    --au-purple-light: #a5b4fc;
+    --au-purple-dark: #6366f1;
+    --au-pink: #c084fc;
+    --au-blue: #60a5fa;
+    --au-dark: #02040a;
+    --au-surface: rgba(255, 255, 255, 0.03);
+    --au-surface-elevated: rgba(255, 255, 255, 0.07);
+    --au-text: #F0F4FF;
+    --au-text-secondary: #94a3b8;
+    --au-border: rgba(255, 255, 255, 0.05);
+    --au-glow: rgba(129, 140, 248, 0.3);
+}
+
+/* Dreamy Aurora Gradient Overlay */
+[data-theme="aurora"] .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(129, 140, 248, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(192, 132, 252, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(96, 165, 250, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    animation: au-shimmer 10s ease-in-out infinite;
+}
+
+@keyframes au-shimmer {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   SIDEBAR - Transparent Floating
+   ============================================ */
+
+[data-theme="aurora"] .sidebar {
+    background: transparent !important;
+    border-right: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="aurora"] .sidebar-logo {
+    background: var(--au-surface-elevated) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Nav Items - Soft Floating Pills */
+[data-theme="aurora"] .nav-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 16px !important;
+    margin: 6px !important;
+    transition: all 0.4s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="aurora"] .nav-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.1), rgba(192, 132, 252, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
+}
+
+[data-theme="aurora"] .nav-item i {
+    color: var(--au-text-secondary) !important;
+    transition: all 0.4s ease !important;
+}
+
+[data-theme="aurora"] .nav-item:hover {
+    background: var(--au-surface-elevated) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="aurora"] .nav-item:hover::before {
+    opacity: 1;
+}
+
+[data-theme="aurora"] .nav-item:hover i {
+    color: var(--au-text) !important;
+    transform: scale(1.1) !important;
+}
+
+[data-theme="aurora"] .nav-item.active {
+    background: var(--au-surface-elevated) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 0 30px var(--au-glow) !important;
+}
+
+[data-theme="aurora"] .nav-item.active::before {
+    opacity: 1;
+}
+
+[data-theme="aurora"] .nav-item.active i {
+    color: var(--au-purple-light) !important;
+    filter: drop-shadow(0 0 10px var(--au-glow));
+}
+
+/* Tooltips */
+[data-theme="aurora"] .nav-tooltip {
+    background: rgba(2, 4, 10, 0.9) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 12px !important;
+    color: var(--au-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px var(--au-glow) !important;
+}
+
+/* ============================================
+   HEADER - Transparent Floating
+   ============================================ */
+
+[data-theme="aurora"] .header {
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="aurora"] .players-counter {
+    background: var(--au-surface-elevated) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 16px !important;
+    color: var(--au-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="aurora"] .players-counter i {
+    color: var(--au-purple) !important;
+}
+
+/* Window Controls */
+[data-theme="aurora"] .window-controls .control-btn {
+    background: var(--au-surface-elevated) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 12px !important;
+    color: var(--au-text-secondary) !important;
+    backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="aurora"] .window-controls .control-btn:hover {
+    background: var(--au-purple) !important;
+    border-color: var(--au-purple) !important;
+    color: white !important;
+    box-shadow: 0 0 20px var(--au-glow) !important;
+}
+
+[data-theme="aurora"] .window-controls .control-btn.close:hover {
+    background: #fb7185 !important;
+    border-color: #fb7185 !important;
+    box-shadow: 0 0 20px rgba(251, 113, 133, 0.4) !important;
+}
+
+/* ============================================
+   GAME TITLE - Ethereal Glow
+   ============================================ */
+
+[data-theme="aurora"] .game-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 6px !important;
+    color: var(--au-text) !important;
+    text-shadow:
+        0 0 40px var(--au-glow),
+        0 0 80px rgba(129, 140, 248, 0.2),
+        0 0 120px rgba(192, 132, 252, 0.1) !important;
+    animation: au-title-glow 4s ease-in-out infinite;
+}
+
+@keyframes au-title-glow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 40px var(--au-glow),
+            0 0 80px rgba(129, 140, 248, 0.2);
+    }
+
+    50% {
+        text-shadow:
+            0 0 60px var(--au-glow),
+            0 0 100px rgba(129, 140, 248, 0.3),
+            0 0 140px rgba(192, 132, 252, 0.15);
+    }
+}
+
+[data-theme="aurora"] .title-accent {
+    color: var(--au-purple-light) !important;
+}
+
+/* ============================================
+   BUTTONS - Dreamy Gradient Glass
+   ============================================ */
+
+[data-theme="aurora"] .home-play-button,
+[data-theme="aurora"] .install-button {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.8) 0%, rgba(96, 165, 250, 0.6) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    color: white !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 0 40px rgba(129, 140, 248, 0.2) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease !important;
+}
+
+[data-theme="aurora"] .home-play-button::before,
+[data-theme="aurora"] .install-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+[data-theme="aurora"] .home-play-button:hover,
+[data-theme="aurora"] .install-button:hover {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.9) 0%, rgba(96, 165, 250, 0.8) 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 60px rgba(129, 140, 248, 0.4) !important;
+}
+
+[data-theme="aurora"] .home-play-button:hover::before,
+[data-theme="aurora"] .install-button:hover::before {
+    opacity: 1;
+}
+
+[data-theme="aurora"] .home-play-button:active,
+[data-theme="aurora"] .install-button:active {
+    transform: translateY(0) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="aurora"] .view-all-btn,
+[data-theme="aurora"] .settings-action-btn {
+    background: var(--au-surface-elevated) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 16px !important;
+    color: var(--au-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="aurora"] .view-all-btn:hover,
+[data-theme="aurora"] .settings-action-btn:hover {
+    background: var(--au-purple) !important;
+    border-color: var(--au-purple) !important;
+    box-shadow: 0 0 20px var(--au-glow) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS - Glass Cards
+   ============================================ */
+
+[data-theme="aurora"] .install-content,
+[data-theme="aurora"] .settings-container,
+[data-theme="aurora"] .news-section,
+[data-theme="aurora"] .mods-modal-content {
+    background: var(--au-surface) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 24px !important;
+    backdrop-filter: blur(40px) !important;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(129, 140, 248, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+[data-theme="aurora"] .settings-section-title {
+    color: var(--au-purple-light) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.05em !important;
+    border-bottom: 1px solid var(--au-border) !important;
+    padding-bottom: 16px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="aurora"] .form-input,
+[data-theme="aurora"] .settings-input,
+[data-theme="aurora"] .mods-search {
+    background: var(--au-surface) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 16px !important;
+    color: var(--au-text) !important;
+    font-family: 'Inter', sans-serif !important;
+    backdrop-filter: blur(10px) !important;
+    caret-color: var(--au-purple);
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="aurora"] .form-input:focus,
+[data-theme="aurora"] .settings-input:focus,
+[data-theme="aurora"] .mods-search:focus {
+    border-color: var(--au-purple) !important;
+    box-shadow: 0 0 30px var(--au-glow) !important;
+    outline: none !important;
+}
+
+[data-theme="aurora"] .form-input::placeholder {
+    color: var(--au-text-secondary) !important;
+}
+
+/* Checkboxes */
+[data-theme="aurora"] .custom-checkbox {
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: var(--au-surface) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="aurora"] .custom-checkbox:checked {
+    background: linear-gradient(135deg, var(--au-purple), var(--au-blue)) !important;
+    border-color: var(--au-purple) !important;
+    box-shadow: 0 0 15px var(--au-glow) !important;
+}
+
+[data-theme="aurora"] .custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 12px;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="aurora"] .progress-bar-container {
+    background: var(--au-surface) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="aurora"] .progress-bar-fill {
+    background: linear-gradient(90deg, var(--au-purple), var(--au-blue), var(--au-pink)) !important;
+    background-size: 200% 100% !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 20px var(--au-glow) !important;
+    animation: au-gradient-flow 3s ease infinite;
+}
+
+@keyframes au-gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+[data-theme="aurora"] .progress-text {
+    color: var(--au-text) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* ============================================
+   CARDS - Floating Glass
+   ============================================ */
+
+[data-theme="aurora"] .news-card,
+[data-theme="aurora"] .mod-card {
+    background: var(--au-surface) !important;
+    border: 1px solid var(--au-border) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(20px) !important;
+    transition: all 0.4s ease !important;
+    overflow: hidden;
+}
+
+[data-theme="aurora"] .news-card:hover,
+[data-theme="aurora"] .mod-card:hover {
+    transform: translateY(-8px) !important;
+    border-color: rgba(129, 140, 248, 0.3) !important;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px var(--au-glow) !important;
+}
+
+[data-theme="aurora"] .news-card img {
+    border-radius: 16px !important;
+    transition: transform 0.4s ease;
+}
+
+[data-theme="aurora"] .news-card:hover img {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="aurora"] ::-webkit-scrollbar {
+    width: 8px !important;
+    background: transparent !important;
+}
+
+[data-theme="aurora"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--au-purple), var(--au-blue)) !important;
+    border-radius: 4px !important;
+}
+
+[data-theme="aurora"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--au-purple-light) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="aurora"] .modal-overlay {
+    background: rgba(2, 4, 10, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* ============================================
+   FLOATING ANIMATION
+   ============================================ */
+
+@keyframes au-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+[data-theme="aurora"] .home-play-button {
+    animation: au-float 4s ease-in-out infinite;
+}
+
+[data-theme="aurora"] .home-play-button:hover {
+    animation: none;
+}

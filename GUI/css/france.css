@@ -1,0 +1,481 @@
+/* ============================================
+   FRANCE EDITORIAL THEME
+   High-Fashion, Minimalist, Saint Laurent Inspired
+   ============================================ */
+
+[data-theme="france_editorial"] {
+    /* France Editorial Color Palette */
+    --fr-black: #000000;
+    --fr-white: #FFFFFF;
+    --fr-dark: #050505;
+    --fr-surface: #0C0C0C;
+    --fr-surface-elevated: #141414;
+    --fr-gray: #888888;
+    --fr-gray-dark: #333333;
+    --fr-red: #FF3333;
+}
+
+/* Clean, No-Noise Background */
+[data-theme="france_editorial"] .main-content::before {
+    display: none;
+}
+
+[data-theme="france_editorial"] #app-background {
+    filter: grayscale(100%) contrast(1.1) !important;
+}
+
+/* ============================================
+   SIDEBAR - Minimal Editorial
+   ============================================ */
+
+[data-theme="france_editorial"] .sidebar {
+    background: var(--fr-dark) !important;
+    border-right: 1px solid var(--fr-gray-dark) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .sidebar-logo {
+    background: transparent !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+}
+
+/* Nav Items - Clean Text Style */
+[data-theme="france_editorial"] .nav-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: var(--fr-gray) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    transition: all 0.2s ease !important;
+    position: relative;
+}
+
+[data-theme="france_editorial"] .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--fr-white);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+[data-theme="france_editorial"] .nav-item i {
+    color: var(--fr-gray) !important;
+    font-size: 14px !important;
+    transition: color 0.2s ease !important;
+}
+
+[data-theme="france_editorial"] .nav-item:hover {
+    background: var(--fr-white) !important;
+    color: var(--fr-dark) !important;
+    transform: none !important;
+}
+
+[data-theme="france_editorial"] .nav-item:hover i {
+    color: var(--fr-dark) !important;
+    transform: none !important;
+}
+
+[data-theme="france_editorial"] .nav-item.active {
+    background: var(--fr-white) !important;
+    color: var(--fr-dark) !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .nav-item.active::before {
+    display: none !important;
+}
+
+[data-theme="france_editorial"] .nav-item.active i {
+    color: var(--fr-dark) !important;
+}
+
+/* Tooltips */
+[data-theme="france_editorial"] .nav-tooltip {
+    background: var(--fr-white) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: var(--fr-black) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ============================================
+   HEADER - Editorial Bar
+   ============================================ */
+
+[data-theme="france_editorial"] .header {
+    background: var(--fr-dark) !important;
+    border-bottom: 1px solid var(--fr-gray-dark) !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .players-counter {
+    background: var(--fr-dark) !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    color: var(--fr-white) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+[data-theme="france_editorial"] .players-counter i {
+    color: var(--fr-white) !important;
+}
+
+/* Window Controls */
+[data-theme="france_editorial"] .window-controls .control-btn {
+    background: transparent !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    color: var(--fr-gray) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="france_editorial"] .window-controls .control-btn:hover {
+    background: var(--fr-white) !important;
+    border-color: var(--fr-white) !important;
+    color: var(--fr-black) !important;
+}
+
+[data-theme="france_editorial"] .window-controls .control-btn.close:hover {
+    background: var(--fr-red) !important;
+    border-color: var(--fr-red) !important;
+    color: var(--fr-white) !important;
+}
+
+/* ============================================
+   GAME TITLE - Editorial Serif
+   ============================================ */
+
+[data-theme="france_editorial"] .game-title {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    letter-spacing: -0.02em !important;
+    color: var(--fr-white) !important;
+    text-shadow: none !important;
+    font-size: 72px !important;
+}
+
+[data-theme="france_editorial"] .title-accent {
+    font-style: normal !important;
+    font-weight: 600 !important;
+}
+
+/* ============================================
+   BUTTONS - Minimal Contrast
+   ============================================ */
+
+[data-theme="france_editorial"] .home-play-button,
+[data-theme="france_editorial"] .install-button {
+    background: var(--fr-white) !important;
+    border: 1px solid var(--fr-white) !important;
+    border-radius: 0 !important;
+    color: var(--fr-black) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    box-shadow: none !important;
+    padding: 16px 48px !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="france_editorial"] .home-play-button:hover,
+[data-theme="france_editorial"] .install-button:hover {
+    background: var(--fr-surface-elevated) !important;
+    border-color: var(--fr-white) !important;
+    color: var(--fr-white) !important;
+    transform: none !important;
+}
+
+[data-theme="france_editorial"] .home-play-button:active,
+[data-theme="france_editorial"] .install-button:active {
+    background: var(--fr-gray-dark) !important;
+}
+
+/* Secondary Buttons */
+[data-theme="france_editorial"] .view-all-btn,
+[data-theme="france_editorial"] .settings-action-btn {
+    background: transparent !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    color: var(--fr-white) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="france_editorial"] .view-all-btn:hover,
+[data-theme="france_editorial"] .settings-action-btn:hover {
+    background: var(--fr-white) !important;
+    border-color: var(--fr-white) !important;
+    color: var(--fr-black) !important;
+}
+
+/* ============================================
+   PANELS & CONTAINERS - Clean Boxes
+   ============================================ */
+
+[data-theme="france_editorial"] .install-content,
+[data-theme="france_editorial"] .settings-container,
+[data-theme="france_editorial"] .news-section,
+[data-theme="france_editorial"] .mods-modal-content {
+    background: var(--fr-surface) !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .settings-section-title {
+    color: var(--fr-white) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: 24px !important;
+    letter-spacing: 0 !important;
+    border-bottom: 1px solid var(--fr-gray-dark) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 24px !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+[data-theme="france_editorial"] .form-input,
+[data-theme="france_editorial"] .settings-input,
+[data-theme="france_editorial"] .mods-search {
+    background: var(--fr-dark) !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    color: var(--fr-white) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    caret-color: var(--fr-white);
+    transition: border-color 0.3s ease !important;
+}
+
+[data-theme="france_editorial"] .form-input:focus,
+[data-theme="france_editorial"] .settings-input:focus,
+[data-theme="france_editorial"] .mods-search:focus {
+    border-color: var(--fr-white) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+[data-theme="france_editorial"] .form-input::placeholder {
+    color: var(--fr-gray) !important;
+    font-style: italic !important;
+}
+
+/* Labels */
+[data-theme="france_editorial"] .form-label,
+[data-theme="france_editorial"] .settings-input-label {
+    color: var(--fr-gray) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+}
+
+/* Checkboxes */
+[data-theme="france_editorial"] .custom-checkbox {
+    appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: transparent !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease !important;
+}
+
+[data-theme="france_editorial"] .custom-checkbox:checked {
+    background: var(--fr-white) !important;
+    border-color: var(--fr-white) !important;
+}
+
+[data-theme="france_editorial"] .custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    background: var(--fr-black) !important;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+[data-theme="france_editorial"] .progress-bar-container {
+    background: var(--fr-dark) !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    height: 4px !important;
+}
+
+[data-theme="france_editorial"] .progress-bar-fill {
+    background: var(--fr-white) !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .progress-text {
+    color: var(--fr-white) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+/* ============================================
+   CARDS - Editorial Grid
+   ============================================ */
+
+[data-theme="france_editorial"] .news-card,
+[data-theme="france_editorial"] .mod-card {
+    background: var(--fr-surface) !important;
+    border: 1px solid var(--fr-gray-dark) !important;
+    border-radius: 0 !important;
+    transition: border-color 0.3s ease !important;
+}
+
+[data-theme="france_editorial"] .news-card:hover,
+[data-theme="france_editorial"] .mod-card:hover {
+    border-color: var(--fr-white) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="france_editorial"] .news-card img {
+    filter: grayscale(100%) !important;
+    transition: filter 0.3s ease !important;
+}
+
+[data-theme="france_editorial"] .news-card:hover img {
+    filter: grayscale(0%) !important;
+}
+
+/* Card Titles */
+[data-theme="france_editorial"] .news-card h3,
+[data-theme="france_editorial"] .mod-card h3 {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+[data-theme="france_editorial"] ::-webkit-scrollbar {
+    width: 4px !important;
+    background: var(--fr-dark) !important;
+}
+
+[data-theme="france_editorial"] ::-webkit-scrollbar-thumb {
+    background: var(--fr-gray-dark) !important;
+    border: none !important;
+}
+
+[data-theme="france_editorial"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--fr-white) !important;
+}
+
+/* ============================================
+   MODAL OVERLAYS
+   ============================================ */
+
+[data-theme="france_editorial"] .modal-overlay {
+    background: rgba(5, 5, 5, 0.95) !important;
+    backdrop-filter: none !important;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+[data-theme="france_editorial"] h1,
+[data-theme="france_editorial"] h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    letter-spacing: -0.02em !important;
+}
+
+[data-theme="france_editorial"] h3,
+[data-theme="france_editorial"] h4,
+[data-theme="france_editorial"] h5,
+[data-theme="france_editorial"] h6 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+[data-theme="france_editorial"] p,
+[data-theme="france_editorial"] span {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 300 !important;
+}
+
+/* Links */
+[data-theme="france_editorial"] a:not(.nav-item):not(.theme-card) {
+    color: var(--fr-white) !important;
+    text-decoration: none !important;
+    position: relative;
+}
+
+[data-theme="france_editorial"] a:not(.nav-item):not(.theme-card)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--fr-white);
+    transition: width 0.3s ease;
+}
+
+[data-theme="france_editorial"] a:not(.nav-item):not(.theme-card):hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   SPECIAL: No Animations (Editorial Restraint)
+   ============================================ */
+
+[data-theme="france_editorial"] .home-play-button {
+    animation: none !important;
+}
+
+[data-theme="france_editorial"] * {
+    animation-duration: 0.3s !important;
+}
