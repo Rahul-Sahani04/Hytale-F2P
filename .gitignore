@@ -31,3 +31,5 @@ themes/*.json
 Themes.md
 themes/
 docs/THEME_MANAGER_REFERENCE.md
+
+/tests

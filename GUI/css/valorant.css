@@ -35,10 +35,9 @@
    SIDEBAR - Tactical Panel
    ============================================ */
 
+/* Note: Basic sidebar styles (background, border) are handled by theme JSON */
 [data-theme="valorant"] .sidebar {
-    background: linear-gradient(180deg, rgba(255, 70, 85, 0.05) 0%, rgba(15, 25, 35, 0.98) 100%) !important;
-    border-right: 1px solid rgba(255, 70, 85, 0.3) !important;
-    box-shadow: inset -1px 0 30px rgba(255, 70, 85, 0.05) !important;
+    /* Additional overrides if needed, but background/border should come from JSON */
 }
 
 [data-theme="valorant"] .sidebar-logo {

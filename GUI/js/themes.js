@@ -130,6 +130,46 @@ const defaultVariables = {
 
 const defaultPreview = "themes/previews/default.png";
 
+// Accessibility Helper
+function checkContrast(color1, color2, themeName) {
+    if (!color1 || !color2) return;
+
+    // Simple hex to rgb
+    const hexToRgb = (hex) => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    };
+
+    // Calculate luminance
+    const luminance = (r, g, b) => {
+        const a = [r, g, b].map(v => {
+            v /= 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        });
+        return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    };
+
+    const rgb1 = hexToRgb(color1);
+    const rgb2 = hexToRgb(color2);
+
+    if (!rgb1 || !rgb2) return; // Skip if not hex (e.g. rgba, gradients)
+
+    const lum1 = luminance(rgb1.r, rgb1.g, rgb1.b);
+    const lum2 = luminance(rgb2.r, rgb2.g, rgb2.b);
+    
+    const brightest = Math.max(lum1, lum2);
+    const darkest = Math.min(lum1, lum2);
+    const ratio = (brightest + 0.05) / (darkest + 0.05);
+
+    if (ratio < 4.5) {
+        console.warn(`Theme "${themeName}" has low contrast ratio (${ratio.toFixed(2)}) between text (${color1}) and background (${color2}). WCAG AA requires 4.5:1.`);
+    }
+}
+
 function applyThemeToDOM(theme) {
     const root = document.documentElement;
     const bgImageEl = document.getElementById('app-background');
@@ -257,6 +297,12 @@ function applyThemeToDOM(theme) {
     // 5. Set Background Image
     if (bgImageEl && theme.backgroundImage) {
         let bgPath = theme.backgroundImage;
+        
+        // Fix path resolution for themes folder relative to GUI
+        if (bgPath.startsWith('themes/')) {
+            bgPath = '../' + bgPath;
+        }
+
         if (bgPath.startsWith('GUI/')) {
             bgPath = bgPath.replace('GUI/', '');
         }
@@ -305,14 +351,24 @@ function applyThemeToDOM(theme) {
         playBtn.addEventListener('mouseenter', applyHoverStyles);
         playBtn.addEventListener('mouseleave', applyBaseStyles);
 
-        // Handle inner span (e.g. for Valorant skew correction)
+        // Handle inner span (generic support for child transforms, e.g. for Valorant)
         const span = playBtn.querySelector('span');
-        if (span && theme.id === 'valorant') {
-            span.style.transform = 'skew(15deg)';
-            span.style.display = 'inline-block';
-        } else if (span) {
-            span.style.transform = 'none';
+        if (span) {
+            if (pb.childTransform) {
+                span.style.transform = pb.childTransform;
+            } else {
+                span.style.transform = 'none';
+            }
+            
+            if (pb.childDisplay) {
+                span.style.display = pb.childDisplay;
+            }
         }
+    }
+
+    // Accessibility Check (Dev mode warning)
+    if (theme.colors && theme.colors.primary && theme.colors.background) {
+        checkContrast(theme.colors.text, theme.colors.background, theme.name);
     }
 
     // Sidebar Styling

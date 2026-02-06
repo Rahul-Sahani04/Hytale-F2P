@@ -1,40 +1,16 @@
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
+const defaultTheme = require('../config/defaultTheme');
 
 class ThemeManager {
     constructor() {
-        this.userDataPath = app.getPath('userData');
+        this.userDataPath = app ? app.getPath('userData') : path.resolve(__dirname, '../../userData');
         this.configPath = path.join(this.userDataPath, 'theme-config.json');
         this.themesPath = path.resolve(__dirname, '../../themes');
         this.themes = new Map();
         this.activeTheme = 'default';
-
-        // Default theme definition (fallback)
-        this.defaultTheme = {
-            id: 'default',
-            name: 'Default',
-            description: 'The original Hytale F2P experience',
-            preview: 'themes/previews/default.png',
-            colors: {
-                primary: '#9333ea',
-                secondary: '#3b82f6',
-                accent: '#8b5cf6',
-                background: '#090909',
-                surface: 'rgba(0, 0, 0, 0.4)',
-                text: '#ffffff',
-                textSecondary: '#9ca3af',
-                border: 'rgba(255, 255, 255, 0.1)',
-                success: '#22c55e',
-                error: '#ef4444',
-                warning: '#fbbf24'
-            },
-            effects: {
-                borderRadius: '12px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-                backdropFilter: 'blur(20px)'
-            }
-        };
+        this.defaultTheme = defaultTheme;
     }
 
     init() {
@@ -54,6 +30,32 @@ class ThemeManager {
         }
     }
 
+    validateTheme(theme) {
+        if (!theme.id || !theme.name) {
+            console.warn(`Skipping invalid theme: Missing ID or Name`);
+            return null;
+        }
+
+        // Create a deep merge of default theme and loaded theme
+        const validated = {
+            ...this.defaultTheme,
+            ...theme,
+            colors: {
+                ...this.defaultTheme.colors,
+                ...(theme.colors || {})
+            },
+            effects: {
+                ...this.defaultTheme.effects,
+                ...(theme.effects || {})
+            },
+            fonts: theme.fonts ? { ...theme.fonts } : undefined, // Fonts are optional
+            sidebar: theme.sidebar ? { ...theme.sidebar } : undefined, // Sidebar is optional
+            playButton: theme.playButton ? { ...theme.playButton } : undefined // PlayButton is optional
+        };
+
+        return validated;
+    }
+
     loadThemes() {
         this.themes.clear();
 
@@ -67,8 +69,10 @@ class ThemeManager {
                     if (file.endsWith('.json')) {
                         try {
                             const data = fs.readFileSync(path.join(this.themesPath, file), 'utf8');
-                            const theme = JSON.parse(data);
-                            if (theme.id && theme.colors) {
+                            const rawTheme = JSON.parse(data);
+                            const theme = this.validateTheme(rawTheme);
+                            
+                            if (theme) {
                                 this.themes.set(theme.id, theme);
                             }
                         } catch (err) {
